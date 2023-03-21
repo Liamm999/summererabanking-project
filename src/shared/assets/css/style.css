@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 body {
-    /* @apply bg-slate-50 text-black dark:bg-slate-800 dark:text-slate-50; */
+  background-color: #18122b;
 }
 
 html {
     scroll-behavior:smooth;
+    @apply text-white
+
 }
 
 @layer base {
@@ -41,6 +43,10 @@ html {
 
     img {
         @apply max-w-full h-auto;
+    }
+
+    .text-on-white {
+        color: #635985;
     }
 }
 
