@@ -3,5 +3,13 @@ import App from "./App.vue"
 import router from "./shared/router"
 import store from "./shared/store"
 import "@/shared/assets/css/style.css"
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { faMoneyBillTransfer } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
-createApp(App).use(store).use(router).mount("#app")
+library.add(faMoneyBillTransfer)
+createApp(App)
+  .use(store)
+  .use(router)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .mount("#app")

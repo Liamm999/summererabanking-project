@@ -2,7 +2,7 @@
   <div class="container mx-auto mt-16">
     <Header :phone-number="phoneNumber"></Header>
     <div
-      class="content-container grid gap-4 grid-cols-3 bg-slate-400 rounded-b-2xl py-9 px-10"
+      class="content-container grid gap-12 grid-cols-3 bg-slate-400 rounded-b-2xl py-16 px-10"
     >
       <Element
         v-for="element in 6"
