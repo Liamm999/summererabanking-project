@@ -11,7 +11,7 @@
         <div>Main</div>
       </div>
     </div>
-    <div class="footer">
+    <div class="footer max-sm:hidden">
       <Footer />
     </div>
   </div>
@@ -57,21 +57,26 @@ body {
   margin: 0px;
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 640px) {
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .left-navbar {
   width: 20vw;
-  
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: beige;
+
+  @media screen and (max-width: 640px) {
+    display: none;
+  }
 }
 
 .content {
   width: 80vw;
- 
   background-color: #18122b;
   background-color: aliceblue;
 }
