@@ -2,7 +2,7 @@
   <Layout>
     <template #content>
       <div class="">
-        <p>Dashboard</p>
+        <Card></Card>
       </div>
     </template>
   </Layout>
@@ -10,6 +10,7 @@
 
 <script setup>
 import Layout from "@/customer/layout/Default.vue"
+import Card from "@/customer/components/card/Card.vue"
 </script>
 
 <style lang="scss" scoped></style>

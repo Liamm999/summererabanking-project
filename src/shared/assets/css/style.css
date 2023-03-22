@@ -48,6 +48,11 @@ html {
     .text-on-white {
         color: #635985;
     }
+
+    .bg-element-purple {
+        background-color: #635985;
+        @apply text-white
+    }
 }
 
 /* global */

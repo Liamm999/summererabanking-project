@@ -1,11 +1,11 @@
 <template>
   <div>
     <div
-      class="header bg-slate-50 py-4 grid grid-cols-3 text-on-white place-items-center"
+      class="header py-2 bg-slate-50 grid grid-cols-3 text-on-white place-items-center"
     >
       <div class="blank"></div>
       <logo />
-      <profile />
+      <profile :img-src="imgSrc" :username="username" />
     </div>
     <slot name="content"></slot>
   </div>
@@ -14,6 +14,10 @@
 <script setup>
 import logo from "../components/navBar/Logo.vue"
 import profile from "../components/navBar/Profile.vue"
+import { ref, onMounted } from "vue"
+
+const imgSrc = ref("../../assets/img/fakeAvt.jpg")
+const username = ref("fake name")
 </script>
 
 <style lang="scss" scoped></style>
