@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 export default [
   {
-    path: "/demo", // route
+    path: "/admin/home", // route
     name: "admin", // name of the views page
     component: () => import("./views/demo.vue"), // directory of vue file path
     meta: {
@@ -10,7 +10,7 @@ export default [
   },
 
   {
-    path: "/account", // route
+    path: "/admin/account", // route
     name: "account", // name of the views page
     component: () => import("./views/Account.vue"), // directory of vue file path
     meta: {
@@ -19,7 +19,7 @@ export default [
   },
 
   {
-    path: "/saving", // route
+    path: "/admin/saving", // route
     name: "Saving", // name of the views page
     component: () => import("./views/Saving.vue"), // directory of vue file path
     meta: {
@@ -28,7 +28,7 @@ export default [
   },
 
   {
-    path: "/transaction", // route
+    path: "/admin/transaction", // route
     name: "transaction", // name of the views page
     component: () => import("./views/Transaction.vue"), // directory of vue file path
     meta: {

@@ -9,13 +9,11 @@
     </div>
     <hr class="bg-white" />
     <div class="flex flex-col justify-start text-xs pt-1 pb-2">
-      <RouterLink to="/account">
-        <div
-          class="text-gray-300 hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-100%"
-        >
-          Accounts
-        </div>
-      </RouterLink>
+      <button
+        class="text-gray-300 hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-full"
+      >
+        Accounts
+      </button>
 
       <RouterLink to="/transaction">
         <div
@@ -42,12 +40,6 @@ export default {
   data() {
     return {
       choose: false,
-      navbar: [
-        { content: " Dashboard", style: "choose" },
-        { content: " Accounts", style: "choose" },
-        { content: " Transaction Log", style: "choose" },
-        { content: " Saving & Loans", style: "choose" },
-      ],
     }
   },
 }

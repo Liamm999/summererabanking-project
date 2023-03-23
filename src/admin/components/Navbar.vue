@@ -199,7 +199,7 @@
           </div>
         </RouterLink>
 
-        <RouterLink to="/account">
+        <RouterLink to="/admin/account">
           <div
             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-100%"
           >
@@ -207,7 +207,7 @@
           </div>
         </RouterLink>
 
-        <RouterLink to="/transaction">
+        <RouterLink to="/admin/transaction">
           <div
             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-100%"
           >
@@ -215,7 +215,7 @@
           </div>
         </RouterLink>
 
-        <RouterLink to="/saving">
+        <RouterLink to="/admin/saving">
           <div
             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-100%"
           >
@@ -229,7 +229,7 @@
 
 <script>
 export default {
-  name: "admin",
+  name: "navbar",
   el: "#navbar",
   data() {
     return {
