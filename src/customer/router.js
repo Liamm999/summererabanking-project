@@ -1,9 +1,10 @@
+// eslint-disable-next-line no-unused-vars
 import router from "@/admin/router"
 
 /* eslint-disable prettier/prettier */
 export default [
   {
-    path: "/dashboard",
+    path: "/customer/dashboard",
     name: "Dashboard",
     component: () => import("./views/Dashboard.vue"),
     meta: {
