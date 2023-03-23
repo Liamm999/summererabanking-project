@@ -11,5 +11,15 @@ export default [
       layout: "Default",
       type: "protected"
     }
+  },
+
+  {
+    path: "/customer/withdraw",
+    name: "Withdraw",
+    component: () => import("./views/Withdraw.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected"
+    }
   }
 ];

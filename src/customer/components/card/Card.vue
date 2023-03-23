@@ -9,6 +9,7 @@
         :key="element"
         :element-name="element.elName"
         :icon="element.icon"
+        :route="element.route"
         class="text-center"
       ></Element>
     </div>
@@ -24,11 +25,13 @@ const iconArr = ref([
   {
     elName: "Transfer money",
     icon: "fa-money-bill-transfer",
+    route: "",
   },
 
   {
     elName: "Withdraw money",
     icon: "fa-wallet",
+    route: "/customer/withdraw",
   },
 
   {
