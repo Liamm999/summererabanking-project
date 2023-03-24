@@ -1,5 +1,7 @@
 <template>
-  <div class="container mx-auto mt-16">
+  <div
+    class="container w-2/3 z-20 absolute left-0 right-0 ml-auto mr-auto mt-16"
+  >
     <Header :phone-number="phoneNumber"></Header>
     <div
       class="content-container grid gap-12 grid-cols-3 bg-slate-400 rounded-b-2xl py-16 px-10"
