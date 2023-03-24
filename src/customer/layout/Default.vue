@@ -14,7 +14,7 @@
 <script setup>
 import logo from "../components/navBar/Logo.vue"
 import profile from "../components/navBar/Profile.vue"
-import { ref, onMounted } from "vue"
+import { ref } from "vue"
 
 const imgSrc = ref("../../assets/img/fakeAvt.jpg")
 const username = ref("fake name")
