@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="container text-center">404</div>
+    <div class="container text-center flex justify-center items-center">
+      This page has been hacked
+    </div>
   </div>
 </template>
 

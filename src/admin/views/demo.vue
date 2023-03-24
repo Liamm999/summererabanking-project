@@ -16,7 +16,6 @@
                 <span class="sr-only">Open main menu</span>
                 <!--
             Icon when menu is closed. 
-
             Menu open: "hidden", Menu closed: "block"
           -->
                 <svg
