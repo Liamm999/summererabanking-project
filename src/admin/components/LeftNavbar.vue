@@ -10,26 +10,22 @@
     <hr class="bg-white" />
     <div class="flex flex-col justify-start text-xs pt-1 pb-2">
       <button
-        class="text-gray-300 hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-full"
+        class="text-gray-300 hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-auto"
       >
         Accounts
       </button>
 
-      <RouterLink to="/transaction">
-        <div
-          class="text-gray-300 hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-100%"
-        >
-          Transaction Log
-        </div>
-      </RouterLink>
+      <button
+        class="text-gray-300 hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-auto"
+      >
+        Transaction Logs
+      </button>
 
-      <RouterLink to="/saving">
-        <div
-          class="text-gray-300 hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-100%"
-        >
-          Saving Loans
-        </div>
-      </RouterLink>
+      <button
+        class="text-gray-300 hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-auto"
+      >
+        Saving Loan
+      </button>
     </div>
   </div>
 </template>
@@ -50,5 +46,10 @@ hr {
   border: 1px solid white;
   width: 100%;
   margin: 2px 0;
+}
+@media not all and (min-width: 768px) {
+  #left-navbar {
+    font-size: smaller;
+  }
 }
 </style>

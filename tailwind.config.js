@@ -9,6 +9,12 @@ module.exports = {
           100: "#443C68",
           200: "#18122B",
         },
+        pink: {
+          trash: "#ffc0c0",
+        },
+        blue: {
+          edit: "#EAF3FB",
+        },
       },
     },
   },
