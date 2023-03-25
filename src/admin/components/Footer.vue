@@ -3,7 +3,7 @@
     id="footer"
     class="flex flex-row justify-center items-center text-cyan-100 pl-6 mt-1 w-full"
   >
-    <div class="left flex flex-row">
+    <div class="left flex flex-row justify-center">
       <div class="leftInfo">
         <font-awesome-icon
           icon="fa-solid fa-headphones "

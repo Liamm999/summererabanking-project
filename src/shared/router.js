@@ -20,6 +20,11 @@ let routes = [
     name: "Error",
     component: () => import("./views/404.vue"),
   },
+  {
+    path: "/register",
+    name: "Register",
+    component: () => import("./views/Register.vue"),
+  },
 
   ...customerRouter,
   ...adminRouter,

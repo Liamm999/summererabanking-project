@@ -8,6 +8,8 @@ module.exports = {
         purple: {
           100: "#443C68",
           200: "#18122B",
+          300: "#635985",
+          login: "#5E5389",
         },
         pink: {
           trash: "#ffc0c0",
