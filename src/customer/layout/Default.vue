@@ -1,13 +1,16 @@
 <template>
   <div>
     <div
-      class="header py-2 bg-slate-50 grid grid-cols-3 text-on-white place-items-center"
+      class="header relative py-2 bg-slate-50 grid grid-cols-3 text-on-white place-items-center"
     >
       <div class="blank"></div>
       <logo />
       <profile :img-src="imgSrc" :username="username" />
     </div>
-    <slot name="content"></slot>
+    <slot class="" name="content"> </slot>
+    <div class="w-1/3 z-10 absolute bottom-0 right-0">
+      <img src="../assets/img/connerImage.png" alt="" srcset="" />
+    </div>
   </div>
 </template>
 

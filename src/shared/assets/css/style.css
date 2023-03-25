@@ -53,6 +53,10 @@ html {
         background-color: #635985;
         @apply text-white
     }
+
+    .element-hover-color {
+        background-color: #18122B;
+    }
 }
 
 /* global */

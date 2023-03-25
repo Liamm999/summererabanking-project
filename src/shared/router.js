@@ -3,12 +3,6 @@ import customerRouter from "@/customer/router"
 import adminRouter from "@/admin/router"
 
 let routes = [
-  // {
-  //   path: "/",
-  //   name: "home",
-  //   component: HomeView,
-  // },
-
   {
     path: "/login",
     name: "Login",
