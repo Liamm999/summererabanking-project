@@ -1,11 +1,16 @@
 <template>
   <div id="app" class="bg-purple-200">
     <div class="navbar">
+      <!--Hide this navbar when the screen is smaller than 640px-->
       <Navbar class="max-sm:hidden" />
+
+      <!--Show this navbar when the screen is smaller than 640px-->
       <nav class="bg-purple-100 rounded-2xl sm:hidden" id="navbar">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center">
+              <!--Handle click event to show/hide menu-->
+
               <button
                 type="button"
                 class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none opacity-50"
@@ -34,7 +39,6 @@
                 </svg>
                 <!--
             Icon when menu is open.
-
             Menu open: "block", Menu closed: "hidden"
           -->
                 <svg
@@ -53,6 +57,8 @@
                 </svg>
               </button>
             </div>
+            <!--Show logo-->
+
             <div
               class="flex items-center justify-center sm:items-stretch sm:justify-start h-full max-sm:h-2"
             >
@@ -65,7 +71,7 @@
                 <img
                   class="hidden h-full w-auto lg:block"
                   src="../assets/image/Logo_bank.png"
-                  alt="Your Company"
+                  alt="Bank logo"
                 />
               </div>
               <div class="hidden sm:ml-6 sm:block mt-1">
@@ -176,21 +182,24 @@
         </div>
       </nav>
     </div>
-
+    <!--Using breadcrum to navigate current page-->
     <div class="breadcrum">
       <Breadcrum :title="component" />
     </div>
+    <!--Hide this left navbar when the screen is smaller than 640px-->
+    <!--Use this navbar to change page-->
     <div class="main">
       <div class="left-navbar">
         <div
           id="left-navbar"
           class="flex flex-col justify-start items-start text-cyan-100 p-2 w-auto bg-purple-100 rounded-xl"
         >
+          <!--The title for navbar-->
           <div class="flex flex-col text-xs font-semibold">
             <span class="text-cyan-100 pt-2 pb-2 pl-2.5">
               Admin dashboard
             </span>
-            <!-- <font-awesome-icon icon="fa-angle-left" /> -->
+            <!-- using v-for to handle click event when changing screen -->
           </div>
           <hr class="bg-white" />
           <div class="flex flex-col justify-start text-xs pt-1 pb-2">
@@ -205,6 +214,7 @@
           </div>
         </div>
       </div>
+      <!--using v-bind to keep alive page and change page-->
       <div class="content rounded-xl p-2 mr-2 ml-2">
         <component :is="component" />
       </div>

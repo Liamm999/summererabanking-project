@@ -4,8 +4,7 @@
       <Navbar />
     </div>
     <div class="mainContent flex flex-row mt-1 mx-10 rounded-2xl">
-      <!-- <img src="../assets/images/Vector2.png" class="pic1 w-full h-full" />
-      <img src="../assets/images/Business.png" class="pic2" /> -->
+      <!--Login form for screen greater then 1024px -->
       <div class="left max-lg:hidden">
         <form class="border border-black text-black">
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
@@ -13,6 +12,7 @@
             <div
               class="bg-purple-login py-5 px-16 rounded-3xl w-fit flex justify-center items-center"
             >
+              <!--Reminder for customer login-->
               <span class="text-center font-semibold text-xs text-white">
                 Username is the phone number <br />
                 that registered for service
@@ -20,6 +20,7 @@
             </div>
           </div>
           <div class="login flex flex-col items-center h-72 mt-7">
+            <!--username-->
             <div
               class="username w-3/4 pt-4 border-b border-black flex items-center"
             >
@@ -34,6 +35,7 @@
                 name="username"
               />
             </div>
+            <!--password-->
             <div
               class="password w-3/4 mt-10 pt-4 border-b border-black flex items-center"
             >
@@ -48,7 +50,7 @@
                 name="password"
               />
             </div>
-
+            <!--Submit button-->
             <button
               type="submit"
               class="bg-purple-login hover:bg-yellow-600 mt-11 py-2 px-28 rounded-lg text-white"
@@ -68,6 +70,7 @@
       <div class="right flex flex-row max-lg:hidden">
         <img src="../assets/images/Business.png" alt="img" class="w-full" />
       </div>
+      <!--Login form for screen smaller than 1024px-->
       <div
         class="hideForm w-full pl-8 pt-3 lg:hidden border border-black rounded-2xl"
       >
@@ -77,12 +80,15 @@
             <div
               class="bg-purple-login max-sm:px-4 py-5 px-16 rounded-3xl w-fit flex justify-center items-center"
             >
+              <!--Reminder for customer login-->
+              <!--display this text with screen that is greater than 640px-->
               <span
                 class="text-center font-semibold text-xs text-white max-sm:hidden"
               >
                 Username is the phone number <br />
                 that registered for service
               </span>
+              <!--display this text with screen that is smaller than 640px-->
               <span
                 class="note text-center font-semibold text-xs text-white sm:hidden"
               >
@@ -91,6 +97,7 @@
             </div>
           </div>
           <div class="login flex flex-col items-center h-72 mt-7">
+            <!--Input for username-->
             <div
               class="username w-3/4 pt-4 border-b border-black flex items-center"
             >
@@ -105,6 +112,7 @@
                 name="username"
               />
             </div>
+            <!--Input for password-->
             <div
               class="password w-3/4 mt-10 pt-4 border-b border-black flex items-center"
             >
@@ -119,14 +127,14 @@
                 name="password"
               />
             </div>
-
+            <!--Submit form-->
             <button
               type="submit"
               class="bg-purple-login hover:bg-yellow-600 mt-11 py-2 px-28 rounded-lg text-white max-sm:px-10 max-sm:mt-4"
             >
               Login
             </button>
-
+            <!--More options-->
             <div
               class="option flex justify-between w-3/4 mt-5 text-xs font-medium"
             >
@@ -151,13 +159,11 @@
 // @ is an alias to /src
 import Navbar from "../components/Navbar.vue"
 import Footer from "@/admin/components/Footer.vue"
-import InputCus from "../components/InputCus.vue"
 export default {
   name: "Login",
   components: {
     Navbar,
     Footer,
-    InputCus,
   },
 }
 </script>

@@ -1,8 +1,11 @@
 <template>
+  <!--Show list account screen-->
   <div id="account">
     <div class="heaeding flex justify-between items-center">
+      <!--Title of the screen-->
       <span class="text-xl ml-1 font-semibold">List Account</span>
       <div class="right mr-1">
+        <!--Click button to change to Add account screen -->
         <button
           class="btn p-2 bg-yellow-500 rounded-lg hover:bg-yellow-400 max-sm:text-xs"
         >
@@ -13,24 +16,21 @@
     </div>
     <hr class="mt-3" />
 
+    <!--Filter table by name, date or balance-->
     <div class="filter flex justify-end mr-2 p-3">
-      <select class="p-1 bg-slate-500">
-        <option>Filter By</option>
-        <option>Name</option>
-        <option>Date</option>
-        <option>Balance</option>
-      </select>
+      <Filter />
     </div>
 
-    <!--create accout list-->
+    <!--create a table for account list-->
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-white">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
-            <th scope="col" class="px-6 py-3"><input type="checkbox" /></th>
+            <th scope="col" class="px-6 py-3">ID</th>
             <th scope="col" class="px-6 py-3 text-center">Name</th>
             <th scope="col" class="px-6 py-3 text-center">Phone Number</th>
             <th scope="col" class="px-6 py-3 text-center">Date of Birth</th>
+            <th scope="col" class="px-6 py-3 text-center">Type</th>
             <th scope="col" class="px-6 py-3 text-center">
               Initial Balance
               <br />
@@ -50,20 +50,34 @@
               scope="row"
               class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
             >
-              <input type="checkbox" />
+              {{ index + 1 }}
             </th>
             <td class="px-6 py-4 text-center">{{ customer.name }}</td>
             <td class="px-6 py-4 text-center">{{ customer.phoneNumber }}</td>
             <td class="px-6 py-4 text-center">{{ customer.dob }}</td>
 
+            <!--If type is false -> return red button-->
+            <td class="px-6 py-4 text-center" v-if="customer.type == false">
+              <button class="bg-red-500 py-2 px-6 rounded-lg">Wait</button>
+            </td>
+
+            <!--If type is true -> return green button-->
+            <td class="px-6 py-4 text-center" v-else>
+              <button class="bg-green-400 py-2 px-4 rounded-lg">Confirm</button>
+            </td>
             <td class="px-6 py-4 text-center">{{ customer.balance }}</td>
             <td class="px-6 py-4 text-center">{{ customer.date }}</td>
+
+            <!--Create delete and edit button -->
             <td class="px-6 py-4 text-center flex">
+              <!--Click edit button to change to edit screen-->
               <font-awesome-icon
                 icon="fa-solid fa-pen"
                 style="color: #3b7ae8"
                 class="icon bg-blue-edit mr-1.5"
               />
+
+              <!--Click delete button to delete account-->
               <font-awesome-icon
                 icon="fa-regular fa-trash-can"
                 style="color: #f32b81"
@@ -78,6 +92,8 @@
 </template>
 
 <script>
+import Filter from "../components/Filter.vue"
+
 export default {
   name: "Account",
   data() {
@@ -103,13 +119,14 @@ export default {
           name: "Linh",
           phoneNumber: "098766784",
           dob: "12/11/2002",
-          type: false,
+          type: true,
           balance: 50000,
           date: "13/7/2020",
         },
       ],
     }
   },
+  components: { Filter },
 }
 </script>
 
