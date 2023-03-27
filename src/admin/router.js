@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 export default [
   {
-    path: "/admin/home", // route
+    path: "/admin/manage", // route
     name: "admin", // name of the views page
-    component: () => import("./views/demo.vue"), // directory of vue file path
+    component: () => import("./views/ManageSetting.vue"), // directory of vue file path
     meta: {
       type: "protected"
     }
@@ -29,8 +29,17 @@ export default [
 
   {
     path: "/admin/transaction", // route
-    name: "transaction", // name of the views page
+    name: "Transaction", // name of the views page
     component: () => import("./views/Transaction.vue"), // directory of vue file path
+    meta: {
+      type: "protected"
+    }
+  },
+
+  {
+    path: "/admin/home", // route
+    name: "Homepage", // name of the views page
+    component: () => import("./views/Homepage.vue"), // directory of vue file path
     meta: {
       type: "protected"
     }

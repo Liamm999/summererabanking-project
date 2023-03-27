@@ -18,7 +18,9 @@
 
     <!--Filter table by name, date or balance-->
     <div class="filter flex justify-end mr-2 p-3">
-      <Filter />
+      <select class="p-1 bg-slate-500">
+        <Filter v-for="type in filterType" :key="type" :data="type" />
+      </select>
     </div>
 
     <!--create a table for account list-->
@@ -98,6 +100,7 @@ export default {
   name: "Account",
   data() {
     return {
+      filterType: ["Filter by", "Name", "Date", "Balance"],
       customers: [
         {
           name: "John",

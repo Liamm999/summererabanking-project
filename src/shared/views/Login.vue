@@ -128,12 +128,15 @@
               />
             </div>
             <!--Submit form-->
+
             <button
               type="submit"
               class="bg-purple-login hover:bg-yellow-600 mt-11 py-2 px-28 rounded-lg text-white max-sm:px-10 max-sm:mt-4"
+              @click="handleSubmit"
             >
               Login
             </button>
+
             <!--More options-->
             <div
               class="option flex justify-between w-3/4 mt-5 text-xs font-medium"
@@ -164,6 +167,13 @@ export default {
   components: {
     Navbar,
     Footer,
+  },
+  methods: {
+    handleSubmit(event) {
+      console.log(event.target.type)
+      event.preventDefault()
+      this.$router.push("/admin/home")
+    },
   },
 }
 </script>
