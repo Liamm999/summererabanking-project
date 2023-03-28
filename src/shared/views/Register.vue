@@ -10,7 +10,7 @@
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
             <div
-              class="bg-purple-login py-5 px-16 rounded-3xl w-fit flex justify-center items-center"
+              class="bg-purple-login py-5 px-5 rounded-3xl w-3/4 flex justify-center items-center"
             >
               <!--Reminder for customer register-->
               <span class="text-center font-semibold text-xs text-white">

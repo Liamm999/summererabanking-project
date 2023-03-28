@@ -5,7 +5,8 @@ export default [
     name: "admin", // name of the views page
     component: () => import("./views/ManageSetting.vue"), // directory of vue file path
     meta: {
-      type: "protected"
+      type: "protected",
+      transitionName: 'slide'
     }
   },
 

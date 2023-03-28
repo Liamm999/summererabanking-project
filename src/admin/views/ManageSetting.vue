@@ -226,6 +226,7 @@
 </template>
 
 <script>
+import { SlideInOut } from "vue3-transitions"
 import Navbar from "../components/NavbarAdmin.vue"
 import LeftNavbar from "../components/LeftNavbar.vue"
 import Footer from "../components/Footer.vue"
@@ -234,7 +235,7 @@ import Breadcrum from "../components/Breadcrum.vue"
 import Saving from "./Saving.vue"
 import Transaction from "./Transaction.vue"
 export default {
-  name: "admin",
+  name: "manage",
   components: {
     Navbar,
     LeftNavbar,
@@ -243,6 +244,7 @@ export default {
     Breadcrum,
     Saving,
     Transaction,
+    SlideInOut,
   },
   data() {
     return {
