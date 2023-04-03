@@ -95,41 +95,28 @@
 
 <script>
 import Filter from "../components/Filter.vue"
-
+import axios from "axios"
 export default {
   name: "Account",
   data() {
     return {
       filterType: ["Filter by", "Name", "Date", "Balance"],
-      customers: [
-        {
-          name: "John",
-          phoneNumber: "098766784",
-          dob: "12/11/2002",
-          type: false,
-          balance: 50000,
-          date: "13/7/2020",
-        },
-        {
-          name: "Van",
-          phoneNumber: "098766784",
-          dob: "12/11/2002",
-          type: false,
-          balance: 50000,
-          date: "13/7/2020",
-        },
-        {
-          name: "Linh",
-          phoneNumber: "098766784",
-          dob: "12/11/2002",
-          type: true,
-          balance: 50000,
-          date: "13/7/2020",
-        },
-      ],
+      customers: [],
+      fetchingCustomer: false,
+      url: "http://localhost:8080/",
     }
   },
   components: { Filter },
+  methods: {
+    async fetchAllCustomer() {
+      ;(await axios.get(`${this.url}user/`)).then((response) => {
+        console.log(response.data)
+      })
+    },
+  },
+  async mounted() {
+    
+  },
 }
 </script>
 
@@ -142,6 +129,7 @@ export default {
   line-height: 100px;
   vertical-align: middle;
   padding: 10px;
+
   @media screen and (max-width: 1015px) {
     flex-direction: row;
     width: 9px;

@@ -6,7 +6,10 @@
     <div class="mainContent flex flex-row mt-1 mx-10 rounded-2xl">
       <!--Login form for screen greater then 1024px -->
       <div class="left max-lg:hidden">
-        <form class="border border-black text-black">
+        <form
+          class="border border-black text-black"
+          v-on:submit.prevent="submitForm"
+        >
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
             <div
@@ -33,6 +36,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Username"
                 name="username"
+                v-model="form.name"
               />
             </div>
             <!--password-->
@@ -48,6 +52,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Password"
                 name="password"
+                v-model="form.password"
               />
             </div>
             <!--Submit button-->
@@ -74,7 +79,10 @@
       <div
         class="hideForm w-full pl-8 pt-3 lg:hidden border border-black rounded-2xl"
       >
-        <form class="border border-black text-black">
+        <form
+          class="border border-black text-black"
+          v-on:submit.prevent="submitForm"
+        >
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
             <div
@@ -110,6 +118,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Username"
                 name="username"
+                v-model="form.name"
               />
             </div>
             <!--Input for password-->
@@ -125,6 +134,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Password"
                 name="password"
+                v-model="form.password"
               />
             </div>
             <!--Submit form-->
@@ -160,6 +170,7 @@
 
 <script>
 // @ is an alias to /src
+import axios from "axios"
 import Navbar from "../components/Navbar.vue"
 import Footer from "@/admin/components/Footer.vue"
 export default {
@@ -168,11 +179,38 @@ export default {
     Navbar,
     Footer,
   },
+  data() {
+    return {
+      form: {
+        name: "",
+        password: "",
+      },
+      message: "",
+      url: "http://localhost:8080/",
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler: function (newValue, oldValue) {
+        console.log(newValue, oldValue)
+      },
+    },
+  },
+
   methods: {
-    handleSubmit(event) {
-      console.log(event.target.type)
-      event.preventDefault()
-      this.$router.push("/admin/home")
+    submitForm(event) {
+      axios
+        .post(`${this.url}admin/signin`, this.form)
+        .then((res) => {
+          console.log(res.data)
+          console.log("submit")
+          event.preventDefault()
+          this.$router.push("/admin/home")
+        })
+        .catch((err) => {
+          console.log("error:" + err.message)
+        })
     },
   },
 }

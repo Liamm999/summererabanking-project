@@ -276,7 +276,7 @@ export default {
     height: fit-content;
     width: fit-content;
     padding: 0;
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .option {
@@ -316,12 +316,13 @@ export default {
 }
 
 .left form {
-  width: 30vw;
+  width: 35vw;
   height: auto;
   border-radius: 5%;
   padding: 2%;
   background-color: white;
   margin-left: 6vw;
+  margin-top: 6vh;
 }
 .info {
   font-size: xx-small;
