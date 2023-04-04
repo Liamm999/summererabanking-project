@@ -1,7 +1,7 @@
 <template>
   <layout>
     <template #content>
-      <div>withdraw</div>
+      <div>Profile</div>
     </template>
   </layout>
 </template>
@@ -12,4 +12,4 @@ import { computed } from "@vue/reactivity"
 import { useRoute } from "vue-router"
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

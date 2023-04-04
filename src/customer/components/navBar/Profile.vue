@@ -5,22 +5,26 @@
       <h3 class="text-xl">{{ username }}</h3>
     </div>
     <div class="image">
-      <img class="w-16 h-16 rounded-full" src="../../assets/img/fakeAvt.jpg" />
+      <img class="w-16 h-16 rounded-full" :src="imgSrc" />
     </div>
   </div>
 </template>
 
 <script setup>
+// import { computed, ref } from "vue"
+
 // eslint-disable-next-line no-undef, no-unused-vars
 const props = defineProps({
   imgSrc: {
     type: String,
     required: true,
+    default: () => require("@/customer/assets/img/vu.jpg"),
   },
 
   username: {
     type: String,
     required: true,
+    default: "",
   },
 })
 </script>
