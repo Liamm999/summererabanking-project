@@ -186,7 +186,6 @@ export default {
         password: "",
       },
       message: "",
-      url: "http://localhost:8080/",
     }
   },
   watch: {
@@ -199,14 +198,16 @@ export default {
   },
 
   methods: {
-    submitForm(event) {
-      axios
-        .post(`${this.url}admin/signin`, this.form)
+    async submitForm(event) {
+      await axios
+        .post(`admin/signin`, this.form)
         .then((res) => {
           console.log(res.data)
           console.log("submit")
+          this.$cookies.set("jwt", res.data.jwt)
+          // axios.defaults.headers.common["Authorization"] = token
           event.preventDefault()
-          this.$router.push("/admin/home")
+          this.$router.push("/admin/account")
         })
         .catch((err) => {
           console.log("error:" + err.message)

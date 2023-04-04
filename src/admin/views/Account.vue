@@ -103,19 +103,33 @@ export default {
       filterType: ["Filter by", "Name", "Date", "Balance"],
       customers: [],
       fetchingCustomer: false,
-      url: "http://localhost:8080/",
     }
   },
   components: { Filter },
   methods: {
-    async fetchAllCustomer() {
-      ;(await axios.get(`${this.url}user/`)).then((response) => {
-        console.log(response.data)
-      })
+    fetchAllCustomer() {
+      console.log(this.$cookies.get("jwt"))
+      axios
+        .get(
+          `user/`,
+          {},
+          {
+            headers: {
+              Cookie: `jwt=${this.$cookies.get("jwt")}`,
+              "Content-type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data)
+        })
+        .catch((err) => {
+          console.log("error", err)
+        })
     },
   },
-  async mounted() {
-    
+  mounted() {
+    this.fetchAllCustomer()
   },
 }
 </script>
