@@ -14,9 +14,19 @@ export default [
   },
 
   {
-    path: "/customer/withdraw",
-    name: "Withdraw",
-    component: () => import("./views/Withdraw.vue"),
+    path: "/customer/dashboard/profile",
+    name: "Profile",
+    component: () => import("./views/Profile.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected"
+    }
+  },
+
+  {
+    path: "/customer/dashboard/transfer",
+    name: "Transfer",
+    component: () => import("./views/TransferMoney.vue"),
     meta: {
       layout: "Default",
       type: "protected"

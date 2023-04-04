@@ -37,7 +37,7 @@ const classIcon = computed(() => {
 })
 
 function routingClickHandle() {
-  router.push(props.route)
+  router.push(`dashboard/${props.route}`)
 }
 </script>
 
