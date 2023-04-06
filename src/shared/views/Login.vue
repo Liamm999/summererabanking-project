@@ -207,7 +207,11 @@ export default {
           this.$cookies.set("jwt", res.data.jwt)
           // axios.defaults.headers.common["Authorization"] = token
           event.preventDefault()
-          this.$router.push("/admin/home")
+          if (res.data.admin == true) {
+            this.$router.push("/admin/home")
+          } else {
+            this.$router.push("/customer/dashboard")
+          }
         })
         .catch((err) => {
           console.log("error:" + err.message)
