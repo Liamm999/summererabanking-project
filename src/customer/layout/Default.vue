@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative">
     <div class="header flex justify-center relative py-2 bg-slate-50">
       <div
         class="container grid grid-cols-1 sm1:grid-cols-2 lg:grid-cols-3 text-on-white"
@@ -13,9 +13,11 @@
         />
       </div>
     </div>
-    <slot class="" name="content"></slot>
+    <div class="container mx-auto mt-20 min-h-screen">
+      <slot class="" name="content"></slot>
+    </div>
     <div
-      class="footer flex justify-center items-center bg-slate-700 w-full h-16 mt-44 text-lg"
+      class="footer absolute bottom-auto flex justify-center items-center bg-slate-700 w-full h-16 text-lg"
     >
       <p class="">Coppyright 2022 SE2</p>
     </div>
