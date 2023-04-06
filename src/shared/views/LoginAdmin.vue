@@ -118,7 +118,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Username"
                 name="username"
-                v-model="form.name"
+                v-model="form.username"
               />
             </div>
             <!--Input for password-->
@@ -182,7 +182,7 @@ export default {
   data() {
     return {
       form: {
-        name: "",
+        username: "",
         password: "",
       },
       message: "",
@@ -200,14 +200,14 @@ export default {
   methods: {
     async submitForm(event) {
       await axios
-        .post(`admin/signin`, this.form)
+        .post(`user/signin`, this.form)
         .then((res) => {
           console.log(res.data)
           console.log("submit")
           this.$cookies.set("jwt", res.data.jwt)
           // axios.defaults.headers.common["Authorization"] = token
           event.preventDefault()
-          this.$router.push("/admin/account")
+          this.$router.push("/admin/home")
         })
         .catch((err) => {
           console.log("error:" + err.message)

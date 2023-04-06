@@ -11,6 +11,7 @@ import Vue3Transitions from "vue3-transitions"
 import VTextMarquee from "vue-text-marquee"
 import axios from "axios"
 import VueCookies from "vue-cookies"
+import VueScrollingTable from "vue-scrolling-table"
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
@@ -23,4 +24,5 @@ createApp(App)
   .use(VueCookies)
   .use(VTextMarquee)
   .component("font-awesome-icon", FontAwesomeIcon)
+  .component(VueScrollingTable.name, VueScrollingTable)
   .mount("#app")

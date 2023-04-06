@@ -19,6 +19,7 @@
     "vue": "^3.2.13",
     "vue-cookies": "^1.8.3",
     "vue-router": "^4.0.3",
+    "vue-scrolling-table": "^2.0.0",
     "vue-text-marquee": "^1.1.0",
     "vue3-transitions": "^1.0.0",
     "vuex": "^4.0.0"

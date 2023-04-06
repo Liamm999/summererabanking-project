@@ -216,7 +216,7 @@
       </div>
       <!--using v-bind to keep alive page and change page-->
       <div class="content rounded-xl p-2 mr-2 ml-2">
-        <component :is="component" />
+        <component :is="component" class="h-4/6 max-lg:h-5/6" />
       </div>
     </div>
     <div class="footer flex justify-center">

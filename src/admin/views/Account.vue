@@ -1,6 +1,6 @@
 <template>
   <!--Show list account screen-->
-  <div id="account">
+  <div id="account" class="relative z-0">
     <div class="heaeding flex justify-between items-center">
       <!--Title of the screen-->
       <span class="text-xl ml-1 font-semibold">List Account</span>
@@ -24,7 +24,7 @@
     </div>
 
     <!--create a table for account list-->
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg h-full">
       <table class="w-full text-sm text-left text-white">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
@@ -55,7 +55,7 @@
               {{ index + 1 }}
             </th>
             <td class="px-6 py-4 text-center">{{ customer.name }}</td>
-            <td class="px-6 py-4 text-center">{{ customer.phoneNumber }}</td>
+            <td class="px-6 py-4 text-center">{{ customer.username }}</td>
             <td class="px-6 py-4 text-center">{{ customer.dob }}</td>
 
             <!--If type is false -> return red button-->
@@ -68,7 +68,7 @@
               <button class="bg-green-400 py-2 px-4 rounded-lg">Confirm</button>
             </td>
             <td class="px-6 py-4 text-center">{{ customer.balance }}</td>
-            <td class="px-6 py-4 text-center">{{ customer.date }}</td>
+            <td class="px-6 py-4 text-center">{{ customer.startingDate }}</td>
 
             <!--Create delete and edit button -->
             <td class="px-6 py-4 text-center flex">
@@ -80,21 +80,36 @@
               />
 
               <!--Click delete button to delete account-->
-              <font-awesome-icon
-                icon="fa-regular fa-trash-can"
-                style="color: #f32b81"
-                class="icon bg-pink-trash"
-              />
+              <button
+                data-toggle="modal"
+                @click="getUser(customer) in customers"
+                type="button"
+              >
+                <font-awesome-icon
+                  icon="fa-regular fa-trash-can"
+                  style="color: #f32b81"
+                  class="icon bg-pink-trash"
+                />
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="absolute top-1/2 left-1/3 max-sm:left-12">
+      <DeletePopUp
+        ref="delete"
+        :username="this.username"
+        v-show="confirmDelete"
+        :id="this.id"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import Filter from "../components/Filter.vue"
+import DeletePopUp from "../components/DeletePopUp.vue"
 import axios from "axios"
 export default {
   name: "Account",
@@ -102,34 +117,45 @@ export default {
     return {
       filterType: ["Filter by", "Name", "Date", "Balance"],
       customers: [],
-      fetchingCustomer: false,
+      confirmDelete: false,
+      username: "",
+      id: "",
+      timer: "",
     }
   },
-  components: { Filter },
+  components: { Filter, DeletePopUp },
+  created() {
+    this.fetchAllCustomer()
+    this.timer = setInterval(this.fetchAllCustomer, 300000)
+  },
   methods: {
-    fetchAllCustomer() {
+    async fetchAllCustomer() {
       console.log(this.$cookies.get("jwt"))
-      axios
-        .get(
-          `user/`,
-          {},
-          {
-            headers: {
-              Cookie: `jwt=${this.$cookies.get("jwt")}`,
-              "Content-type": "application/json",
-            },
-          }
-        )
+      await axios
+        .get(`user/`, {
+          withCredentials: true,
+        })
         .then((res) => {
-          console.log(res.data)
+          this.customers = res.data.allUser
         })
         .catch((err) => {
           console.log("error", err)
         })
     },
-  },
-  mounted() {
-    this.fetchAllCustomer()
+    getUser(customer) {
+      console.log(customer.id)
+      this.username = customer.username
+      this.id = customer.id
+      this.confirmDelete = !this.confirmDelete
+      if (this.confirmDelete == true) {
+        this.$refs.delete.handleClick()
+      }
+      // await axios
+      //   .get("user/" + customer.id, { withCredentials: true })
+      //   .then((response) => {
+      //     console.log(response.data)
+      //   })
+    },
   },
 }
 </script>
@@ -146,9 +172,10 @@ export default {
 
   @media screen and (max-width: 1015px) {
     flex-direction: row;
-    width: 9px;
-    height: 9px;
+    width: 11px;
+    height: 11px;
     padding: 5px;
+    margin-top: 2rem;
   }
 }
 </style>
