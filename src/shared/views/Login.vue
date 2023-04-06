@@ -36,7 +36,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Username"
                 name="username"
-                v-model="form.name"
+                v-model="form.username"
               />
             </div>
             <!--password-->
