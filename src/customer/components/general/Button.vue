@@ -1,20 +1,37 @@
 <template>
   <div>
-    <button type="submit" @click="handleClick" :class="{ gradBtn: isGrad }">
+    <button
+      type="submit"
+      @click="handleClick"
+      :class="`${isGrad ? 'gradBtn' : ''} ${style}`"
+    >
       {{ placeholder }}
+      <font-awesome-icon :icon="`fa-solid ${icon}`" v-if="icon" />
     </button>
   </div>
 </template>
 
 <script setup>
-// eslint-disable-next-line no-undef
+// import { computed } from "@vue/reactivity"
+
 const emit = defineEmits(["clicked"])
 
 // eslint-disable-next-line no-undef, no-unused-vars
 const props = defineProps({
   placeholder: {
     type: String,
-    require: true,
+    require: false,
+    default: "",
+  },
+
+  icon: {
+    type: String,
+    require: false,
+  },
+
+  style: {
+    type: String,
+    require: false,
     default: "",
   },
 

@@ -1,7 +1,6 @@
 <template>
   <layout>
     <template #content>
-      <div>Profile</div>
     </template>
   </layout>
 </template>

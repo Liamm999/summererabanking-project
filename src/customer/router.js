@@ -31,5 +31,15 @@ export default [
       layout: "Default",
       type: "protected"
     }
+  },
+
+  {
+    path: "/customer/dashboard/balance",
+    name: "Balance",
+    component: () => import("./views/Balance.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected"
+    }
   }
 ];

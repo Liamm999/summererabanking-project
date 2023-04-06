@@ -2,7 +2,7 @@
   <div class="flex items-end">
     <div class="text flex flex-col items-end mr-5">
       <h4 class="text-sm font-semibold">Hello</h4>
-      <h3 class="text-xl">{{ username }}</h3>
+      <h3 class="text-lg">{{ username }}</h3>
     </div>
     <div class="image">
       <img class="w-16 h-16 rounded-full" :src="imgSrc" />

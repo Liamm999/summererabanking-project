@@ -12,6 +12,12 @@ html {
 
 }
 
+html,
+body {
+   margin:0;
+   padding:0;
+}
+
 @layer base {
     #main {
         @apply box-border p-0 m-0 text-base font-normal;
