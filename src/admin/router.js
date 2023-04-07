@@ -6,8 +6,9 @@ export default [
     component: () => import("./views/ManageSetting.vue"), // directory of vue file path
     meta: {
       type: "protected",
-      transitionName: 'slide'
-    }
+      transitionName: "slide",
+      requiresAuth: true,
+    },
   },
 
   {
@@ -15,8 +16,9 @@ export default [
     name: "account", // name of the views page
     component: () => import("./views/Account.vue"), // directory of vue file path
     meta: {
-      type: "protected"
-    }
+      type: "protected",
+      requiresAuth: true,
+    },
   },
 
   {
@@ -24,8 +26,9 @@ export default [
     name: "Saving", // name of the views page
     component: () => import("./views/Saving.vue"), // directory of vue file path
     meta: {
-      type: "protected"
-    }
+      type: "protected",
+      requiresAuth: true,
+    },
   },
 
   {
@@ -33,8 +36,9 @@ export default [
     name: "Transaction", // name of the views page
     component: () => import("./views/Transaction.vue"), // directory of vue file path
     meta: {
-      type: "protected"
-    }
+      type: "protected",
+      requiresAuth: true,
+    },
   },
 
   {
@@ -42,7 +46,8 @@ export default [
     name: "Homepage", // name of the views page
     component: () => import("./views/Homepage.vue"), // directory of vue file path
     meta: {
-      type: "protected"
-    }
+      type: "protected",
+      requiresAuth: true,
+    },
   },
-];
+]
