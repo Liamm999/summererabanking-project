@@ -15,11 +15,11 @@ router.beforeEach(async (to, from, next) => {
   } else {
     console.log(to.fullPath)
     if (to.name !== "Dashboard") {
-      next({
-        name: "Dashboard",
-      })
-    } else next()
+      next()
+    } else {
+      console.log(to.fullPath)
+      next()
+    }
   }
 })
 
-// cần call api check admin or customer để chuyển route sang admin hoặc customers
