@@ -204,6 +204,7 @@ export default {
           console.log(res.data)
           console.log("submit")
           this.$cookies.set("jwt", res.data.jwt)
+          localStorage.setItem("token", res.data.jwt)
           // axios.defaults.headers.common["Authorization"] = token
           event.preventDefault()
           if (res.data.admin == true) {

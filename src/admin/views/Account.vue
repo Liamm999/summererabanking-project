@@ -71,26 +71,28 @@
             <td class="px-6 py-4 text-center">{{ customer.startingDate }}</td>
 
             <!--Create delete and edit button -->
-            <td class="px-6 py-4 text-center flex">
-              <!--Click edit button to change to edit screen-->
-              <font-awesome-icon
-                icon="fa-solid fa-pen"
-                style="color: #3b7ae8"
-                class="icon bg-blue-edit mr-1.5"
-              />
-
-              <!--Click delete button to delete account-->
-              <button
-                data-toggle="modal"
-                @click="getUser(customer) in customers"
-                type="button"
-              >
+            <td class="px-6 py-4">
+              <div class="flex flex-row px-1 w-auto h-auto">
+                <!--Click edit button to change to edit screen-->
                 <font-awesome-icon
-                  icon="fa-regular fa-trash-can"
-                  style="color: #f32b81"
-                  class="icon bg-pink-trash"
+                  icon="fa-solid fa-pen"
+                  style="color: #3b7ae8"
+                  class="icon bg-blue-edit mr-1.5"
                 />
-              </button>
+
+                <!--Click delete button to delete account-->
+                <button
+                  data-toggle="modal"
+                  @click="getUser(customer) in customers"
+                  type="button"
+                >
+                  <font-awesome-icon
+                    icon="fa-regular fa-trash-can"
+                    style="color: #f32b81"
+                    class="icon bg-pink-trash"
+                  />
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -120,13 +122,12 @@ export default {
       confirmDelete: false,
       username: "",
       id: "",
-      timer: "",
+      localTime: " ",
     }
   },
   components: { Filter, DeletePopUp },
   created() {
     this.fetchAllCustomer()
-    this.timer = setInterval(this.fetchAllCustomer, 300000)
   },
   methods: {
     async fetchAllCustomer() {
@@ -147,6 +148,7 @@ export default {
       this.username = customer.username
       this.id = customer.id
       this.confirmDelete = !this.confirmDelete
+
       if (this.confirmDelete == true) {
         this.$refs.delete.handleClick()
       }
