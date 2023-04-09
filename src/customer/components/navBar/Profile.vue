@@ -18,7 +18,7 @@ const props = defineProps({
   imgSrc: {
     type: String,
     required: true,
-    default: () => require("@/customer/assets/img/vu.jpg"),
+    default: () => require("@/customer/assets/img/fakeAvt.jpg"),
   },
 
   username: {

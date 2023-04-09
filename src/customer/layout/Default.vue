@@ -29,7 +29,7 @@ import logo from "../components/navBar/Logo.vue"
 import profile from "../components/navBar/Profile.vue"
 import { ref } from "vue"
 
-const imgSrc = ref(require("@/customer/assets/img/vu.jpg"))
+const imgSrc = ref(require("@/customer/assets/img/fakeAvt.jpg"))
 const username = ref("LA MINH VU")
 </script>
 

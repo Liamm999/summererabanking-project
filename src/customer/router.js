@@ -9,8 +9,9 @@ export default [
     component: () => import("./views/Dashboard.vue"),
     meta: {
       layout: "Default",
-      type: "protected"
-    }
+      type: "protected",
+      requiresAuth: true,
+    },
   },
 
   {
@@ -19,8 +20,9 @@ export default [
     component: () => import("./views/Profile.vue"),
     meta: {
       layout: "Default",
-      type: "protected"
-    }
+      type: "protected",
+      requiresAuth: true,
+    },
   },
 
   {
@@ -29,8 +31,9 @@ export default [
     component: () => import("./views/TransferMoney.vue"),
     meta: {
       layout: "Default",
-      type: "protected"
-    }
+      type: "protected",
+      requiresAuth: true,
+    },
   },
 
   {
@@ -39,7 +42,8 @@ export default [
     component: () => import("./views/Balance.vue"),
     meta: {
       layout: "Default",
-      type: "protected"
-    }
-  }
-];
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+]
