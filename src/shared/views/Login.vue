@@ -142,7 +142,6 @@
             <button
               type="submit"
               class="bg-purple-login hover:bg-yellow-600 mt-11 py-2 px-28 rounded-lg text-white max-sm:px-10 max-sm:mt-4"
-              @click="handleSubmit"
             >
               Login
             </button>
