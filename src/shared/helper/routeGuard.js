@@ -7,19 +7,20 @@ router.beforeEach(async (to, from, next) => {
   const jwt = cookies.get("jwt")
 
   if (!jwt) {
-    console.log(to.fullPath)
-    if (to.path !== "/login") {
-      console.log("Please login")
-      next("/login")
+    if (to.name !== "Error" && to.name !== "Register") {
+      console.log(to.fullPath)
+      if (to.path !== "/login") {
+        console.log("Please login")
+        next("/login")
+      } else {
+        next()
+      }
     } else next()
   } else {
-    console.log(to.fullPath)
-    if (to.name !== "Dashboard") {
-      next()
+    if (!to.name) {
+      next("/404")
     } else {
-      console.log(to.fullPath)
       next()
     }
   }
 })
-
