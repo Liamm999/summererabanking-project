@@ -8,13 +8,18 @@
     <p class="text-xs text-gray-500 font-semibold mb-16">
       Last login at {{ loginTime }}
     </p>
-    <h3 class="text-purple-600 underline cursor-pointer font-semibold">
+    <a
+      href="/login"
+      class="text-purple-600 underline cursor-pointer font-semibold"
+      @click="handleLogout"
+    >
       Logout
-    </h3>
+    </a>
   </div>
 </template>
 
 <script setup>
+import { logout } from "@/shared/helper/Logout"
 // eslint-disable-next-line no-undef, no-unused-vars
 const props = defineProps({
   imgSrc: {
@@ -36,6 +41,11 @@ const props = defineProps({
 })
 
 const loginTime = localStorage.getItem("loginTime")
+
+const handleLogout = () => {
+  logout()
+  console.log("logout")
+}
 </script>
 
 <style lang="scss" scoped></style>
