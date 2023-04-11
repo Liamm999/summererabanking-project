@@ -208,9 +208,9 @@ export default {
           // axios.defaults.headers.common["Authorization"] = token
           event.preventDefault()
           if (res.data.admin == true) {
-            this.$router.push("/admin/home")
+            this.$router.push("/admin/homepage")
           } else {
-            this.$router.push("/customer/dashboard")
+            this.$router.push("/customer/homepage")
           }
         })
         .catch((err) => {

@@ -3,7 +3,7 @@
   <div id="account" class="relative z-0">
     <div class="heaeding flex justify-between items-center">
       <!--Title of the screen-->
-      <span class="text-xl ml-1 font-semibold">List Account</span>
+      <span class="text-xl ml-1 font-semibold">Account List</span>
       <div class="right mr-1">
         <!--Click button to change to Add account screen -->
         <button
@@ -59,7 +59,7 @@
             <td class="px-6 py-4 text-center">{{ customer.dob }}</td>
 
             <!--If type is false -> return red button-->
-            <td class="px-6 py-4 text-center" v-if="customer.type == false">
+            <td class="px-6 py-4 text-center" v-if="customer.type == 'Wait'">
               <button class="bg-red-500 py-2 px-6 rounded-lg">Wait</button>
             </td>
 
@@ -74,11 +74,13 @@
             <td class="px-6 py-4">
               <div class="flex flex-row px-1 w-auto h-auto">
                 <!--Click edit button to change to edit screen-->
-                <font-awesome-icon
-                  icon="fa-solid fa-pen"
-                  style="color: #3b7ae8"
-                  class="icon bg-blue-edit mr-1.5"
-                />
+                <button>
+                  <font-awesome-icon
+                    icon="fa-solid fa-pen"
+                    style="color: #3b7ae8"
+                    class="icon bg-blue-edit mr-1.5"
+                  />
+                </button>
 
                 <!--Click delete button to delete account-->
                 <button
@@ -138,6 +140,7 @@ export default {
         })
         .then((res) => {
           this.customers = res.data.allUser
+          console.log(res.data)
         })
         .catch((err) => {
           console.log("error", err)
@@ -167,17 +170,12 @@ export default {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  text-align: center;
   line-height: 100px;
   vertical-align: middle;
   padding: 10px;
 
   @media screen and (max-width: 1015px) {
-    flex-direction: row;
-    width: 11px;
-    height: 11px;
     padding: 5px;
-    margin-top: 2rem;
   }
 }
 </style>

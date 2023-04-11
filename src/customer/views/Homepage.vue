@@ -16,7 +16,7 @@
           <div class="relative flex justify-center">
             <img
               id="image"
-              src="../assets/image/tree_finance.png"
+              src="../assets/img/tree_finance.png"
               class="h-auto w-auto"
               @click="
                 ;(triggerFade = !triggerFade) && (hideButton = !hideButton)
@@ -33,7 +33,7 @@
         <div class="relative flex justify-center items-center">
           <img
             id="image"
-            src="../assets/image/tree_finance.png"
+            src="../assets/img/tree_finance.png"
             class="h-auto w-auto"
             @click=";(triggerFade = !triggerFade) && (hideButton = !hideButton)"
           />
@@ -43,7 +43,7 @@
     </div>
   </div>
   <SlideInOut entry="right" exit="left" :duration="500"
-    ><ManageSetting v-show="triggerFade"
+    ><Dashboard v-show="triggerFade"
   /></SlideInOut>
 </template>
 
@@ -51,15 +51,9 @@
 import { VTextMarquee } from "vue-text-marquee"
 import Navbar from "@/shared/components/Navbar.vue"
 import { SlideInOut } from "vue3-transitions"
-import ManageSetting from "./ManageSetting.vue"
+import Dashboard from "./Dashboard.vue"
 export default {
-  methods: {
-    handleSubmit(event) {
-      console.log(event.target.type)
-      event.preventDefault()
-      this.$router.push("/admin/manage")
-    },
-  },
+  name: "Homepage",
   data() {
     return {
       triggerFade: false,
@@ -68,9 +62,9 @@ export default {
   },
   components: {
     SlideInOut,
-    ManageSetting,
     Navbar,
     VTextMarquee: VTextMarquee,
+    Dashboard,
   },
 }
 </script>

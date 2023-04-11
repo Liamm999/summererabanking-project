@@ -1,9 +1,20 @@
 /* eslint-disable prettier/prettier */
 export default [
   {
-    path: "/admin/manage", // route
-    name: "admin", // name of the views page
-    component: () => import("./views/ManageSetting.vue"), // directory of vue file path
+    path: "/admin/dashboard", // route
+    name: "Dashboard", // name of the views page
+    component: () => import("./views/Dashboard.vue"), // directory of vue file path
+    meta: {
+      type: "protected",
+      transitionName: "slide",
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: "/admin/homepage", // route
+    name: "Admin Home", // name of the views page
+    component: () => import("../admin/views/Home.vue"), // directory of vue file path
     meta: {
       type: "protected",
       transitionName: "slide",
@@ -13,7 +24,7 @@ export default [
 
   {
     path: "/admin/account", // route
-    name: "account", // name of the views page
+    name: "Account", // name of the views page
     component: () => import("./views/Account.vue"), // directory of vue file path
     meta: {
       type: "protected",
@@ -44,7 +55,7 @@ export default [
   {
     path: "/admin/home", // route
     name: "Homepage", // name of the views page
-    component: () => import("./views/Homepage.vue"), // directory of vue file path
+    component: () => import("../customer/views/Homepage.vue"), // directory of vue file path
     meta: {
       type: "protected",
       requiresAuth: true,
