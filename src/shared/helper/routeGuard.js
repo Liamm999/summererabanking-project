@@ -1,5 +1,6 @@
 import router from "../router"
 import { useCookies } from "vue3-cookies"
+import axios from "axios"
 
 const cookies = useCookies().cookies
 
@@ -19,8 +20,30 @@ router.beforeEach(async (to, from, next) => {
   } else {
     if (!to.name) {
       next("/404")
-    } else {
-      next()
+    }
+    next()
+  }
+
+  if (jwt && to.path === "/") {
+    try {
+      const isAdmin = (
+        await axios.post(
+          "user/isadmin",
+          {
+            withCredentials: true,
+          },
+          jwt
+        )
+      ).data.admin
+      console.log(jwt)
+      console.log(isAdmin)
+      if (isAdmin) {
+        router.push("/admin/home")
+      } else {
+        router.push("/customer/dashboard")
+      }
+    } catch (err) {
+      alert(err.message)
     }
   }
 })
