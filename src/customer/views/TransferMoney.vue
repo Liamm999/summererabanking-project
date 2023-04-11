@@ -13,7 +13,7 @@
 <script setup>
 import { ref } from "vue"
 import Layout from "@/customer/layout/Default.vue"
-import Heading from "../components/general/Heading.vue"
+import Heading from "../components/general/Breadcum.vue"
 import Card from "../components/transfer/Card.vue"
 import Contacts from "../components/transfer/Contacts.vue"
 

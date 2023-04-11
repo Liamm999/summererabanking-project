@@ -19,7 +19,8 @@
 </template>
 
 <script setup>
-import { logout } from "@/shared/helper/Logout"
+const emit = defineEmits(["clicked"])
+
 // eslint-disable-next-line no-undef, no-unused-vars
 const props = defineProps({
   imgSrc: {
@@ -42,10 +43,14 @@ const props = defineProps({
 
 const loginTime = localStorage.getItem("loginTime")
 
-const handleLogout = () => {
-  logout()
-  console.log("logout")
+function handleLogout() {
+  emit("clicked")
 }
+
+// const handleLogout = () => {
+//   logout()
+//   console.log("logout")
+// }
 </script>
 
 <style lang="scss" scoped></style>

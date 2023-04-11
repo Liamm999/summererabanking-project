@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-element-purple rounded-2xl p-6 hover:element-hover-color hover:cursor-pointer"
+    class="bg-element-purple rounded-2xl p-6 sm1:hover:element-hover-color hover:cursor-pointer"
     @click="routingClickHandle"
   >
     <font-awesome-icon class="text-5xl mb-4" :icon="classIcon" />

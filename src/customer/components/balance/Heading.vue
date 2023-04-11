@@ -30,9 +30,9 @@ const icon = ref("fa-chevron-down")
 const props = defineProps({
   // this total balance is the total money from available balance + deposit + saving money
   total: {
-    type: String,
+    type: Number,
     required: true,
-    default: "0",
+    default: 0,
   },
 })
 

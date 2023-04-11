@@ -9,7 +9,7 @@
 
 <script setup>
 import { ref } from "vue"
-import Heading from "../components/general/Heading.vue"
+import Heading from "../components/general/Breadcum.vue"
 import Container from "../components/balance/Container.vue"
 import Layout from "../layout/Default.vue"
 
