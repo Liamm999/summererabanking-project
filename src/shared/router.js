@@ -20,8 +20,8 @@ let routes = [
     component: () => import("./views/Register.vue"),
   },
 
-  ...customerRouter,
   ...adminRouter,
+  ...customerRouter,
 ]
 
 const router = createRouter({
