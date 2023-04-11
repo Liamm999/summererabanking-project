@@ -33,6 +33,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Fullname"
                 name="fullname"
+                v-model="form.name"
               />
             </div>
             <!--Customer phone number-->
@@ -48,6 +49,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Phone number"
                 name="phoneNumber"
+                v-model="form.username"
               />
             </div>
             <!--Customer date of birth-->
@@ -61,6 +63,7 @@
                 class="ml-3 w-full h-8"
                 placeholder="Date of Birth"
                 name="dob"
+                v-model="form.dob"
               />
             </div>
             <!--Customer password-->
@@ -76,11 +79,12 @@
                 class="ml-3 w-full h-8"
                 placeholder="Password"
                 name="password"
+                v-model="form.password"
               />
             </div>
             <!--Terms and conditions-->
             <div class="info flex w-3/4 justify-between items-center pt-3">
-              <input type="checkbox" class="ml-2" />
+              <input type="checkbox" class="ml-2" v-model="checked" />
               <span class="ml-2 font-medium"
                 >By clicking button, you agree to our Terms, Privacy Policy and
                 Cookies Policy. You may receive SMS notifications from us and
@@ -91,6 +95,7 @@
             <button
               type="submit"
               class="bg-purple-login hover:bg-yellow-600 mt-3 py-2 px-5 rounded-lg text-white"
+              :disabled="submit"
             >
               Sign up
             </button>
@@ -104,7 +109,10 @@
       <div
         class="hideForm w-full pl-8 pt-3 lg:hidden border border-black rounded-2xl"
       >
-        <form class="border border-black text-black">
+        <form
+          class="border border-black text-black"
+          v-on:submit.prevent="submitForm"
+        >
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
             <div
@@ -140,6 +148,8 @@
                 class="ml-3 w-full h-8"
                 placeholder="Fullname"
                 name="fullname"
+                v-model="form.name"
+                :class="{ error: form.name.length < 5 && form.name != '' }"
               />
             </div>
             <!--Input for phone number-->
@@ -151,10 +161,14 @@
                 style="color: #443c68"
               />
               <input
-                type="username"
+                type="text"
                 class="ml-3 w-full h-8"
                 placeholder="Phone Number"
                 name="phoneNumber"
+                v-model="form.username"
+                :class="{
+                  error: form.username.length < 10 && form.username != '',
+                }"
               />
             </div>
             <!--Input for date of birth-->
@@ -166,10 +180,11 @@
                 style="color: #443c68"
               />
               <input
-                type="date"
+                type="text"
                 class="ml-3 w-full h-8"
                 placeholder="Date of Birth"
                 name="dob"
+                v-model="form.dob"
               />
             </div>
             <!--Input for password-->
@@ -185,11 +200,15 @@
                 class="ml-3 w-full h-8"
                 placeholder="Password"
                 name="password"
+                v-model="form.password"
+                :class="{
+                  error: form.password.length < 8 && form.password != '',
+                }"
               />
             </div>
             <!--Terms and contiditions-->
             <div class="info w-3/4 flex justify-center items-center pt-3">
-              <input type="checkbox" class="ml-2" />
+              <input type="checkbox" class="ml-2" v-model="checked" />
               <span class="ml-2 font-medium"
                 >By clicking button, you agree to our Terms, Privacy Policy and
                 Cookies Policy. You may receive SMS notifications from us and
@@ -199,6 +218,7 @@
             <!--Submit button-->
             <button
               type="submit"
+              :disabled="!submit"
               class="bg-purple-login hover:bg-yellow-600 mt-3 py-2 px-7 rounded-lg text-white max-sm:px-5 max-sm:mt-1 max-sm:text-sm"
             >
               Sign up
@@ -215,18 +235,68 @@
 
 <script>
 // @ is an alias to /src
+import axios from "axios"
 import Navbar from "../components/Navbar.vue"
 import Footer from "@/admin/components/Footer.vue"
 export default {
   name: "Register",
+  data() {
+    return {
+      errors: [],
+      form: {
+        username: "",
+        password: "",
+        name: "",
+        dob: "",
+      },
+      checked: false,
+      validation: true,
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler: function (newValue, oldValue) {
+        console.log(newValue, oldValue)
+      },
+    },
+  },
+  methods: {
+    async submitForm() {
+      await axios
+        .post("user/signup", this.form)
+        .then((response) => {
+          console.log(response.data)
+          this.$router.push("/login")
+        })
+        .catch((err) => {
+          console.log("error:" + err.message)
+          this.warning = !this.warning
+        })
+    },
+    handleCancel() {
+      this.$router.push("/login")
+    },
+  },
   components: {
     Navbar,
     Footer,
   },
+  computed: {
+    submit() {
+      return (
+        this.checked == true &&
+        this.name != "" &&
+        this.username != "" &&
+        this.dob != "" &&
+        this.password != ""
+      )
+    },
+  },
 }
 </script>
 
-<style>
+<style scoped>
 .home {
   height: 100vh;
 }
@@ -329,5 +399,9 @@ export default {
 }
 .footer {
   height: 10vh;
+}
+
+.error {
+  border: 3px solid red;
 }
 </style>

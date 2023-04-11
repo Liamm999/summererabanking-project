@@ -25,6 +25,12 @@ module.exports = {
         blue: {
           edit: "#EAF3FB",
         },
+        yellow: {
+          btn: "#FFA319",
+        },
+        red: {
+          cancle: "#D01E43",
+        },
       },
     },
   },

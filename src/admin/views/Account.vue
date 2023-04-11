@@ -8,6 +8,7 @@
         <!--Click button to change to Add account screen -->
         <button
           class="btn p-2 bg-yellow-500 rounded-lg hover:bg-yellow-400 max-sm:text-xs"
+          @click="handleClick"
         >
           <font-awesome-icon icon="fa-solid fa-plus" style="color: #ffffff" />
           Add account
@@ -24,7 +25,9 @@
     </div>
 
     <!--create a table for account list-->
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg h-full">
+    <div
+      class="relative overflow-x-auto shadow-md sm:rounded-lg max-lg:h-5/6 h-full"
+    >
       <table class="w-full text-sm text-left text-white">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
@@ -74,7 +77,7 @@
             <td class="px-6 py-4">
               <div class="flex flex-row px-1 w-auto h-auto">
                 <!--Click edit button to change to edit screen-->
-                <button>
+                <button @click="handleEdit(customer)">
                   <font-awesome-icon
                     icon="fa-solid fa-pen"
                     style="color: #3b7ae8"
@@ -160,6 +163,13 @@ export default {
       //   .then((response) => {
       //     console.log(response.data)
       //   })
+    },
+    handleClick() {
+      this.$router.push("/admin/add")
+    },
+    handleEdit(customer) {
+      console.log(customer.id)
+      this.$router.push(`/admin/edit?id=${customer.id}`)
     },
   },
 }

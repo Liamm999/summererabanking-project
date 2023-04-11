@@ -1,5 +1,5 @@
 <template>
-  <div class="add">
+  <div class="edit">
     <div class="navbar">
       <NavbarAdmin />
     </div>
@@ -7,7 +7,7 @@
       <Breadcrum :title="component" />
     </div>
     <div class="main w-full flex justify-center mt-5">
-      <TableAddAccount />
+      <TableEditAccount />
     </div>
 
     <div class="footer mt-3 max-lg:m-2">
@@ -20,17 +20,16 @@
 import NavbarAdmin from "../components/NavbarAdmin.vue"
 import Footer from "../components/Footer.vue"
 import Breadcrum from "../components/Breadcrum.vue"
-import TableAddAccount from "../components/TableAddAccount.vue"
-
+import TableEditAccount from "../components/TableEditAccount.vue"
 export default {
-  name: "AdminHomepage",
+  name: "Edit account",
   data() {
     return {
-      component: "Add Account",
+      component: "Edit Account",
     }
   },
   methods: {},
-  components: { NavbarAdmin, Footer, Breadcrum, TableAddAccount },
+  components: { NavbarAdmin, Footer, Breadcrum, TableEditAccount },
 }
 </script>
 

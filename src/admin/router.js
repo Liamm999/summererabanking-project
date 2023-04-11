@@ -33,6 +33,26 @@ export default [
   },
 
   {
+    path: "/admin/add", // route
+    name: "Add account", // name of the views page
+    component: () => import("./views/AddAccount.vue"), // directory of vue file path
+    meta: {
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: "/admin/edit", // route
+    name: "Edit account", // name of the views page
+    component: () => import("./views/EditAccount.vue"), // directory of vue file path
+    meta: {
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
     path: "/admin/saving", // route
     name: "Saving", // name of the views page
     component: () => import("./views/Saving.vue"), // directory of vue file path
