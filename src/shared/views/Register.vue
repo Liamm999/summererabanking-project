@@ -6,7 +6,10 @@
     <div class="mainContent flex flex-row mt-1 mx-10 rounded-2xl">
       <!--Register form for screen greater then 1024px -->
       <div class="left max-lg:hidden">
-        <form class="border border-black text-black">
+        <form
+          class="border border-black text-black"
+          v-on:submit.prevent="submitForm"
+        >
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
             <div
@@ -45,7 +48,7 @@
                 style="color: #5e5389"
               />
               <input
-                type="tel"
+                type="text"
                 class="ml-3 w-full h-8"
                 placeholder="Phone number"
                 name="phoneNumber"
@@ -59,7 +62,7 @@
                 style="color: #5e5389"
               />
               <input
-                type="date"
+                type="text"
                 class="ml-3 w-full h-8"
                 placeholder="Date of Birth"
                 name="dob"
@@ -95,7 +98,7 @@
             <button
               type="submit"
               class="bg-purple-login hover:bg-yellow-600 mt-3 py-2 px-5 rounded-lg text-white"
-              :disabled="submit"
+              :disabled="!submit"
             >
               Sign up
             </button>
