@@ -1351,6 +1351,14 @@
   dependencies:
     "@types/node" "*"
 
+"@userfront/core@^0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@userfront/core/-/core-0.5.6.tgz#01094851834ebdb6faa5604793806e40ff2ab98f"
+  integrity sha512-Ge8b+1DzmlKt1+/N4ySgEM29RXzwysV0JtsB51EZVNksDAojQVvx6pB9Yh10D4xGj4/GoiGUbbs6XNv0ktIyKw==
+  dependencies:
+    axios "^0.21.1"
+    js-cookie "^2.2.1"
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.4.0":
   version "1.4.0"
   resolved "https://registry.npmjs.org/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.4.0.tgz"

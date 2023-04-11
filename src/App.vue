@@ -22,7 +22,16 @@ export default {
     const jwt = useCookies().cookies.get("jwt")
     if (jwt) {
       try {
-        const isAdmin = (await axios.post("user/isadmin", jwt)).data.admin
+        const isAdmin = (
+          await axios.post(
+            "user/isadmin",
+            {
+              withCredentials: true,
+            },
+            jwt
+          )
+        ).data.admin
+        console.log(jwt)
         console.log(isAdmin)
         if (isAdmin) {
           router.push("/admin/home")

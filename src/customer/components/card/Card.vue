@@ -2,9 +2,9 @@
   <div
     class="container sm:w-full sm1:w-2/3 z-20 left-0 right-0 ml-auto mr-auto mt-16"
   >
-    <Header :phone-number="phoneNumber"></Header>
+    <Header class="hidden sm1:block" :phone-number="phoneNumber"></Header>
     <div
-      class="content-container grid gap-12 sm:grid-cols-1 sm1:grid-cols-2 lg:grid-cols-3 bg-slate-400 rounded-b-2xl py-16 px-10"
+      class="content-container grid gap-12 sm:grid-cols-1 sm1:grid-cols-2 lg:grid-cols-3 sm1:bg-slate-400 rounded-b-2xl py-16 px-10"
     >
       <Element
         v-for="element in iconArr"

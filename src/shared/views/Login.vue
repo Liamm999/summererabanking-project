@@ -1,4 +1,5 @@
 <template>
+  <Loading :is-hidden="checkHidden" />
   <div class="home">
     <div class="navbar">
       <Navbar />
@@ -172,11 +173,13 @@
 import axios from "axios"
 import Navbar from "../components/Navbar.vue"
 import Footer from "@/admin/components/Footer.vue"
+import Loading from "../components/Loading.vue"
 export default {
   name: "Login",
   components: {
     Navbar,
     Footer,
+    Loading,
   },
   data() {
     return {
@@ -185,6 +188,7 @@ export default {
         password: "",
       },
       message: "",
+      checkHidden: true,
     }
   },
   watch: {
@@ -198,6 +202,7 @@ export default {
 
   methods: {
     async submitForm(event) {
+      this.checkHidden = false
       await axios
         .post(`user/signin`, this.form)
         .then((res) => {
@@ -212,6 +217,7 @@ export default {
           } else {
             this.$router.push("/customer/homepage")
           }
+          this.checkHidden = true
         })
         .catch((err) => {
           console.log("error:" + err.message)

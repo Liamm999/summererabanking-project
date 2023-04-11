@@ -51,6 +51,11 @@ body {
         @apply max-w-full h-auto;
     }
 
+   
+     
+}
+
+@layer components {
     .text-on-white {
         color: #635985;
     }
@@ -84,9 +89,7 @@ body {
         color: #fff;
         text-decoration: none;
       }
-     
 }
-
 /* global */
 ::-webkit-scrollbar {
     @apply w-2 h-2;
