@@ -15,6 +15,17 @@ export default [
   },
 
   {
+    path: "/customer/homepage",
+    name: "homepage",
+    component: () => import("./views/Homepage.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
     path: "/customer/dashboard/profile",
     name: "Profile",
     component: () => import("./views/Profile.vue"),

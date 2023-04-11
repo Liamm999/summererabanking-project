@@ -1,9 +1,15 @@
 <template>
   <div
     id="footer"
-    class="flex flex-row justify-center items-center text-cyan-100 pl-6 mt-1 w-full"
+    class="flex flex-row justify-center items-center text-cyan-100 pl-6 max-lg:pl-0 mt-1 w-full"
   >
-    <div class="left flex flex-row justify-center">
+    <div class="lg:hidden max-lg:text-xs flex justify-center items-center">
+      <span class="text-center"
+        >©2022 Joint Stock Commercial Bank for Investment and Development of
+        Vietnam</span
+      >
+    </div>
+    <div class="left flex flex-row justify-center max-lg:hidden">
       <div class="leftInfo">
         <font-awesome-icon
           icon="fa-solid fa-headphones "
