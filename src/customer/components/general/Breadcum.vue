@@ -75,7 +75,7 @@ function handleBackToDashboard() {
 }
 
 function handleBackOneRoute() {
-  window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/")
+  window.history.length > 1 ? router.go(-1) : router.push("/")
 }
 </script>
 

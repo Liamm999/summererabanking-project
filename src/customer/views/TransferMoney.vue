@@ -1,7 +1,7 @@
 <template>
   <layout>
     <template #content>
-      <Heading :routes="routes" :name="nameOfPage" />
+      <Breadcum :routes="routes" :name="nameOfPage" />
       <div class="container w-full grid grid-cols-12 justify-between">
         <Card class="col-span-8" />
         <Contacts class="col-start-10 col-span-3" />
@@ -13,7 +13,7 @@
 <script setup>
 import { ref } from "vue"
 import Layout from "@/customer/layout/Default.vue"
-import Heading from "../components/general/Breadcum.vue"
+import Breadcum from "../components/general/Breadcum.vue"
 import Card from "../components/transfer/Card.vue"
 import Contacts from "../components/transfer/Contacts.vue"
 
