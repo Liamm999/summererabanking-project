@@ -21,7 +21,7 @@
               class="w-3/5 h-10 text-black rounded-md text-center"
               placeholder="Nguyen Van A"
               name="fullname"
-              v-model="form.username"
+              v-model="form.phone"
             />
           </div>
           <!--Customer phone number-->
@@ -115,7 +115,7 @@
               class="ml-3 w-full h-8 text-center rounded-md"
               placeholder="0982117652"
               name="phoneNumber"
-              v-model="form.username"
+              v-model="form.phone"
             />
           </div>
           <!--Input for date of birth-->
@@ -182,11 +182,12 @@ export default {
   data() {
     return {
       form: {
-        username: "",
+        phone: "",
         name: "",
         balance: "",
         dob: "",
-        type: true,
+        new: false,
+        type: false,
       },
       warning: false,
     }
@@ -206,6 +207,9 @@ export default {
         .put(`user/${id}`, this.form, { withCredentials: true })
         .then((res) => {
           console.log(res.data)
+          if (res.data.message == "OK") {
+            this.$router.push("/admin/dashboard")
+          }
         })
     },
     handleCancel() {

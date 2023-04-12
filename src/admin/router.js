@@ -2,7 +2,7 @@
 export default [
   {
     path: "/admin/dashboard", // route
-    name: "Dashboard", // name of the views page
+    name: "dashboard", // name of the views page
     component: () => import("./views/Dashboard.vue"), // directory of vue file path
     meta: {
       type: "protected",
@@ -13,7 +13,7 @@ export default [
 
   {
     path: "/admin/homepage", // route
-    name: "Admin Home", // name of the views page
+    name: "homepage", // name of the views page
     component: () => import("../admin/views/Home.vue"), // directory of vue file path
     meta: {
       type: "protected",

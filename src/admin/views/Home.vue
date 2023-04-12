@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "AdminHomepage",
+  name: "Home",
   methods: {
     handleClick: function () {
       this.$router.push("/admin/dashboard")

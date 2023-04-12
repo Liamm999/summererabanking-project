@@ -62,8 +62,13 @@
             <td class="px-6 py-4 text-center">{{ customer.dob }}</td>
 
             <!--If type is false -> return red button-->
-            <td class="px-6 py-4 text-center" v-if="customer.type == 'Wait'">
-              <button class="bg-red-500 py-2 px-6 rounded-lg">Wait</button>
+            <td class="px-6 py-4 text-center" v-if="customer.new == true">
+              <button
+                class="bg-red-500 py-2 px-6 rounded-lg"
+                @click="setBalance(customer)"
+              >
+                Wait
+              </button>
             </td>
 
             <!--If type is true -> return green button-->
@@ -77,7 +82,7 @@
             <td class="px-6 py-4">
               <div class="flex flex-row px-1 w-auto h-auto">
                 <!--Click edit button to change to edit screen-->
-                <button @click="handleEdit(customer)">
+                <button @click="handleEdit(customer) in customers">
                   <font-awesome-icon
                     icon="fa-solid fa-pen"
                     style="color: #3b7ae8"
@@ -111,6 +116,14 @@
         :id="this.id"
       />
     </div>
+    <div class="absolute top-1/2 left-1/3 max-sm:left-12">
+      <SetBalance
+        ref="setBalance"
+        :username="this.username"
+        v-show="showSetBalance"
+        :id="this.newId"
+      />
+    </div>
   </div>
 </template>
 
@@ -118,6 +131,7 @@
 import Filter from "../components/Filter.vue"
 import DeletePopUp from "../components/DeletePopUp.vue"
 import axios from "axios"
+import SetBalance from "../components/SetBalance.vue"
 export default {
   name: "Account",
   data() {
@@ -125,12 +139,14 @@ export default {
       filterType: ["Filter by", "Name", "Date", "Balance"],
       customers: [],
       confirmDelete: false,
+      showSetBalance: false,
       username: "",
       id: "",
+      newId: "",
       localTime: " ",
     }
   },
-  components: { Filter, DeletePopUp },
+  components: { Filter, DeletePopUp, SetBalance },
   created() {
     this.fetchAllCustomer()
   },
@@ -154,7 +170,6 @@ export default {
       this.username = customer.username
       this.id = customer.id
       this.confirmDelete = !this.confirmDelete
-
       if (this.confirmDelete == true) {
         this.$refs.delete.handleClick()
       }
@@ -170,6 +185,15 @@ export default {
     handleEdit(customer) {
       console.log(customer.id)
       this.$router.push(`/admin/edit?id=${customer.id}`)
+    },
+    setBalance(customer) {
+      console.log(customer.id)
+      this.showSetBalance = !this.showSetBalance
+      this.username = customer.username
+      this.newId = customer.id
+      if (this.showSetBalance == true) {
+        this.$refs.setBalance.handleClick()
+      }
     },
   },
 }

@@ -38,7 +38,7 @@ router.beforeEach(async (to, from, next) => {
       console.log(jwt)
       console.log(isAdmin)
       if (isAdmin) {
-        router.push("/admin/home")
+        router.push("/admin/homepage")
       } else {
         router.push("/customer/dashboard")
       }
