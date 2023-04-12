@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-10 mb-16">
+  <div class="container mx-auto mt-10 mb-16 ml-6 sm1:ml-0">
     <div class="flex items-baseline">
       <font-awesome-icon
         icon="fa-solid fa-chevron-left"

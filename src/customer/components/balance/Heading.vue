@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container flex flex-row justify-between items-center bg-white rounded-t-2xl text-black px-36 py-2"
+    class="container flex flex-row justify-between items-center bg-white rounded-t-2xl text-black p-6 sm1:px-36 sm1:py-2"
   >
     <span
       ><h4 class="text-xl font-semibold">Account in VND</h4>

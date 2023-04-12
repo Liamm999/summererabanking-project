@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="px-4 sm1:px-8 mx-auto">
     <Heading :total="totalBalance" @drop-button-clicked="handleDropdown" />
     <div
-      class="container bg-gray-200 rounded-b-2xl px-36 py-16"
+      class="container bg-gray-200 rounded-b-2xl sm1:px-36 py-16"
       :class="isShow ? 'show' : 'hide'"
     >
-      <Card :amount="availableBalance" :acc-num="accNum" />
+      <Card :amount="availableBalance" :acc-num="accNum" class="" />
     </div>
   </div>
 </template>

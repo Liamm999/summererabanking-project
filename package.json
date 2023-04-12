@@ -25,7 +25,7 @@
     "vue-text-marquee": "^1.1.0",
     "vue3-cookies": "^1.0.6",
     "vue3-transitions": "^1.0.0",
-    "vuex": "^4.0.0"
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

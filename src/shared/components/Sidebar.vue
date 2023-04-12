@@ -11,11 +11,11 @@
     >
       <span class="absolute ml-4 text-black mt-24">
         <h4 class="text-lg font-semibold">Account number</h4>
-        <p class="text-purple-600">{{ accNum }}</p>
+        <p class="text-purple-600 mb-12">{{ accNum }}</p>
         <a
           href="/login"
           @click="handleLogout()"
-          class="mt-12 text-white p-2 rounded-full bg-purple-600 hover:element-hover-color"
+          class="text-white p-2 rounded-full bg-purple-600 hover:element-hover-color"
         >
           Logout
         </a>
@@ -30,6 +30,7 @@
 
 <script setup>
 import { logout } from "../helper/Logout"
+// eslint-disable-next-line no-unused-vars
 const props = defineProps({
   isShown: {
     type: Boolean,
@@ -40,7 +41,7 @@ const props = defineProps({
   accNum: {
     type: Number,
     required: true,
-    default: 21510009999999,
+    default: 0,
   },
 })
 

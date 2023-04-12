@@ -9,7 +9,12 @@
           :img-src="imgSrc"
           :username="username"
         />
-        <Sidebar class="sm1:hidden" @click="handleNav" :is-shown="isShown" />
+        <Sidebar
+          class="sm1:hidden"
+          @click="handleNav"
+          :is-shown="isShown"
+          :acc-num="accNum"
+        />
       </div>
     </div>
     <div class="container mx-auto mt-20 min-h-screen">
@@ -31,6 +36,7 @@ import Sidebar from "../../shared/components/Sidebar.vue"
 
 const imgSrc = ref(require("@/customer/assets/img/fakeAvt.jpg"))
 const username = ref("LA MINH VU")
+const accNum = ref(21510009999999)
 const isShown = ref(false)
 // async function getUser() {
 //   try {

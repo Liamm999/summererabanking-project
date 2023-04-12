@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container grid grid-cols-2 w-full bg-white rounded-2xl text-black px-16 py-4"
+    class="container mx-auto grid lg:grid-cols-2 w-full bg-white rounded-2xl text-black px-16 py-4"
   >
     <div class="flex flex-row items-center">
       <h4 class="text-base font-semibold mr-2">{{ accNum }}</h4>
@@ -11,7 +11,7 @@
       </p>
     </div>
     <div>
-      <p class="mr-1">Available balance</p>
+      <p class="mr-1 mt-5 lg:mt-0">Available balance</p>
       <p class="font-semibold">{{ formatPrice(amount) }}</p>
     </div>
   </div>

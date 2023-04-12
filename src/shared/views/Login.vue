@@ -174,6 +174,7 @@ import axios from "axios"
 import Navbar from "../components/Navbar.vue"
 import Footer from "@/admin/components/Footer.vue"
 import Loading from "../components/Loading.vue"
+
 export default {
   name: "Login",
   components: {
@@ -210,6 +211,7 @@ export default {
           console.log("submit")
           this.$cookies.set("jwt", res.data.jwt)
           localStorage.setItem("token", res.data.jwt)
+          localStorage.setItem("currentUser", JSON.stringify(res.data))
           // axios.defaults.headers.common["Authorization"] = token
           event.preventDefault()
           if (res.data.admin == true) {
