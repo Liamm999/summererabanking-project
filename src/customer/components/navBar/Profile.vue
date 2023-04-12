@@ -14,6 +14,7 @@
       content="Logout"
       @clicked="handleLogout()"
       :is-hidden="checkHidden"
+      href="/login"
     />
   </div>
 </template>
@@ -48,7 +49,6 @@ function showPopup() {
 function handleLogout() {
   logout()
   console.log("logout")
-  window.location.reload()
 }
 </script>
 

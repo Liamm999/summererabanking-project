@@ -9,7 +9,7 @@
           :img-src="imgSrc"
           :username="username"
         />
-        <SecondaryNav />
+        <Sidebar class="sm1:hidden" @click="handleNav" :is-shown="isShown" />
       </div>
     </div>
     <div class="container mx-auto mt-20 min-h-screen">
@@ -27,8 +27,11 @@
 import logo from "../components/navBar/Logo.vue"
 import profile from "../components/navBar/Profile.vue"
 import { ref } from "vue"
-import SecondaryNav from "../components/navBar/SecondaryNav.vue"
+import Sidebar from "../../shared/components/Sidebar.vue"
 
+const imgSrc = ref(require("@/customer/assets/img/fakeAvt.jpg"))
+const username = ref("LA MINH VU")
+const isShown = ref(false)
 // async function getUser() {
 //   try {
 
@@ -37,8 +40,15 @@ import SecondaryNav from "../components/navBar/SecondaryNav.vue"
 //   }
 // }
 
-const imgSrc = ref(require("@/customer/assets/img/fakeAvt.jpg"))
-const username = ref("LA MINH VU")
+function handleNav() {
+  if (isShown.value) {
+    isShown.value = false
+    console.log("hide")
+  } else {
+    isShown.value = true
+    console.log("show")
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -3,7 +3,7 @@
     class="flex justify-center align-middle items-center bg-white shadow-lg shadow-purple-900 text-center"
     :class="{ hidden: isHidden }"
   >
-    <p @click="handleClick">{{ content }}</p>
+    <a :href="href" @click="handleClick">{{ content }}</a>
   </div>
 </template>
 
@@ -21,6 +21,11 @@ const props = defineProps({
   content: {
     type: String,
     required: true,
+    default: "",
+  },
+
+  href: {
+    typeof: String,
     default: "",
   },
 })
