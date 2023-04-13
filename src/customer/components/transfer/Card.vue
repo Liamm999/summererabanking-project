@@ -7,14 +7,14 @@
     >
       <Input
         class="col-start-1 col-end-12"
-        :placeholder="inputPlaceholder"
-        :value="value"
+        placeholder="Enter account number"
+        :value="accNumber"
         @update-input="setAccountValue"
       />
       <Button
         class="col-start-12 text-purple-600 text-end"
-        :placeholder="checkPlaceholder"
-        @clicked="checkUserAccount"
+        placeholder="Check"
+        @clicked="handleCheckUserAcc"
       />
     </span>
     <span class="checkText">
@@ -26,9 +26,9 @@
 
     <Button
       class="w-full flex justify-end mt-16"
-      :placeholder="continuePlaceholder"
+      placeholder="Continue"
       :is-grad="true"
-      @clicked="testButton"
+      @clicked="handleContinue"
     />
   </div>
 </template>
@@ -39,32 +39,30 @@ import Input from "../general/Input.vue"
 import Button from "../general/Button.vue"
 import { computed } from "@vue/reactivity"
 
-const inputPlaceholder = ref("Enter account number")
-const checkPlaceholder = ref("Check")
-const continuePlaceholder = ref("Continue")
-const value = ref("")
+const accNumber = ref("")
 const beneficiaryName = ref("")
+const emit = defineEmits(["continueTransfer", "checkUserAccount"])
 
 const isFilled = computed(() => {
-  if (value.value === "") {
+  if (accNumber.value === "") {
     return false
   }
   return true
 })
 
-function testButton() {
-  console.log("button clicked")
+// check if the bank acc is valid => continue the process
+function handleContinue() {
+  emit("continueTransfer")
 }
 
 function setAccountValue(newAccount) {
   console.log(newAccount)
-  value.value = newAccount
+  accNumber.value = newAccount
 }
 
 // TODO: Check account name
-async function checkUserAccount() {
-  // call api to check account name
-  console.log(value.value)
+function handleCheckUserAcc() {
+  emit("checkUserAccount", accNumber.value)
 }
 </script>
 

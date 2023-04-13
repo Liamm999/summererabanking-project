@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-10 mb-16 ml-6 sm1:ml-0">
+  <div class="container mx-auto mt-10 mb-16 ml-6 sm1:ml-0 xl:ml-10">
     <div class="flex items-baseline">
       <font-awesome-icon
         icon="fa-solid fa-chevron-left"
@@ -19,18 +19,18 @@
           <p>/</p>
           <span
             class="direction flex"
-            :class="{ chosen: isLast }"
+            :class="{ chosen: isSelected(index) }"
             v-for="(route, index) in routes"
             :key="index"
             @click="handleBackward(index)"
           >
             <p
               class="hover:text-purple-600 opacity-50"
-              :class="{ pointer: !isLast }"
+              :class="{ pointer: !isSelected(index) }"
             >
               {{ route }}
             </p>
-            <p :class="{ hidden: isLast }">&nbsp;/</p>
+            <p :class="{ hidden: isSelected(index) }">&nbsp;/</p>
           </span>
         </span>
       </div>
@@ -40,9 +40,10 @@
 
 <script setup>
 import { useRoute, useRouter } from "vue-router"
-import { computed } from "@vue/reactivity"
+// import { computed } from "@vue/reactivity"
 
 const router = useRouter()
+// eslint-disable-next-line no-unused-vars
 const route = useRoute()
 
 // eslint-disable-next-line no-undef, no-unused-vars
@@ -57,15 +58,20 @@ const props = defineProps({
     require: true,
     default: "",
   },
+  select: {
+    typeof: String,
+    require: true,
+    default: "",
+  },
 })
 
-const isLast = computed(() => {
-  return props.routes[props.routes.length - 1].includes(route.name)
-})
+function isSelected(index) {
+  return props.routes[index].includes(props.select)
+}
 
 function handleBackward(index) {
   console.log(index)
-  if (!isLast.value) {
+  if (!isSelected(index)) {
     router.go((index + 1) * -1)
   }
 }

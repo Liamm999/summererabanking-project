@@ -13,8 +13,8 @@ import { ref, onMounted } from "vue"
 import Layout from "@/customer/layout/Default.vue"
 import Card from "@/customer/components/card/Card.vue"
 
-const routes = ref(new Array())
-localStorage.setItem("routesArray", JSON.stringify(routes.value))
+// const routes = ref(new Array())
+// localStorage.setItem("routesArray", JSON.stringify(routes.value))
 
 onMounted(() => {
   const today = ref(new Date())

@@ -1,9 +1,19 @@
 import { createStore } from "vuex"
 
 export default createStore({
-  state: {},
+  state: {
+    breadCumRoutes: [],
+  },
   getters: {},
-  mutations: {},
-  actions: {},
+  mutations: {
+    setBreadcumRoutes(state, route) {
+      state.breadCumRoutes.push(route)
+    },
+  },
+  actions: {
+    setBreadcumRoutes(state, route) {
+      state.commit("setBreadcumRoutes", route)
+    },
+  },
   modules: {},
 })

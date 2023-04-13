@@ -4,7 +4,6 @@ export default [
     path: "/customer/dashboard",
     name: "Dashboard",
     component: () => import("./views/Dashboard.vue"),
- 
   },
 
   {
@@ -32,7 +31,7 @@ export default [
   {
     path: "/customer/dashboard/transfer",
     name: "Transfer",
-    component: () => import("./views/TransferMoney.vue"),
+    component: () => import("./views/transfer/TransferMoney.vue"),
     meta: {
       layout: "Default",
       type: "protected",
@@ -49,5 +48,28 @@ export default [
       type: "protected",
       requiresAuth: true,
     },
+  },
+
+  {
+    path: "/customer/dashboard/transfer/init",
+    name: "Initialization",
+    component: () => import("./views/transfer/InitTransfer.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected",
+      requiresAuth: true,
+    },
+    children: [
+      {
+        path: "confirm",
+        name: "Confirmation",
+        component: () => import("./views/transfer/ConfirmTransfer.vue"),
+        meta: {
+          layout: "Default",
+          type: "protected",
+          requiresAuth: true,
+        },
+      },
+    ],
   },
 ]
