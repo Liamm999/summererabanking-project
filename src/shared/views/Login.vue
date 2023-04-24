@@ -174,7 +174,6 @@ import axios from "axios"
 import Navbar from "../components/Navbar.vue"
 import Footer from "@/admin/components/Footer.vue"
 import Loading from "../components/Loading.vue"
-import { Field, Form } from 'vee-validate';
 
 export default {
   name: "Login",
@@ -182,8 +181,6 @@ export default {
     Navbar,
     Footer,
     Loading,
-    Field,
-    Form
   },
   data() {
     return {
@@ -330,9 +327,5 @@ export default {
 
 .footer {
   height: 10vh;
-}
-
-.error {
-  border: 3px solid red;
 }
 </style>
