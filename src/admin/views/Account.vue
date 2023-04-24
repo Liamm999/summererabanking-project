@@ -124,6 +124,7 @@
         :id="this.newId"
       />
     </div>
+    <Loading :is-hidden="checkHidden" />
   </div>
 </template>
 
@@ -132,6 +133,7 @@ import Filter from "../components/Filter.vue"
 import DeletePopUp from "../components/DeletePopUp.vue"
 import axios from "axios"
 import SetBalance from "../components/SetBalance.vue"
+import Loading from "@/shared/components/Loading.vue"
 export default {
   name: "Account",
   data() {
@@ -144,9 +146,10 @@ export default {
       id: "",
       newId: "",
       localTime: " ",
+      checkHidden: true,
     }
   },
-  components: { Filter, DeletePopUp, SetBalance },
+  components: { Filter, DeletePopUp, SetBalance, Loading },
   created() {
     this.fetchAllCustomer()
   },
@@ -180,6 +183,7 @@ export default {
       //   })
     },
     handleClick() {
+      this.checkHidden = false
       this.$router.push("/admin/add")
     },
     handleEdit(customer) {

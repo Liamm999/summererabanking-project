@@ -145,6 +145,7 @@
               placeholder="*******"
               name="password"
               v-model="form.password"
+              :class="[form.password.length < 5 ? error : null]"
             />
           </div>
           <span class="text-red-500 pt-2" v-show="warning"
@@ -283,6 +284,10 @@ export default {
   }
   input {
     background-color: rgba(240, 248, 255, 0.79);
+  }
+
+  .error {
+    border: 2px solid red;
   }
 }
 </style>

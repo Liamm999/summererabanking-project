@@ -21,7 +21,7 @@
               class="w-3/5 h-10 text-black rounded-md text-center"
               placeholder="Nguyen Van A"
               name="fullname"
-              v-model="form.phone"
+              v-model="phone"
             />
           </div>
           <!--Customer phone number-->
@@ -34,7 +34,7 @@
               class="w-3/5 h-10 text-black rounded-md text-center"
               placeholder="0982067865"
               name="phoneNumber"
-              v-model="form.name"
+              v-model="name"
             />
           </div>
 
@@ -48,7 +48,7 @@
               class="w-3/5 h-10 text-black rounded-md text-center"
               name="fullname"
               placeholder="12/11/2002"
-              v-model="form.dob"
+              v-model="dob"
             />
           </div>
 
@@ -62,7 +62,7 @@
               class="w-3/5 h-10 text-black rounded-md text-center"
               placeholder="50.000"
               name="balance"
-              v-model="form.balance"
+              v-model="balance"
             />
           </div>
           <span class="text-red-500 pt-4" v-show="warning"
@@ -102,7 +102,7 @@
               class="ml-3 w-full h-8 text-center rounded-md"
               placeholder="Nguyen Van A"
               name="fullname"
-              v-model="form.name"
+              v-model="name"
             />
           </div>
           <!--Input for phone number-->
@@ -115,7 +115,7 @@
               class="ml-3 w-full h-8 text-center rounded-md"
               placeholder="0982117652"
               name="phoneNumber"
-              v-model="form.phone"
+              v-model="phone"
             />
           </div>
           <!--Input for date of birth-->
@@ -131,24 +131,30 @@
               class="ml-3 w-full h-8 text-center rounded-md"
               placeholder="12/11/2002"
               name="dob"
-              v-model="form.dob"
+              v-model="dob"
             />
           </div>
           <!--Input for password-->
-          <div
-            class="password w-3/4 pt-4 border-b border-black flex items-center"
-          >
-            <font-awesome-icon
-              icon="fa-solid fa-money-check-dollar"
-              style="color: white"
-            />
-            <input
-              type="text"
-              class="ml-3 w-full h-8 text-center rounded-md"
-              placeholder="50.000"
-              name="balance"
-              v-model="form.balance"
-            />
+          <div class="flex flex-col w-3/4">
+            <div
+              class="password w-full pt-4 border-b border-black flex items-center"
+            >
+              <font-awesome-icon
+                icon="fa-solid fa-money-check-dollar"
+                style="color: white"
+              />
+              <input
+                type="text"
+                class="ml-3 w-full h-8 text-center rounded-md"
+                placeholder="50.000"
+                name="balance"
+                v-model="balance"
+                required
+              />
+            </div>
+            <span v-if="msg.balance" class="text-red-500">{{
+              msg.balance
+            }}</span>
           </div>
           <span class="text-red-500 pt-2" v-show="warning"
             >Invalid information</span
@@ -181,15 +187,15 @@ export default {
   name: "Table add account",
   data() {
     return {
-      form: {
-        phone: "",
-        name: "",
-        balance: "",
-        dob: "",
-        new: false,
-        type: false,
-      },
+      phone: "",
+      name: "",
+      balance: "",
+      dob: "",
+      new: false,
+      type: false,
+
       warning: false,
+      msg: [],
     }
   },
   watch: {
@@ -197,6 +203,17 @@ export default {
       deep: true,
       handler: function (newValue, oldValue) {
         console.log(newValue, oldValue)
+        this.balance = newValue
+        console.log("balance", newValue)
+        this.validateBalance(newValue)
+      },
+    },
+    balance: {
+      handler: function (newValue, oldValue) {
+        console.log(newValue, oldValue)
+        this.balance = newValue
+        console.log("balance", newValue)
+        this.validateBalance(newValue)
       },
     },
   },
@@ -204,7 +221,18 @@ export default {
     async submitForm() {
       const id = this.$route.query.id
       await axios
-        .put(`user/${id}`, this.form, { withCredentials: true })
+        .put(
+          `user/${id}`,
+          {
+            phone: "",
+            name: "",
+            balance: "",
+            dob: "",
+            new: false,
+            type: false,
+          },
+          { withCredentials: true }
+        )
         .then((res) => {
           console.log(res.data)
           if (res.data.message == "OK") {
@@ -214,6 +242,13 @@ export default {
     },
     handleCancel() {
       this.$router.push("/admin/dashboard")
+    },
+    validateBalance(value) {
+      if (value == "0") {
+        this.msg["balance"] = "Balance must > 0"
+      } else {
+        this.msg["balance"] = ""
+      }
     },
   },
 }
