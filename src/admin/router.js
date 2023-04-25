@@ -55,7 +55,17 @@ export default [
   {
     path: "/admin/saving", // route
     name: "Saving", // name of the views page
-    component: () => import("./views/Saving.vue"), // directory of vue file path
+    component: () => import("./views/SavingAndLoans.vue"), // directory of vue file path
+    meta: {
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: "/admin/loan", // route
+    name: "Loans", // name of the views page
+    component: () => import("./views/Loans.vue"), // directory of vue file path
     meta: {
       type: "protected",
       requiresAuth: true,
@@ -76,6 +86,26 @@ export default [
     path: "/admin/home", // route
     name: "Homepage", // name of the views page
     component: () => import("../customer/views/Homepage.vue"), // directory of vue file path
+    meta: {
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: "/admin/saving/details", // route
+    name: "Saving Details", // name of the views page
+    component: () => import("./views/SavingDetails.vue"), // directory of vue file path
+    meta: {
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: "/admin/loans/details", // route
+    name: "Loans Details", // name of the views page
+    component: () => import("./views/LoansDetail.vue"), // directory of vue file path
     meta: {
       type: "protected",
       requiresAuth: true,

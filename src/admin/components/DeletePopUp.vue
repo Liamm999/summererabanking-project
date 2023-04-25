@@ -1,8 +1,11 @@
 <template>
-  <div class="bg flex flex-col py-6 px-10" v-show="hidden">
+  <div
+    class="bg flex flex-col py-6 px-10 max-sm:py-2 max-sm:px-2"
+    v-show="hidden"
+  >
     <div>Delete account "{{ username }}"</div>
     <div
-      class="flex flex-row justify-between items-center text-black mt-5 font-medium"
+      class="flex flex-row justify-between max-sm:justify-around items-center text-black mt-5 font-medium"
     >
       <button
         @click="handleClick"

@@ -18,6 +18,7 @@ module.exports = {
           200: "#18122B",
           300: "#635985",
           login: "#5E5389",
+          savings: "#B39EF4",
         },
         pink: {
           trash: "#ffc0c0",
@@ -27,6 +28,7 @@ module.exports = {
         },
         yellow: {
           btn: "#FFA319",
+          loans: "#FAF7A6",
         },
         red: {
           cancle: "#D01E43",

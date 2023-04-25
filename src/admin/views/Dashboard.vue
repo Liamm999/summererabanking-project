@@ -232,7 +232,7 @@ import LeftNavbar from "../components/LeftNavbar.vue"
 import Footer from "../components/Footer.vue"
 import Account from "./Account.vue"
 import Breadcrum from "../components/Breadcrum.vue"
-import Saving from "./Saving.vue"
+import Saving from "./SavingAndLoans.vue"
 import Transaction from "./Transaction.vue"
 export default {
   name: "dashboard",
