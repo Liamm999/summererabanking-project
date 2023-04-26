@@ -14,60 +14,80 @@
           class="login w-5/6 p-3 pt-8 pb-5 flex flex-col items-center h-auto mt-1"
         >
           <!--Customer full name-->
-          <div class="fullname w-1/2 pt-1 flex justify-between items-center">
-            <span class="text-sm max-sm1:text-sx">Phone number: </span>
-            <input
-              type="text"
-              class="w-3/5 h-10 text-black rounded-md text-center"
-              placeholder="Nguyen Van A"
-              name="fullname"
-              v-model="phone"
-            />
+          <div class="flex flex-col w-1/2">
+            <div class="fullname w-full pt-1 flex justify-between items-center">
+              <span class="text-sm max-sm1:text-sx">Phone number: </span>
+              <input
+                type="text"
+                class="w-3/5 h-10 text-black rounded-md text-center"
+                :placeholder="form.oldPhone"
+                name="fullname"
+                v-model="phone"
+                required
+              />
+            </div>
+            <span v-if="msg.phone" class="text-red-500 mt-2">{{
+              msg.phone
+            }}</span>
           </div>
+
           <!--Customer phone number-->
-          <div
-            class="fullname mt-6 w-1/2 pt-1 flex justify-between items-center"
-          >
-            <span class="text-sm">Full name: </span>
-            <input
-              type="text"
-              class="w-3/5 h-10 text-black rounded-md text-center"
-              placeholder="0982067865"
-              name="phoneNumber"
-              v-model="name"
-            />
+          <div class="flex flex-col w-1/2">
+            <div
+              class="fullname mt-2 w-full pt-1 flex justify-between items-center"
+            >
+              <span class="text-sm">Full name: </span>
+              <input
+                type="text"
+                class="w-3/5 h-10 text-black rounded-md text-center"
+                :placeholder="form.oldName"
+                name="fullName"
+                v-model="name"
+                required
+              />
+            </div>
+            <span v-if="msg.name" class="text-red-500 mt-2">{{
+              msg.name
+            }}</span>
           </div>
 
           <!--Customer password-->
-          <div
-            class="fullname mt-6 w-1/2 pt-1 flex justify-between items-center"
-          >
-            <span class="text-sm">Date of birth: </span>
-            <input
-              type="text"
-              class="w-3/5 h-10 text-black rounded-md text-center"
-              name="fullname"
-              placeholder="12/11/2002"
-              v-model="dob"
-            />
+          <div class="flex flex-col w-1/2">
+            <div
+              class="fullname mt-2 w-full pt-1 flex justify-between items-center"
+            >
+              <span class="text-sm">Date of birth: </span>
+              <input
+                type="text"
+                class="w-3/5 h-10 text-black rounded-md text-center"
+                name="fullname"
+                :placeholder="form.oldDob"
+                v-model="dob"
+                required
+              />
+            </div>
+            <span v-if="msg.dob" class="text-red-500 mt-2">{{ msg.dob }}</span>
           </div>
 
           <!--Customer password-->
-          <div
-            class="fullname mt-6 w-1/2 pt-1 flex justify-between items-center"
-          >
-            <span class="text-sm">Initial balance: </span>
-            <input
-              type="text"
-              class="w-3/5 h-10 text-black rounded-md text-center"
-              placeholder="50.000"
-              name="balance"
-              v-model="balance"
-            />
+          <div class="flex flex-col w-1/2">
+            <div
+              class="fullname mt-2 w-full pt-1 flex justify-between items-center"
+            >
+              <span class="text-sm">Initial balance: </span>
+              <input
+                type="text"
+                class="w-3/5 h-10 text-black rounded-md text-center"
+                :placeholder="form.oldBalance"
+                name="balance"
+                v-model="balance"
+                required
+              />
+            </div>
+            <span v-if="msg.balance" class="text-red-500 mt-2">{{
+              msg.balance
+            }}</span>
           </div>
-          <span class="text-red-500 pt-4" v-show="warning"
-            >Invalid information</span
-          >
 
           <!--Submit button-->
           <div class="w-3/5 flex justify-evenly items-center mt-6">
@@ -93,47 +113,67 @@
       <form class="text-black" v-on:submit.prevent="submitForm">
         <div class="login flex flex-col items-center h-72 mt-2">
           <!--Input for username-->
-          <div
-            class="username w-3/4 pt-4 border-b border-black flex items-center"
-          >
-            <font-awesome-icon icon="fa-regular fa-user" style="color: white" />
-            <input
-              type="text"
-              class="ml-3 w-full h-8 text-center rounded-md"
-              placeholder="Nguyen Van A"
-              name="fullname"
-              v-model="name"
-            />
+          <div class="flex flex-col w-3/4">
+            <div
+              class="username w-full pt-4 border-b border-black flex items-center"
+            >
+              <font-awesome-icon
+                icon="fa-regular fa-user"
+                style="color: white"
+              />
+              <input
+                type="text"
+                class="ml-3 w-full h-8 text-center rounded-md"
+                :placeholder="form.oldName"
+                name="fullname"
+                v-model="name"
+              />
+            </div>
+            <span v-if="msg.name" class="text-red-500">{{ msg.name }}</span>
           </div>
+
           <!--Input for phone number-->
-          <div
-            class="username w-3/4 pt-4 border-b border-black flex items-center"
-          >
-            <font-awesome-icon icon="fa-solid fa-phone" style="color: white" />
-            <input
-              type="text"
-              class="ml-3 w-full h-8 text-center rounded-md"
-              placeholder="0982117652"
-              name="phoneNumber"
-              v-model="phone"
-            />
+          <div class="flex flex-col w-3/4">
+            <div
+              class="username w-full pt-4 border-b border-black flex items-center"
+            >
+              <font-awesome-icon
+                icon="fa-solid fa-phone"
+                style="color: white"
+              />
+              <input
+                type="text"
+                class="ml-3 w-full h-8 text-center rounded-md"
+                :placeholder="form.oldPhone"
+                name="phoneNumber"
+                v-model="phone"
+                required
+              />
+            </div>
+            <span v-if="msg.phone" class="text-red-500">{{ msg.phone }}</span>
           </div>
+
           <!--Input for date of birth-->
-          <div
-            class="username w-3/4 pt-4 border-b border-black flex items-center"
-          >
-            <font-awesome-icon
-              icon="fa-solid fa-cake-candles"
-              style="color: white"
-            />
-            <input
-              type="text"
-              class="ml-3 w-full h-8 text-center rounded-md"
-              placeholder="12/11/2002"
-              name="dob"
-              v-model="dob"
-            />
+          <div class="flex flex-col w-3/4">
+            <div
+              class="username w-full pt-4 border-b border-black flex items-center"
+            >
+              <font-awesome-icon
+                icon="fa-solid fa-cake-candles"
+                style="color: white"
+              />
+              <input
+                type="text"
+                class="ml-3 w-full h-8 text-center rounded-md"
+                :placeholder="form.oldPhone"
+                name="dob"
+                v-model="dob"
+                required
+              />
+            </div>
+            <span v-if="msg.dob" class="text-red-500">{{ msg.dob }}</span>
           </div>
+
           <!--Input for password-->
           <div class="flex flex-col w-3/4">
             <div
@@ -146,7 +186,7 @@
               <input
                 type="text"
                 class="ml-3 w-full h-8 text-center rounded-md"
-                placeholder="50.000"
+                :placeholder="form.oldBalance"
                 name="balance"
                 v-model="balance"
                 required
@@ -156,9 +196,6 @@
               msg.balance
             }}</span>
           </div>
-          <span class="text-red-500 pt-2" v-show="warning"
-            >Invalid information</span
-          >
           <div class="w-full flex justify-around items-center mt-6">
             <button
               type="submit"
@@ -193,46 +230,81 @@ export default {
       dob: "",
       new: false,
       type: false,
+      form: {
+        oldPhone: "",
+        oldName: "",
+        oldDob: "",
+        oldBalance: "",
+      },
 
       warning: false,
       msg: [],
     }
   },
   watch: {
-    form: {
-      deep: true,
+    balance: {
       handler: function (newValue, oldValue) {
-        console.log(newValue, oldValue)
+        console.log("Balance: ", newValue, oldValue)
         this.balance = newValue
-        console.log("balance", newValue)
         this.validateBalance(newValue)
       },
     },
-    balance: {
+    name: {
       handler: function (newValue, oldValue) {
-        console.log(newValue, oldValue)
-        this.balance = newValue
-        console.log("balance", newValue)
-        this.validateBalance(newValue)
+        console.log("Name: ", newValue, oldValue)
+        this.name = newValue
+        this.validateName(newValue)
+      },
+    },
+    dob: {
+      handler: function (newValue, oldValue) {
+        console.log("dob: ", newValue, oldValue)
+        this.dob = newValue
+        this.validateDob(newValue)
+      },
+    },
+    phone: {
+      handler: function (newValue, oldValue) {
+        console.log("Phone: ", newValue, oldValue)
+        this.phone = newValue
+        this.validatePhone(newValue)
       },
     },
   },
+  created() {
+    this.getUser()
+  },
   methods: {
-    async submitForm() {
+    async getUser() {
       const id = this.$route.query.id
       await axios
-        .put(
-          `user/${id}`,
-          {
-            phone: "",
-            name: "",
-            balance: "",
-            dob: "",
-            new: false,
-            type: false,
-          },
-          { withCredentials: true }
-        )
+        .get(`user/${id}`, { withCredentials: true })
+        .then((res) => {
+          const form = res.data
+          this.form = {
+            oldPhone: form.username,
+            oldBalance: form.balance,
+            oldDob: form.dob,
+            oldName: form.name,
+          }
+          console.log(res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    async submitForm() {
+      const id = this.$route.query.id
+      const form = {
+        phone: this.phone,
+        name: this.name,
+        balance: this.balance,
+        dob: this.dob,
+        new: false,
+        type: false,
+      }
+      await axios
+        .put(`user/${id}`, form, { withCredentials: true })
         .then((res) => {
           console.log(res.data)
           if (res.data.message == "OK") {
@@ -248,6 +320,27 @@ export default {
         this.msg["balance"] = "Balance must > 0"
       } else {
         this.msg["balance"] = ""
+      }
+    },
+    validateDob(value) {
+      if (value == null) {
+        this.msg["dob"] = "Date of birth is required"
+      } else {
+        this.msg["dob"] = ""
+      }
+    },
+    validateName(value) {
+      if (value.length <= 4) {
+        this.msg["name"] = "Name must be at least 4 characters"
+      } else {
+        this.msg["name"] = ""
+      }
+    },
+    validatePhone(value) {
+      if (value.length == 10) {
+        this.msg["phone"] = ""
+      } else {
+        this.msg["phone"] = "Phone must be 10 numbers"
       }
     },
   },

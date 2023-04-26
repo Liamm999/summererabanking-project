@@ -1,15 +1,20 @@
 <template>
+  <Loading :is-hidden="checkHidden" />
   <div class="home">
     <div class="navbar">
       <Navbar />
     </div>
+    <div></div>
     <div class="mainContent flex flex-row mt-1 mx-10 rounded-2xl">
       <!--Register form for screen greater then 1024px -->
-      <div class="left max-lg:hidden">
+      <div class="left max-lg:hidden h-auto">
         <form
           class="border border-black text-black"
           v-on:submit.prevent="submitForm"
         >
+          <button @click="handleCancel" class="ml-2">
+            <font-awesome-icon icon="fa-solid fa-x" />
+          </button>
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
             <div
@@ -22,72 +27,98 @@
               </span>
             </div>
           </div>
-          <div class="login flex flex-col items-center h-72 mt-4">
+          <div class="login flex flex-col items-center h-auto mt-4">
             <!--Customer full name-->
-            <div
-              class="fullname w-3/4 pt-1 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-regular fa-user"
-                style="color: #443c68"
-              />
-              <input
-                type="text"
-                class="ml-3 w-full h-8"
-                placeholder="Fullname"
-                name="fullname"
-                v-model="form.name"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="fullname w-full pt-1 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-regular fa-user"
+                  style="color: #443c68"
+                />
+                <input
+                  type="text"
+                  class="ml-3 w-full h-8"
+                  placeholder="Fullname"
+                  name="fullname"
+                  v-model="name"
+                  required
+                />
+              </div>
+              <span v-if="msg.name" class="text-red-500">{{ msg.name }}</span>
             </div>
+
             <!--Customer phone number-->
-            <div
-              class="phoneNumber w-3/4 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-solid fa-phone"
-                style="color: #5e5389"
-              />
-              <input
-                type="text"
-                class="ml-3 w-full h-8"
-                placeholder="Phone number"
-                name="phoneNumber"
-                v-model="form.username"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="phoneNumber w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-phone"
+                  style="color: #5e5389"
+                />
+                <input
+                  type="text"
+                  class="ml-3 w-full h-8"
+                  placeholder="Phone number"
+                  name="phoneNumber"
+                  v-model="username"
+                  required
+                />
+              </div>
+              <span v-if="msg.username" class="text-red-500">{{
+                msg.username
+              }}</span>
             </div>
+
             <!--Customer date of birth-->
-            <div class="dob w-3/4 pt-4 border-b border-black flex items-center">
-              <font-awesome-icon
-                icon="fa-solid fa-cake-candles"
-                style="color: #5e5389"
-              />
-              <input
-                type="text"
-                class="ml-3 w-full h-8"
-                placeholder="Date of Birth"
-                name="dob"
-                v-model="form.dob"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="dob w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-cake-candles"
+                  style="color: #5e5389"
+                />
+                <input
+                  type="text"
+                  class="ml-3 w-full h-8"
+                  placeholder="Date of Birth"
+                  name="dob"
+                  v-model="dob"
+                  required
+                />
+              </div>
+              <span v-if="msg.dob" class="text-red-500">{{ msg.dob }}</span>
             </div>
+
             <!--Customer password-->
-            <div
-              class="password w-3/4 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-solid fa-lock"
-                style="color: #443c68"
-              />
-              <input
-                type="password"
-                class="ml-3 w-full h-8"
-                placeholder="Password"
-                name="password"
-                v-model="form.password"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="password w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-lock"
+                  style="color: #443c68"
+                />
+                <input
+                  type="password"
+                  class="ml-3 w-full h-8"
+                  placeholder="Password"
+                  name="password"
+                  v-model="password"
+                  required
+                />
+              </div>
+              <span v-if="msg.password" class="text-red-500">{{
+                msg.password
+              }}</span>
             </div>
+
             <!--Terms and conditions-->
             <div class="info flex w-3/4 justify-between items-center pt-3">
-              <input type="checkbox" class="ml-2" v-model="checked" />
+              <input type="checkbox" class="ml-2" v-model="checked" required />
               <span class="ml-2 font-medium"
                 >By clicking button, you agree to our Terms, Privacy Policy and
                 Cookies Policy. You may receive SMS notifications from us and
@@ -98,7 +129,7 @@
             <button
               type="submit"
               class="bg-purple-login hover:bg-yellow-600 mt-3 py-2 px-5 rounded-lg text-white"
-              :disabled="!submit"
+              required
             >
               Sign up
             </button>
@@ -110,12 +141,15 @@
       </div>
       <!--Login form for screen smaller than 1024px-->
       <div
-        class="hideForm w-full pl-8 pt-3 lg:hidden border border-black rounded-2xl"
+        class="hideForm w-full pl-8 pt-3 lg:hidden border border-black rounded-2xl h-auto"
       >
         <form
-          class="border border-black text-black"
+          class="border border-black text-black h-auto"
           v-on:submit.prevent="submitForm"
         >
+          <button @click="handleCancel" class="ml-2">
+            <font-awesome-icon icon="fa-solid fa-x" />
+          </button>
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
             <div
@@ -137,81 +171,98 @@
               </span>
             </div>
           </div>
-          <div class="login flex flex-col items-center h-72 mt-2">
+          <div class="login flex flex-col items-center mt-2 h-auto">
             <!--Input for username-->
-            <div
-              class="username w-3/4 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-regular fa-user"
-                style="color: #443c68"
-              />
-              <input
-                type="text"
-                class="ml-3 w-full h-8"
-                placeholder="Fullname"
-                name="fullname"
-                v-model="form.name"
-                :class="{ error: form.name.length < 5 && form.name != '' }"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="username w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-regular fa-user"
+                  style="color: #443c68"
+                />
+                <input
+                  type="text"
+                  class="ml-3 w-full h-8"
+                  placeholder="Fullname"
+                  name="fullname"
+                  v-model="name"
+                  required
+                />
+              </div>
+              <span v-if="msg.name" class="text-red-500">{{ msg.name }}</span>
             </div>
+
             <!--Input for phone number-->
-            <div
-              class="username w-3/4 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-solid fa-phone"
-                style="color: #443c68"
-              />
-              <input
-                type="text"
-                class="ml-3 w-full h-8"
-                placeholder="Phone Number"
-                name="phoneNumber"
-                v-model="form.username"
-                :class="{
-                  error: form.username.length < 10 && form.username != '',
-                }"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="username w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-phone"
+                  style="color: #443c68"
+                />
+                <input
+                  type="text"
+                  class="ml-3 w-full h-8"
+                  placeholder="Phone Number"
+                  name="phoneNumber"
+                  v-model="username"
+                  required
+                />
+              </div>
+              <span v-if="msg.username" class="text-red-500">{{
+                msg.username
+              }}</span>
             </div>
+
             <!--Input for date of birth-->
-            <div
-              class="username w-3/4 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-solid fa-cake-candles"
-                style="color: #443c68"
-              />
-              <input
-                type="text"
-                class="ml-3 w-full h-8"
-                placeholder="Date of Birth"
-                name="dob"
-                v-model="form.dob"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="username w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-cake-candles"
+                  style="color: #443c68"
+                />
+                <input
+                  type="text"
+                  class="ml-3 w-full h-8"
+                  placeholder="Date of Birth"
+                  name="dob"
+                  v-model="dob"
+                  required
+                />
+              </div>
+              <span v-if="msg.dob" class="text-red-500">{{ msg.dob }}</span>
             </div>
+
             <!--Input for password-->
-            <div
-              class="password w-3/4 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-solid fa-lock"
-                style="color: #443c68"
-              />
-              <input
-                type="password"
-                class="ml-3 w-full h-8"
-                placeholder="Password"
-                name="password"
-                v-model="form.password"
-                :class="{
-                  error: form.password.length < 8 && form.password != '',
-                }"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="password w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-lock"
+                  style="color: #443c68"
+                />
+                <input
+                  type="password"
+                  class="ml-3 w-full h-8"
+                  placeholder="Password"
+                  name="password"
+                  v-model="password"
+                  required
+                />
+              </div>
+              <span v-if="msg.password" class="text-red-500">{{
+                msg.password
+              }}</span>
             </div>
+
             <!--Terms and contiditions-->
             <div class="info w-3/4 flex justify-center items-center pt-3">
-              <input type="checkbox" class="ml-2" v-model="checked" />
+              <input type="checkbox" class="ml-2" v-model="checked" required />
               <span class="ml-2 font-medium"
                 >By clicking button, you agree to our Terms, Privacy Policy and
                 Cookies Policy. You may receive SMS notifications from us and
@@ -221,7 +272,6 @@
             <!--Submit button-->
             <button
               type="submit"
-              :disabled="!submit"
               class="bg-purple-login hover:bg-yellow-600 mt-3 py-2 px-7 rounded-lg text-white max-sm:px-5 max-sm:mt-1 max-sm:text-sm"
             >
               Sign up
@@ -241,60 +291,104 @@
 import axios from "axios"
 import Navbar from "../components/Navbar.vue"
 import Footer from "@/admin/components/Footer.vue"
+import Loading from "../components/Loading.vue"
 export default {
   name: "Register",
   data() {
     return {
       errors: [],
-      form: {
-        username: "",
-        password: "",
-        name: "",
-        dob: "",
-      },
+      checkHidden: true,
+      username: "",
+      password: "",
+      name: "",
+      dob: "",
+      msg: [],
       checked: false,
-      validation: true,
     }
   },
   watch: {
-    form: {
-      deep: true,
+    password: {
       handler: function (newValue, oldValue) {
-        console.log(newValue, oldValue)
+        console.log("Password: ", newValue, oldValue)
+        this.password = newValue
+        this.validatePassword(newValue)
+      },
+    },
+    name: {
+      handler: function (newValue, oldValue) {
+        console.log("Name: ", newValue, oldValue)
+        this.name = newValue
+        this.validateName(newValue)
+      },
+    },
+    dob: {
+      handler: function (newValue, oldValue) {
+        console.log("dob: ", newValue, oldValue)
+        this.dob = newValue
+        this.validateDob(newValue)
+      },
+    },
+    username: {
+      handler: function (newValue, oldValue) {
+        console.log("Username: ", newValue, oldValue)
+        this.username = newValue
+        this.validateUsername(newValue)
       },
     },
   },
   methods: {
     async submitForm() {
+      this.checkHidden = false
+      const form = {
+        username: this.username,
+        password: this.password,
+        name: this.name,
+        dob: this.dob,
+      }
       await axios
-        .post("user/signup", this.form)
+        .post("user/signup", form)
         .then((response) => {
-          console.log(response.data)
           this.$router.push("/login")
+          this.checkHidden = true
+          console.log(response.data)
         })
         .catch((err) => {
           console.log("error:" + err.message)
-          this.warning = !this.warning
         })
     },
     handleCancel() {
       this.$router.push("/login")
     },
+    validateUsername(value) {
+      if (value.length < 10) {
+        this.msg["username"] = "Phone number must have more than 10 characters"
+      } else {
+        this.msg["username"] = ""
+      }
+    },
+    validatePassword(value) {
+      if (value.length < 5) {
+        this.msg["password"] = "Password must have more than 5 characters"
+      } else {
+        this.msg["password"] = ""
+      }
+    },
+    validateName(value) {
+      let firstLetter = String(value).charAt(0)
+      console.log(firstLetter)
+      if (firstLetter != firstLetter.toUpperCase()) {
+        this.msg["name"] = "Name must be stated in upper case"
+      } else if (value.length < 4) {
+        this.msg["name"] = "Name must be at least 4 characters"
+      } else {
+        this.msg["name"] = ""
+      }
+    },
   },
   components: {
     Navbar,
     Footer,
-  },
-  computed: {
-    submit() {
-      return (
-        this.checked == true &&
-        this.name != "" &&
-        this.username != "" &&
-        this.dob != "" &&
-        this.password != ""
-      )
-    },
+    Loading,
   },
 }
 </script>
@@ -312,7 +406,7 @@ export default {
   }
 }
 .mainContent {
-  height: 82vh;
+  height: auto;
 }
 .left {
   width: 60vw;
@@ -322,6 +416,7 @@ export default {
   background-image: url(../assets/images/right.jpg);
   background-size: cover;
   margin: 0 2%;
+  height: auto;
 }
 
 .hideForm form {

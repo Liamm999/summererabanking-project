@@ -14,60 +14,80 @@
           class="login w-5/6 p-3 pt-8 pb-5 flex flex-col items-center h-auto mt-1"
         >
           <!--Customer full name-->
-          <div class="fullname w-1/2 pt-1 flex justify-between items-center">
-            <span class="text-sm max-sm1:text-sx">Full name: </span>
-            <input
-              type="text"
-              class="w-3/5 h-10 text-black rounded-md text-center"
-              placeholder="Nguyen Van A"
-              name="fullname"
-              v-model="form.name"
-            />
+          <div class="flex flex-col w-1/2">
+            <div class="fullname w-full pt-1 flex justify-between items-center">
+              <span class="text-sm max-sm1:text-sx">Full name: </span>
+              <input
+                type="text"
+                class="w-3/5 h-10 text-black rounded-md text-center"
+                placeholder="Nguyen Van A"
+                name="fullname"
+                v-model="this.name"
+                required
+              />
+            </div>
+            <span v-if="msg.name" class="text-red-500 mt-2">{{
+              msg.name
+            }}</span>
           </div>
+
           <!--Customer phone number-->
-          <div
-            class="fullname mt-6 w-1/2 pt-1 flex justify-between items-center"
-          >
-            <span class="text-sm">Phone number:</span>
-            <input
-              type="text"
-              class="w-3/5 h-10 text-black rounded-md text-center"
-              placeholder="0982067865"
-              name="phoneNumber"
-              v-model="form.username"
-            />
+          <div class="flex flex-col w-1/2">
+            <div
+              class="fullname mt-3 w-full pt-1 flex justify-between items-center"
+            >
+              <span class="text-sm">Phone number:</span>
+              <input
+                type="text"
+                class="w-3/5 h-10 text-black rounded-md text-center"
+                placeholder="0982067865"
+                name="phoneNumber"
+                v-model="username"
+                required
+              />
+            </div>
+            <span v-if="msg.phone" class="text-red-500 mt-2">{{
+              msg.phone
+            }}</span>
           </div>
 
           <!--Customer password-->
-          <div
-            class="fullname mt-6 w-1/2 pt-1 flex justify-between items-center"
-          >
-            <span class="text-sm">Date of birth: </span>
-            <input
-              type="text"
-              class="w-3/5 h-10 text-black rounded-md text-center"
-              name="fullname"
-              placeholder="12/11/2002"
-              v-model="form.dob"
-            />
+          <div class="flex flex-col w-1/2">
+            <div
+              class="fullname mt-3 w-full pt-1 flex justify-between items-center"
+            >
+              <span class="text-sm">Date of birth: </span>
+              <input
+                type="text"
+                class="w-3/5 h-10 text-black rounded-md text-center"
+                name="fullname"
+                placeholder="12/11/2002"
+                v-model="dob"
+                required
+              />
+            </div>
+            <span v-if="msg.dob" class="text-red-500 mt-2">{{ msg.dob }}</span>
           </div>
 
           <!--Customer password-->
-          <div
-            class="fullname mt-6 w-1/2 pt-1 flex justify-between items-center"
-          >
-            <span class="text-sm">Password: </span>
-            <input
-              type="password"
-              class="w-3/5 h-10 text-black rounded-md text-center"
-              placeholder="********"
-              name="password"
-              v-model="form.password"
-            />
+          <div class="flex flex-col w-1/2">
+            <div
+              class="fullname mt-3 w-full pt-1 flex justify-between items-center"
+            >
+              <span class="text-sm">Password: </span>
+              <input
+                type="password"
+                class="w-3/5 h-10 text-black rounded-md text-center"
+                placeholder="********"
+                name="password"
+                v-model="password"
+                required
+              />
+            </div>
+            <span v-if="msg.password" class="text-red-500 mt-2">{{
+              msg.password
+            }}</span>
           </div>
-          <span class="text-red-500 pt-4" v-show="warning"
-            >Invalid information</span
-          >
 
           <!--Submit button-->
           <div class="w-3/5 flex justify-evenly items-center mt-6">
@@ -93,74 +113,102 @@
       <form class="text-black" v-on:submit.prevent="submitForm">
         <div class="login flex flex-col items-center h-72 mt-2">
           <!--Input for username-->
-          <div
-            class="username w-3/4 pt-4 border-b border-black flex items-center"
-          >
-            <font-awesome-icon icon="fa-regular fa-user" style="color: white" />
-            <input
-              type="text"
-              class="ml-3 w-full h-8 text-center rounded-md"
-              placeholder="Nguyen Van A"
-              name="fullname"
-              v-model="form.name"
-            />
+          <div class="flex flex-col w-3/4">
+            <div
+              class="username w-full pt-4 border-b border-black flex items-center"
+            >
+              <font-awesome-icon
+                icon="fa-regular fa-user"
+                style="color: white"
+              />
+              <input
+                type="text"
+                class="ml-3 w-full h-8 text-center rounded-md"
+                placeholder="Nguyen Van A"
+                name="fullname"
+                v-model="name"
+                required
+              />
+            </div>
+            <span v-if="msg.name" class="text-red-500 mt-2">{{
+              msg.name
+            }}</span>
           </div>
+
           <!--Input for phone number-->
-          <div
-            class="username w-3/4 pt-4 border-b border-black flex items-center"
-          >
-            <font-awesome-icon icon="fa-solid fa-phone" style="color: white" />
-            <input
-              type="text"
-              class="ml-3 w-full h-8 text-center rounded-md"
-              placeholder="0982117652"
-              name="phoneNumber"
-              v-model="form.username"
-            />
+          <div class="flex flex-col w-3/4">
+            <div
+              class="username w-full pt-3 border-b border-black flex items-center"
+            >
+              <font-awesome-icon
+                icon="fa-solid fa-phone"
+                style="color: white"
+              />
+              <input
+                type="text"
+                class="ml-3 w-full h-8 text-center rounded-md"
+                placeholder="0982117652"
+                name="phoneNumber"
+                v-model="username"
+                required
+              />
+            </div>
+            <span v-if="msg.phone" class="text-red-500 mt-2">{{
+              msg.phone
+            }}</span>
           </div>
+
           <!--Input for date of birth-->
-          <div
-            class="username w-3/4 pt-4 border-b border-black flex items-center"
-          >
-            <font-awesome-icon
-              icon="fa-solid fa-cake-candles"
-              style="color: white"
-            />
-            <input
-              type="text"
-              class="ml-3 w-full h-8 text-center rounded-md"
-              placeholder="12/11/2002"
-              name="dob"
-              v-model="form.dob"
-            />
+          <div class="flex flex-col w-3/4">
+            <div
+              class="username w-full pt-3 border-b border-black flex items-center"
+            >
+              <font-awesome-icon
+                icon="fa-solid fa-cake-candles"
+                style="color: white"
+              />
+              <input
+                type="text"
+                class="ml-3 w-full h-8 text-center rounded-md"
+                placeholder="12/11/2002"
+                name="dob"
+                v-model="dob"
+                required
+              />
+            </div>
+            <span v-if="msg.dob" class="text-red-500 mt-2">{{ msg.dob }}</span>
           </div>
+
           <!--Input for password-->
-          <div
-            class="password w-3/4 pt-4 border-b border-black flex items-center"
-          >
-            <font-awesome-icon icon="fa-solid fa-lock" style="color: white" />
-            <input
-              type="password"
-              class="ml-3 w-full h-8 text-center rounded-md"
-              placeholder="*******"
-              name="password"
-              v-model="form.password"
-              :class="[form.password.length < 5 ? error : null]"
-            />
+          <div class="flex flex-col w-3/4">
+            <div
+              class="password w-full pt-3 border-b border-black flex items-center"
+            >
+              <font-awesome-icon icon="fa-solid fa-lock" style="color: white" />
+              <input
+                type="password"
+                class="ml-3 w-full h-8 text-center rounded-md"
+                placeholder="*******"
+                name="password"
+                v-model="password"
+                required
+              />
+            </div>
+            <span v-if="msg.password" class="text-red-500 mt-2">{{
+              msg.password
+            }}</span>
           </div>
-          <span class="text-red-500 pt-2" v-show="warning"
-            >Invalid information</span
-          >
-          <div class="w-full flex justify-around items-center mt-6">
+
+          <div class="w-full flex justify-around items-center mt-3">
             <button
               type="submit"
-              class="bg-yellow-btn hover:bg-orange-500 mt-3 py-2 px-5 rounded-lg text-white text-sm"
+              class="bg-yellow-btn hover:bg-orange-500 py-2 px-5 rounded-lg text-white text-sm"
             >
               Save
             </button>
             <button
               type="submit"
-              class="bg-red-cancle hover:bg-red-800 mt-3 py-2 px-5 rounded-lg text-white text-sm"
+              class="bg-red-cancle hover:bg-red-800 py-2 px-5 rounded-lg text-white text-sm"
               @click="handleCancel"
             >
               Cancel
@@ -179,27 +227,53 @@ export default {
   name: "Table add account",
   data() {
     return {
-      form: {
-        username: "",
-        name: "",
-        password: "",
-        dob: "",
-      },
-      warning: false,
+      username: "",
+      name: "",
+      password: "",
+      dob: "",
+      msg: [],
     }
   },
   watch: {
-    form: {
-      deep: true,
+    password: {
       handler: function (newValue, oldValue) {
-        console.log(newValue, oldValue)
+        console.log("Password: ", newValue, oldValue)
+        this.password = newValue
+        this.validatePassword(newValue)
+      },
+    },
+    name: {
+      handler: function (newValue, oldValue) {
+        console.log("Name: ", newValue, oldValue)
+        this.name = newValue
+        this.validateName(newValue)
+      },
+    },
+    dob: {
+      handler: function (newValue, oldValue) {
+        console.log("dob: ", newValue, oldValue)
+        this.dob = newValue
+        this.validateDob(newValue)
+      },
+    },
+    username: {
+      handler: function (newValue, oldValue) {
+        console.log("Phone: ", newValue, oldValue)
+        this.username = newValue
+        this.validatePhone(newValue)
       },
     },
   },
   methods: {
     async submitForm() {
+      const form = {
+        username: this.username,
+        name: this.name,
+        password: this.password,
+        dob: this.dob,
+      }
       await axios
-        .post("user/signup", this.form)
+        .post("user/signup", form)
         .then((response) => {
           console.log(response.data)
           this.$router.push("/admin/dashboard")
@@ -211,6 +285,34 @@ export default {
     },
     handleCancel() {
       this.$router.push("/admin/dashboard")
+    },
+    validatePassword(value) {
+      if (value.length < 5) {
+        this.msg["password"] = "Password must be longer than 5 characters"
+      } else {
+        this.msg["password"] = ""
+      }
+    },
+    validateDob(value) {
+      if (value == null) {
+        this.msg["dob"] = "Date of birth is required"
+      } else {
+        this.msg["dob"] = ""
+      }
+    },
+    validateName(value) {
+      if (value.length <= 4) {
+        this.msg["name"] = "Name must be at least 4 characters"
+      } else {
+        this.msg["name"] = ""
+      }
+    },
+    validatePhone(value) {
+      if (value.length == 10) {
+        this.msg["phone"] = ""
+      } else {
+        this.msg["phone"] = "Phone must be 10 numbers"
+      }
     },
   },
 }

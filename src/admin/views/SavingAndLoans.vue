@@ -65,7 +65,7 @@
                   <font-awesome-icon
                     icon="fa-solid fa-pen"
                     style="color: #3b7ae8"
-                    class="icon bg-blue-edit mr-1.5"
+                    class="icon bg-blue-edit mr-1.5 hover:bg-slate-300"
                   />
                 </button>
               </td>
@@ -113,7 +113,7 @@
                   <font-awesome-icon
                     icon="fa-solid fa-pen"
                     style="color: #3b7ae8"
-                    class="icon bg-blue-edit mr-1.5"
+                    class="icon bg-blue-edit mr-1.5 hover:bg-slate-300"
                   />
                 </button>
               </td>

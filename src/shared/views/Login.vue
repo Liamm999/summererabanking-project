@@ -23,41 +23,63 @@
               </span>
             </div>
           </div>
-          <div class="login flex flex-col items-center h-72 mt-7">
+          <div class="login flex flex-col items-center h-auto mt-7">
             <!--username-->
-            <div
-              class="username w-3/4 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-regular fa-user"
-                style="color: #443c68"
-              />
-              <input
-                type="username"
-                class="ml-3 w-full h-8"
-                placeholder="Username"
-                name="username"
-                v-model="form.username"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="username w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-regular fa-user"
+                  style="color: #443c68"
+                />
+                <input
+                  type="username"
+                  class="ml-3 w-full h-8"
+                  placeholder="Username"
+                  name="username"
+                  v-model="username"
+                  required
+                />
+              </div>
+              <span v-if="message.username" class="text-red-500 mt-2">{{
+                message.username
+              }}</span>
             </div>
+
             <!--password-->
-            <div
-              class="password w-3/4 mt-10 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-solid fa-lock"
-                style="color: #443c68"
-              />
-              <input
-                type="password"
-                class="ml-3 w-full h-8"
-                placeholder="Password"
-                name="password"
-                v-model="form.password"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="password w-full mt-10 pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-lock"
+                  style="color: #443c68"
+                />
+                <input
+                  type="password"
+                  class="ml-3 w-full h-8"
+                  placeholder="Password"
+                  name="password"
+                  v-model="password"
+                  required
+                />
+              </div>
+              <span v-if="message.password" class="text-red-500 mt-2">{{
+                message.password
+              }}</span>
             </div>
+
             <!--Submit button-->
             <button
+              v-if="message.password"
+              type="submit"
+              class="bg-purple-login hover:bg-yellow-600 mt-4 py-2 px-28 rounded-lg text-white"
+            >
+              Login
+            </button>
+            <button
+              v-else
               type="submit"
               class="bg-purple-login hover:bg-yellow-600 mt-11 py-2 px-28 rounded-lg text-white"
             >
@@ -107,37 +129,51 @@
           </div>
           <div class="login flex flex-col items-center h-72 mt-7">
             <!--Input for username-->
-            <div
-              class="username w-3/4 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-regular fa-user"
-                style="color: #443c68"
-              />
-              <input
-                type="username"
-                class="ml-3 w-full h-8"
-                placeholder="Username"
-                name="username"
-                v-model="form.username"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="username w-full pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-regular fa-user"
+                  style="color: #443c68"
+                />
+                <input
+                  type="username"
+                  class="ml-3 w-full h-8"
+                  placeholder="Username"
+                  name="username"
+                  v-model="username"
+                  required
+                />
+              </div>
+              <span v-if="message.username" class="text-red-500 mt-2">{{
+                message.username
+              }}</span>
             </div>
+
             <!--Input for password-->
-            <div
-              class="password w-3/4 mt-10 pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-solid fa-lock"
-                style="color: #443c68"
-              />
-              <input
-                type="password"
-                class="ml-3 w-full h-8"
-                placeholder="Password"
-                name="password"
-                v-model="form.password"
-              />
+            <div class="flex flex-col w-3/4">
+              <div
+                class="password w-full mt-10 pt-4 border-b border-black flex items-center"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-lock"
+                  style="color: #443c68"
+                />
+                <input
+                  type="password"
+                  class="ml-3 w-full h-8"
+                  placeholder="Password"
+                  name="password"
+                  v-model="password"
+                  required
+                />
+              </div>
+              <span v-if="message.password" class="text-red-500 mt-2">{{
+                message.password
+              }}</span>
             </div>
+
             <!--Submit form-->
 
             <button
@@ -184,19 +220,25 @@ export default {
   },
   data() {
     return {
-      form: {
-        username: "",
-        password: "",
-      },
-      message: "",
+      username: "",
+      password: "",
+      message: [],
       checkHidden: true,
     }
   },
   watch: {
-    form: {
-      deep: true,
+    password: {
       handler: function (newValue, oldValue) {
-        console.log(newValue, oldValue)
+        console.log("Password: ", newValue, oldValue)
+        this.dob = newValue
+        this.validatePassword(newValue)
+      },
+    },
+    username: {
+      handler: function (newValue, oldValue) {
+        console.log("Phone: ", newValue, oldValue)
+        this.username = newValue
+        this.validateUsername(newValue)
       },
     },
   },
@@ -204,8 +246,12 @@ export default {
   methods: {
     async submitForm(event) {
       this.checkHidden = false
+      const form = {
+        username: this.username,
+        password: this.password,
+      }
       await axios
-        .post(`user/signin`, this.form)
+        .post(`user/signin`, form)
         .then((res) => {
           console.log(res.data)
           console.log("submit")
@@ -222,15 +268,31 @@ export default {
           this.checkHidden = true
         })
         .catch((err) => {
-          console.log("error:" + err.message)
+          console.log(err)
           this.checkHidden = true
         })
+    },
+    validateUsername(value) {
+      if (value == "admin") {
+        this.message["username"] = ""
+      } else if (value.length < 10) {
+        this.message["username"] = "Username must have more than 10 characters"
+      } else {
+        this.message["username"] = ""
+      }
+    },
+    validatePassword(value) {
+      if (value.length < 5) {
+        this.message["password"] = "Password must have more than 5 characters"
+      } else {
+        this.message["password"] = ""
+      }
     },
   },
 }
 </script>
 
-<style>
+<style scoped>
 .home {
   height: 100vh;
 }
@@ -247,6 +309,11 @@ export default {
 }
 .left {
   width: 60vw;
+  @media screen and (min-width: 1025px) {
+    display: flex;
+    height: fit-content;
+    justify-content: flex-start;
+  }
 }
 
 .hideForm {

@@ -9,7 +9,7 @@
         Vietnam</span
       >
     </div>
-    <div class="left flex flex-row justify-center max-lg:hidden">
+    <div class="left flex flex-row max-lg:hidden">
       <div class="leftInfo">
         <font-awesome-icon
           icon="fa-solid fa-headphones "
@@ -93,11 +93,8 @@ export default {
     margin-left: 9px;
   }
 
-  .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 0;
+  .left {
+    justify-content: space-between;
   }
 }
 </style>
