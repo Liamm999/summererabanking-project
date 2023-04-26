@@ -1,7 +1,7 @@
 <template>
   <layout>
     <template #content>
-      <breadcum :name="nameOfPage" :routes="routes" />
+      <Breadcum :name="nameOfPage" :routes="routes" />
       <card
         :img-src="img"
         :acc-num="accNum"
@@ -24,9 +24,8 @@ const img = ref(require("@/customer/assets/img/fakeAvt.jpg"))
 const accNum = ref(21510009999999)
 const username = ref("LA MINH VU")
 const nameOfPage = ref("Profile")
+const routes = ref(["Profile"])
 
-const routes = JSON.parse(localStorage.getItem("routesArray"))
-routes.push("Profile")
 function handleLogout() {
   logout()
 }

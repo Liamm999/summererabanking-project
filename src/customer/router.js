@@ -51,25 +51,13 @@ export default [
   },
 
   {
-    path: "/customer/dashboard/transfer/init",
-    name: "Initialization",
-    component: () => import("./views/transfer/InitTransfer.vue"),
+    path: "/customer/dashboard/transfer/detail",
+    name: "Transfer Detail",
+    component: () => import("./views/transfer/TransferDetail.vue"),
     meta: {
       layout: "Default",
       type: "protected",
       requiresAuth: true,
     },
-    children: [
-      {
-        path: "confirm",
-        name: "Confirmation",
-        component: () => import("./views/transfer/ConfirmTransfer.vue"),
-        meta: {
-          layout: "Default",
-          type: "protected",
-          requiresAuth: true,
-        },
-      },
-    ],
   },
 ]

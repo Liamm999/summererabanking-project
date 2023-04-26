@@ -16,6 +16,7 @@ export default createStore({
       state.commit("setCurrentUser", user)
     },
   },
+  getters: {},
   modules: {
     adminStore,
     customerStore,

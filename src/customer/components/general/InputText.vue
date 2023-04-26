@@ -1,7 +1,7 @@
 <template>
   <div>
     <input
-      class="w-full focus:outline-none"
+      class="w-full focus:outline-none bg-transparent"
       type="text"
       :placeholder="placeholder"
       :value="value"
@@ -23,7 +23,7 @@ const props = defineProps({
   },
 
   value: {
-    typeof: String,
+    type: String,
     require: true,
   },
 })

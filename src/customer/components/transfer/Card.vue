@@ -5,7 +5,7 @@
     <span
       class="w-full grid grid-cols-12 border-slate-500 border-b-2 leading-9"
     >
-      <Input
+      <InputText
         class="col-start-1 col-end-12"
         placeholder="Enter account number"
         :value="accNumber"
@@ -35,7 +35,7 @@
 
 <script setup>
 import { ref } from "vue"
-import Input from "../general/Input.vue"
+import InputText from "../general/InputText.vue"
 import Button from "../general/Button.vue"
 import { computed } from "@vue/reactivity"
 

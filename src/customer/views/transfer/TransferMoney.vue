@@ -48,7 +48,7 @@ async function handleCheckAcc(accNumber) {
 function handleContinue() {
   if (isValid.value) {
     showInit.value = true
-    router.push({ name: "Initialization" })
+    router.push({ name: "Transfer Detail" })
   } else {
     showInit.value = false
   }
