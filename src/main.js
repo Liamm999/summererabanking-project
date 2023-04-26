@@ -14,12 +14,12 @@ import VueCookies from "vue3-cookies"
 import VueScrollingTable from "vue-scrolling-table"
 import "@/shared/helper/routeGuard"
 import Userfront from "@userfront/core"
-
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 axios.defaults.baseURL = "http://localhost:8080/"
 library.add(fas, fab, far)
 let app = createApp(App)
+
 app
   .use(store)
   .use(router)

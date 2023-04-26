@@ -13,7 +13,6 @@
 
 <script setup>
 // import { computed } from "@vue/reactivity"
-
 const emit = defineEmits(["clicked"])
 
 // eslint-disable-next-line no-undef, no-unused-vars
