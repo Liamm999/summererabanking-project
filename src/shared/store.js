@@ -1,24 +1,15 @@
-import { createStore } from "vuex"
-import adminStore from "@/admin/store"
-import customerStore from "@/customer/store"
+import { defineStore } from "pinia"
+import { ref } from "vue"
 
-export default createStore({
-  state: {
-    currentUser: Object,
-  },
-  mutations: {
-    setCurrentUser(state, user) {
-      state.user = user
-    },
-  },
-  actions: {
-    setCurrentUser(state, user) {
-      state.commit("setCurrentUser", user)
-    },
-  },
-  getters: {},
-  modules: {
-    adminStore,
-    customerStore,
-  },
+export const useShareStore = defineStore("shared", () => {
+  const currentUser = ref({})
+  function initCurrentUser(user) {
+    currentUser.value = user
+  }
+
+  function getCurrentUser() {
+    return currentUser
+  }
+
+  return { currentUser, initCurrentUser, getCurrentUser }
 })
