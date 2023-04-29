@@ -71,15 +71,10 @@ body {
 
              
     .gradBtn {
-        @apply p-3 px-10;
         background-image: linear-gradient(to right, #2b5876 0%, #4e4376  51%, #2b5876  100%);
-        text-align: center;
-        text-transform: uppercase;
         transition: 0.5s;
         color: white;            
         box-shadow: 0 0 20px #eee;
-        border-radius: 10px;
-        display: block;
       }
 
       .gradBtn:hover {

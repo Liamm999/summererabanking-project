@@ -4,6 +4,8 @@
       type="submit"
       @click="handleClick"
       :class="`${isGrad ? 'gradBtn' : ''} ${style}`"
+      class="p-3 px-10 text-center uppercase rounded-lg block disabled:bg-gray-400"
+      :disabled="isDisabled"
     >
       {{ placeholder }}
       <font-awesome-icon :icon="`fa-solid ${icon}`" v-if="icon" />
@@ -35,6 +37,12 @@ const props = defineProps({
   },
 
   isGrad: {
+    type: Boolean,
+    require: false,
+    default: false,
+  },
+
+  isDisabled: {
     type: Boolean,
     require: false,
     default: false,

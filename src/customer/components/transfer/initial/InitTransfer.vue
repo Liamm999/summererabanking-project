@@ -14,6 +14,7 @@
           :is-grad="true"
           @clicked="handleContinue()"
           class="mx-auto mt-12"
+          :class="{ hidden: isHidden }"
         />
       </div>
     </template>
@@ -34,6 +35,11 @@ const props = defineProps({
   username: {
     type: String,
     required: true,
+  },
+
+  isHidden: {
+    type: Boolean,
+    default: false,
   },
 })
 

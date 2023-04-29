@@ -12,25 +12,23 @@
 import { ref, onMounted } from "vue"
 import Layout from "@/customer/layout/Default.vue"
 import Card from "@/customer/components/card/Card.vue"
+import { getCurrentTime } from "../helper/getCurrentTime"
 
 // const routes = ref(new Array())
 // localStorage.setItem("routesArray", JSON.stringify(routes.value))
 
+function setCurrentUser() {
+  const currentUser = ref({
+    id: 0,
+    username: "LA MINH VU",
+    accountNumber: "012345678",
+  })
+  localStorage.setItem("currentUser", JSON.stringify(currentUser.value))
+}
+
 onMounted(() => {
-  const today = ref(new Date())
-  const date =
-    today.value.getFullYear() +
-    "/" +
-    (today.value.getMonth() + 1) +
-    "/" +
-    today.value.getDate()
-  const time =
-    today.value.getHours() +
-    ":" +
-    today.value.getMinutes() +
-    ":" +
-    today.value.getSeconds()
-  const thisTime = `${time} on ${date}`
+  setCurrentUser()
+  const thisTime = getCurrentTime()
   localStorage.setItem("loginTime", thisTime)
 })
 </script>

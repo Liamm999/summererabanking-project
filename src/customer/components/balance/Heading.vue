@@ -11,21 +11,23 @@
         </p>
       </span>
     </span>
-    <Button :icon="icon" :style="btnStyle" @clicked="handleClickBtn" />
+    <button
+      class="rounded-full text-lg bg-white w-10 h-10 shadow-black shadow-2xl drop-shadow-2xl"
+      @click="handleClickBtn()"
+    >
+      <font-awesome-icon v-if="!isDropped" icon="fa-solid fa-caret-down" />
+      <font-awesome-icon v-else icon="fa-solid fa-caret-up" />
+    </button>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue"
-import Button from "../general/Button.vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
 
 const emit = defineEmits(["dropButtonClicked"])
-const btnStyle = ref(
-  "rounded-full bg-white w-10 h-10 shadow-black shadow-2xl drop-shadow-2xl"
-)
+const isDropped = ref(false)
 
-const icon = ref("fa-chevron-down")
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   // this total balance is the total money from available balance + deposit + saving money
@@ -37,12 +39,12 @@ const props = defineProps({
 })
 
 function handleClickBtn() {
-  if (icon.value === "fa-chevron-down") {
-    icon.value = "fa-chevron-up"
+  if (isDropped.value === false) {
+    isDropped.value = true
   } else {
-    icon.value = "fa-chevron-down"
+    isDropped.value = false
   }
-  emit("dropButtonClicked", icon.value)
+  emit("dropButtonClicked", isDropped.value)
 }
 </script>
 

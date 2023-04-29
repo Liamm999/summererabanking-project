@@ -55,9 +55,9 @@ const iconArr = ref([
   },
 
   {
-    elName: "Profile",
-    icon: "fa-user",
-    route: "profile",
+    elName: "Transaction Log",
+    icon: "fa-clock-rotate-left",
+    route: "log",
   },
 ])
 
