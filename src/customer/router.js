@@ -82,4 +82,15 @@ export default [
       requiresAuth: true,
     },
   },
+
+  {
+    path: "/customer/dashboard/saving",
+    name: "Money saving",
+    component: () => import("./views/saving/SavingInformation.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
 ]

@@ -1,56 +1,52 @@
 <template>
-  <div class="container w-full md:w-2/3 bg-gray-300 mx-auto rounded-xl p-3">
-    <span
-      v-for="value in valueObject"
-      :key="value.tag"
-      class="flex flex-col my-2 md:my-0 sm1:flex-row justify-between px-8"
-    >
-      <p class="capitalize">{{ value.tag }}</p>
-      <p
-        :class="{ highilighted: value.isHighlighted }"
-        class="font-semibold capitalize"
-      >
-        {{ value.content }}
+  <div
+    class="container w-full bg-gray-300 mx-auto rounded-xl p-3 mb-6"
+    v-for="log in logData"
+    :key="log.money"
+  >
+    <span class="flex flex-col my-2 md:my-0 sm1:flex-row justify-between px-8">
+      <p class="capitalize" :class="log.isPlus ? 'plus' : 'minus'">
+        {{ log.money }}
       </p>
-      <button class="text-lg" @click="handleClickBtn()">
-        <font-awesome-icon v-if="!isDropped" icon="fa-solid fa-caret-down" />
-        <font-awesome-icon v-else icon="fa-solid fa-caret-up" />
-      </button>
+      <span
+        class="flex flex-row gap-6 text-sm md:text-base justify-between items-center"
+      >
+        <p class="font-semibold capitalize text-purple-600">
+          {{ log.time }}
+        </p>
+      </span>
+    </span>
+    <span class="flex flex-row flex-wrap w-full break-words px-8 py-1">
+      <p class="font-bold mr-2">Information:</p>
+      <p>{{ log.message }}</p>
     </span>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue"
-
-const isDropped = ref(false)
-
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
-  valueObject: {
+  logData: {
     type: Array,
     required: true,
     default: () => [
       {
-        tag: "demo:",
-        content: "demo content",
-        isHighlighted: true,
+        money: "",
+        time: "",
+        message: "",
+        isPlus: false,
       },
     ],
   },
 })
-
-function handleClickBtn() {
-  if (isDropped.value === false) {
-    isDropped.value = true
-  } else {
-    isDropped.value = false
-  }
-}
 </script>
 
 <style lang="scss" scoped>
-.highilighted {
-  @apply text-purple-600;
+.plus {
+  @apply text-green-500;
+}
+
+.minus {
+  @apply text-red-500;
 }
 </style>

@@ -111,6 +111,7 @@ function handleContinue() {
     loanData.value.loanAmount = Number(originalMoney.value)
     loanStore.initLoanData(loanData.value)
     loanStore.transactionTime = getCurrentTime()
+    window.scrollTo(80, 800)
   }
 }
 

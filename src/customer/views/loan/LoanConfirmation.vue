@@ -7,7 +7,9 @@
           <InforCard class="mb-12" :valueObject="loanData" />
           <InforCard class="mb-12" :valueObject="transactionData" />
         </span>
-        <span class="w-2/3 flex flex-row justify-between align-middle mx-auto">
+        <span
+          class="w-full md:w-2/3 flex flex-row justify-between align-middle mx-auto"
+        >
           <Button :is-grad="true" placeholder="cancel" @clicked="cancelLoan" />
           <Button
             :is-grad="true"
