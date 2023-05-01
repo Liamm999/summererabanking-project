@@ -113,7 +113,7 @@
         ref="delete"
         :username="this.username"
         v-show="confirmDelete"
-        :id="this.id"
+        :id="newId"
       />
     </div>
     <div class="absolute top-1/2 left-1/3 max-sm:left-12">
@@ -121,7 +121,7 @@
         ref="setBalance"
         :username="this.username"
         v-show="showSetBalance"
-        :id="this.newId"
+        :id="newId"
       />
     </div>
     <Loading :is-hidden="checkHidden" />
@@ -171,10 +171,11 @@ export default {
     getUser(customer) {
       console.log(customer.id)
       this.username = customer.username
-      this.id = customer.id
       this.confirmDelete = !this.confirmDelete
+      this.newId = String(customer.id)
+
       if (this.confirmDelete == true) {
-        this.$refs.delete.handleClick()
+        this.$refs.delete.handleClick(event)
       }
       // await axios
       //   .get("user/" + customer.id, { withCredentials: true })

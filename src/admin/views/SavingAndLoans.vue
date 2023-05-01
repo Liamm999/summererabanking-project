@@ -15,7 +15,7 @@
     <div class="flex flex-row justify-center max-lg:flex-col h-4/5">
       <!--create a table for list saving-->
       <div
-        class="relative overflow-x-auto shadow-md sm:rounded-lg max-lg:h-1/2 h-5/6"
+        class="relative overflow-x-auto shadow-md sm:rounded-lg max-lg:h-3/4 h-5/6"
       >
         <table class="w-full text-sm text-left text-white">
           <thead
@@ -75,7 +75,7 @@
       </div>
       <!--create table for List Loan-->
       <div
-        class="relative overflow-x-auto shadow-md sm:rounded-lg max-lg:h-1/2 ml-4 max-lg:ml-0 max-lg:mt-2 h-5/6"
+        class="relative overflow-x-auto shadow-md sm:rounded-lg max-lg:h-2/3 ml-4 max-lg:ml-0 max-lg:mt-2 h-5/6"
       >
         <table class="w-full text-sm text-left text-white">
           <thead

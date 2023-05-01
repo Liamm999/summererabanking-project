@@ -69,26 +69,6 @@
             <span v-if="msg.dob" class="text-red-500 mt-2">{{ msg.dob }}</span>
           </div>
 
-          <!--Customer password-->
-          <div class="flex flex-col w-1/2">
-            <div
-              class="fullname mt-2 w-full pt-1 flex justify-between items-center"
-            >
-              <span class="text-sm">Initial balance: </span>
-              <input
-                type="text"
-                class="w-3/5 h-10 text-black rounded-md text-center"
-                :placeholder="form.oldBalance"
-                name="balance"
-                v-model="balance"
-                required
-              />
-            </div>
-            <span v-if="msg.balance" class="text-red-500 mt-2">{{
-              msg.balance
-            }}</span>
-          </div>
-
           <!--Submit button-->
           <div class="w-3/5 flex justify-evenly items-center mt-6">
             <button
@@ -173,29 +153,6 @@
             </div>
             <span v-if="msg.dob" class="text-red-500">{{ msg.dob }}</span>
           </div>
-
-          <!--Input for password-->
-          <div class="flex flex-col w-3/4">
-            <div
-              class="password w-full pt-4 border-b border-black flex items-center"
-            >
-              <font-awesome-icon
-                icon="fa-solid fa-money-check-dollar"
-                style="color: white"
-              />
-              <input
-                type="text"
-                class="ml-3 w-full h-8 text-center rounded-md"
-                :placeholder="form.oldBalance"
-                name="balance"
-                v-model="balance"
-                required
-              />
-            </div>
-            <span v-if="msg.balance" class="text-red-500">{{
-              msg.balance
-            }}</span>
-          </div>
           <div class="w-full flex justify-around items-center mt-6">
             <button
               type="submit"
@@ -226,15 +183,11 @@ export default {
     return {
       phone: "",
       name: "",
-      balance: "",
       dob: "",
-      new: false,
-      type: false,
       form: {
         oldPhone: "",
         oldName: "",
         oldDob: "",
-        oldBalance: "",
       },
 
       warning: false,
@@ -242,13 +195,6 @@ export default {
     }
   },
   watch: {
-    balance: {
-      handler: function (newValue, oldValue) {
-        console.log("Balance: ", newValue, oldValue)
-        this.balance = newValue
-        this.validateBalance(newValue)
-      },
-    },
     name: {
       handler: function (newValue, oldValue) {
         console.log("Name: ", newValue, oldValue)
@@ -298,10 +244,7 @@ export default {
       const form = {
         phone: this.phone,
         name: this.name,
-        balance: this.balance,
         dob: this.dob,
-        new: false,
-        type: false,
       }
       await axios
         .put(`user/${id}`, form, { withCredentials: true })

@@ -52,12 +52,9 @@ export default {
             console.log(res.data)
           })
         window.location.reload()
-        this.hidden = !this.hidden
       } else if (event.target.value == "No") {
         console.log("No")
         this.hidden = !this.hidden
-      } else {
-        console.log("next")
       }
     },
   },

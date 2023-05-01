@@ -1,7 +1,8 @@
 <template>
   <div class="bg flex flex-col items-center py-6 px-10" v-show="hidden">
     <div>Set initial balance for "{{ username }}"?</div>
-    <input class="w-3/4 mt-3 text-black" v-model="form.balance" />
+    <input class="w-3/4 mt-3 text-black" v-model="balance" />
+    <span v-if="msg.balance" class="text-red-500">{{ msg.balance }}</span>
     <div
       class="flex flex-row justify-between items-center text-black mt-5 font-medium"
     >
@@ -38,26 +39,31 @@ export default {
   data() {
     return {
       hidden: true,
-      form: {
-        new: false,
-        balance: "",
-      },
+      msg: [],
+      new: false,
+      balance: "",
     }
   },
   watch: {
-    form: {
+    balance: {
       deep: true,
       handler: function (newValue, oldValue) {
         console.log(newValue, oldValue)
+        this.balance = newValue
+        this.validateBalance(newValue)
       },
     },
   },
   methods: {
     async handleClick(event) {
       console.log("id", event.target.id)
-      if (event.target.value == "Save") {
+      const form = {
+        new: false,
+        balance: this.balance,
+      }
+      if (event.target.value == "Save" && this.msg != "") {
         await axios
-          .post(`admin/ ${event.target.id}/setBalance`, this.form)
+          .post(`admin/ ${event.target.id}/setBalance`, form)
           .then((res) => {
             console.log(res.data)
           })
@@ -71,6 +77,16 @@ export default {
         this.hidden = !this.hidden
       } else {
         console.log("next")
+      }
+    },
+    validateBalance(value) {
+      value = Number(value)
+      if (value == 0) {
+        this.msg["balance"] = "Balance must be greater than zero"
+      } else if (value < 50000) {
+        this.msg["balance"] = "Balance must be greater than 50000"
+      } else {
+        this.msg["balance"] = ""
       }
     },
   },
