@@ -5,27 +5,17 @@
         <h4 class="text-sm font-semibold">Hello</h4>
         <h3 class="text-lg">{{ username }}</h3>
       </div>
-      <div @click="showPopup()" class="image cursor-pointer">
+      <div @click="toProfile()" class="image cursor-pointer">
         <img class="w-16 h-16 rounded-full" :src="imgSrc" />
       </div>
     </div>
-    <Popup
-      class="popup absolute z-10 w-32 h-20 top-full rounded-lg -mt-6 underline cursor-pointer"
-      content="Logout"
-      @clicked="handleLogout()"
-      :is-hidden="checkHidden"
-      href="/login"
-    />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue"
-import Popup from "../general/Popup.vue"
-import { logout } from "@/shared/helper/Logout"
+import { useRouter } from "vue-router"
 
-const checkHidden = ref(true)
-
+const router = useRouter()
 // eslint-disable-next-line no-undef, no-unused-vars
 const props = defineProps({
   imgSrc: {
@@ -41,18 +31,13 @@ const props = defineProps({
   },
 })
 
-function showPopup() {
-  if (checkHidden.value) checkHidden.value = false
-  else checkHidden.value = true
-}
-
-function handleLogout() {
-  logout()
-  console.log("logout")
+function toProfile() {
+  router.push({ name: "Profile" })
 }
 </script>
 
 <style lang="scss" scoped>
+/**
 .popup {
   animation: growDown 300ms ease-in-out forwards;
   transform-origin: top center;
@@ -69,4 +54,5 @@ function handleLogout() {
     transform: scaleY(1);
   }
 }
+*/
 </style>

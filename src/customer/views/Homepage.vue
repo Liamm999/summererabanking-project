@@ -14,15 +14,14 @@
           class="flex justify-center items-center h-full w-full pr-32"
         >
           <div class="relative flex justify-center">
-            <img
-              id="image"
-              src="../assets/img/tree_finance.png"
-              class="h-auto w-auto"
-              @click="
-                ;(triggerFade = !triggerFade) && (hideButton = !hideButton)
-              "
-            />
-            <span class="absolute top-1/2 left-1/2">Click me</span>
+            <RouterLink to="/customer/dashboard">
+              <img
+                id="image"
+                src="../assets/img/tree_finance.png"
+                class="h-auto w-auto"
+              />
+              <span class="absolute top-1/2 left-1/2">click me </span>
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -59,6 +58,11 @@ export default {
       triggerFade: false,
       hideButton: true,
     }
+  },
+  methods: {
+    toDashboard() {
+      this.$router.go("/customer/dashboard")
+    },
   },
   components: {
     SlideInOut,

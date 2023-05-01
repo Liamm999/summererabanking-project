@@ -1,7 +1,7 @@
 import { createApp } from "vue"
+import { createPinia } from "pinia"
 import App from "./App.vue"
 import router from "./shared/router"
-import store from "./shared/store"
 import "@/shared/assets/css/style.css"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { fas } from "@fortawesome/free-solid-svg-icons"
@@ -18,11 +18,12 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 axios.defaults.baseURL = "http://localhost:8080/"
 library.add(fas, fab, far)
-let app = createApp(App)
+const app = createApp(App)
+const pinia = createPinia()
 
 app
-  .use(store)
   .use(router)
+  .use(pinia)
   .use(Vue3Transitions)
   .use(VueCookies, {
     expireTimes: "5m",

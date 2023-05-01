@@ -3,31 +3,31 @@
     class="w-full h-72 bg-white rounded-2xl text-black py-14 px-10 z-20 left-0 right-0 ml-auto mr-auto"
   >
     <span
-      class="w-full grid grid-cols-12 border-slate-500 border-b-2 leading-9"
+      class="w-full flex flex-row justify-between border-slate-500 border-b-2 leading-9"
     >
       <InputText
-        class="col-start-1 col-end-12"
+        class="w-full"
         placeholder="Enter account number"
         :value="accNumber"
         @update-input="setAccountValue"
       />
-      <Button
-        class="col-start-12 text-purple-600 text-end"
-        placeholder="Check"
-        @clicked="handleCheckUserAcc"
-      />
+      <p class="text-purple-600 cursor-pointer" @click="handleCheckUserAcc">
+        Check
+      </p>
     </span>
     <span class="checkText">
       <p v-if="!isFilled" class="warning text-red-500 text-sm">
-        Please enter beneficiary account number
+        Please enter beneficiary account number then check that account
       </p>
       <p v-else class="text-purple-500 font-semibold">{{ beneficiaryName }}</p>
     </span>
 
     <Button
       class="w-full flex justify-end mt-16"
+      :class="{ disabled: !isChecked }"
       placeholder="Continue"
-      :is-grad="true"
+      :is-grad="isChecked"
+      :is-disabled="!isChecked"
       @clicked="handleContinue"
     />
   </div>
@@ -42,6 +42,15 @@ import { computed } from "@vue/reactivity"
 const accNumber = ref("")
 const beneficiaryName = ref("")
 const emit = defineEmits(["continueTransfer", "checkUserAccount"])
+
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  isChecked: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+})
 
 const isFilled = computed(() => {
   if (accNumber.value === "") {

@@ -25,10 +25,10 @@ const totalBalance = computed(() => {
 })
 
 function handleDropdown(value) {
-  if (value === "fa-chevron-down") {
-    isShow.value = false
-  } else {
+  if (value === true) {
     isShow.value = true
+  } else {
+    isShow.value = false
   }
 }
 </script>

@@ -51,9 +51,42 @@ export default [
   },
 
   {
+    path: "/customer/dashboard/loan",
+    name: "Money Loan",
+    component: () => import("./views/loan/LoanInformation.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
     path: "/customer/dashboard/transfer/detail",
     name: "Transfer Detail",
     component: () => import("./views/transfer/TransferDetail.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: "/customer/dashboard/log",
+    name: "Transaction log",
+    component: () => import("./views/Log.vue"),
+    meta: {
+      layout: "Default",
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: "/customer/dashboard/saving",
+    name: "Money saving",
+    component: () => import("./views/saving/SavingInformation.vue"),
     meta: {
       layout: "Default",
       type: "protected",
