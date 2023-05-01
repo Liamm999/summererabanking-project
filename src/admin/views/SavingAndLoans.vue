@@ -84,7 +84,7 @@
             <tr>
               <th scope="col" class="px-6 py-3">ID</th>
               <th scope="col" class="px-6 py-3 text-center">Phone Number</th>
-              <th scope="col" class="px-6 py-3 text-center">Number</th>
+              <th scope="col" class="px-6 py-3 text-center">Rate</th>
               <th scope="col" class="px-6 py-3 text-center">Loans</th>
               <th scope="col" class="px-6 py-3 text-center">Details</th>
             </tr>
@@ -101,15 +101,14 @@
               >
                 {{ index + 1 }}
               </th>
-              <td class="px-6 py-4 text-center">{{ customer.name }}</td>
-              <td class="px-6 py-4 text-center">{{ customer.number }}</td>
-
-              <td class="px-6 py-4 text-center">{{ customer.loans }}</td>
+              <td class="px-6 py-4 text-center">{{ customer.username }}</td>
+              <td class="px-6 py-4 text-center">{{ customer.rate }}</td>
+              <td class="px-6 py-4 text-center">{{ customer.totalMoney }}</td>
 
               <!--Create delete and edit button -->
               <td class="px-6 py-4 text-center">
                 <!--Click edit button to change to edit screen-->
-                <button @click="handleLoans(customer) in customers">
+                <button @click="handleLoans(customer)">
                   <font-awesome-icon
                     icon="fa-solid fa-pen"
                     style="color: #3b7ae8"
@@ -126,6 +125,7 @@
 </template>
 
 <script>
+import axios from "axios"
 import FilterVue from "../components/Filter.vue"
 export default {
   name: "Saving",
@@ -141,23 +141,35 @@ export default {
         { id: 4, name: "0982062604", saving: "4", type: "Gold" },
         { id: 5, name: "0982062604", saving: "4", type: "Gold" },
       ],
-      customerLoans: [
-        { id: 1, name: "0982117287", loans: "150000", number: "1" },
-        { id: 2, name: "0982062604", loans: "200000", number: "0" },
-        { id: 3, name: "0982062604", loans: "200000", number: "0" },
-      ],
+      customerLoans: [],
       filterType: ["Filter by", "Type", "Savings", "Loans"],
     }
   },
+  created() {
+    this.getAllLoans()
+  },
   methods: {
-    handleLoans: function () {
+    handleLoans: function (customer) {
       console.log("details loans")
-      this.$router.push(`/admin/loans/details?id=${this.customerLoans.id}`)
+      this.$router.push(`/admin/loans/details?id=${customer.id}`)
     },
     handleSaving: function (customer) {
       console.log("details saving")
       console.log(customer.id)
       this.$router.push(`/admin/saving/details?id=${customer.id}`)
+    },
+    async getAllLoans() {
+      await axios
+        .get("/user/all_loan", {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data)
+          this.customerLoans = res.data.allLoan
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
   },
 }

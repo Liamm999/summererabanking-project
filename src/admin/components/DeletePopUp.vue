@@ -36,6 +36,7 @@ export default {
   props: {
     username: String,
     id: String,
+    url: String,
   },
   data() {
     return {
@@ -46,12 +47,14 @@ export default {
   methods: {
     handleClick(event) {
       if (event.target.value == "Yes") {
+        console.log(event.target.id)
         axios
-          .delete(`user/ ${event.target.id}`, { withCredentials: true })
+          .delete(`${this.url}/ ${event.target.id}`, { withCredentials: true })
           .then((res) => {
             console.log(res.data)
+            this.$router.push("/admin/dashboard")
           })
-        window.location.reload()
+        // window.location.reload()
       } else if (event.target.value == "No") {
         console.log("No")
         this.hidden = !this.hidden

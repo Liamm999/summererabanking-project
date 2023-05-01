@@ -75,7 +75,9 @@
             <td class="px-6 py-4 text-center" v-else>
               <button class="bg-green-400 py-2 px-4 rounded-lg">Confirm</button>
             </td>
-            <td class="px-6 py-4 text-center">{{ customer.balance }}</td>
+            <td class="px-6 py-4 text-center">
+              {{ this.balance[index] }}
+            </td>
             <td class="px-6 py-4 text-center">{{ customer.startingDate }}</td>
 
             <!--Create delete and edit button -->
@@ -114,6 +116,7 @@
         :username="this.username"
         v-show="confirmDelete"
         :id="newId"
+        :url="url"
       />
     </div>
     <div class="absolute top-1/2 left-1/3 max-sm:left-12">
@@ -134,6 +137,7 @@ import DeletePopUp from "../components/DeletePopUp.vue"
 import axios from "axios"
 import SetBalance from "../components/SetBalance.vue"
 import Loading from "@/shared/components/Loading.vue"
+import { formatPrice } from "@/customer/helper/formatPrice"
 export default {
   name: "Account",
   data() {
@@ -144,9 +148,11 @@ export default {
       showSetBalance: false,
       username: "",
       id: "",
+      balance: [],
       newId: "",
       localTime: " ",
       checkHidden: true,
+      url: "/user",
     }
   },
   components: { Filter, DeletePopUp, SetBalance, Loading },
@@ -162,6 +168,10 @@ export default {
         })
         .then((res) => {
           this.customers = res.data.allUser
+
+          for (let i = 0; i < this.customers.length; i++) {
+            this.balance[i] = formatPrice(this.customers[i].balance)
+          }
           console.log(res.data)
         })
         .catch((err) => {
