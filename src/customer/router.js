@@ -93,4 +93,15 @@ export default [
       requiresAuth: true,
     },
   },
+
+  // {
+  //   path: "/customer/dashboard/deposite",
+  //   name: "Deposite",
+  //   component: () => import("./views/deposite/DepositeInformation.vue"),
+  //   meta: {
+  //     layout: "Default",
+  //     type: "protected",
+  //     requiresAuth: true,
+  //   },
+  // },
 ]

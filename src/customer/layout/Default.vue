@@ -7,13 +7,13 @@
         <profile
           class="hidden ml-auto mr-0 sm1:flex"
           :img-src="imgSrc"
-          :username="username"
+          :username="currentUser.name"
         />
         <Sidebar
           class="sm1:hidden"
           @click="handleNav"
           :is-shown="isShown"
-          :acc-num="accNum"
+          :acc-num="currentUser.username"
         />
       </div>
     </div>
@@ -31,20 +31,16 @@
 <script setup>
 import logo from "../components/navBar/Logo.vue"
 import profile from "../components/navBar/Profile.vue"
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import Sidebar from "../../shared/components/Sidebar.vue"
 
 const imgSrc = ref(require("@/customer/assets/img/fakeAvt.jpg"))
-const username = ref("LA MINH VU")
-const accNum = ref(21510009999999)
 const isShown = ref(false)
-// async function getUser() {
-//   try {
+const currentUser = ref({})
 
-//   } catch (e) {
-//     alert(e.message)
-//   }
-// }
+onMounted(() => {
+  currentUser.value = JSON.parse(localStorage.getItem("currentUser"))
+})
 
 function handleNav() {
   if (isShown.value) {

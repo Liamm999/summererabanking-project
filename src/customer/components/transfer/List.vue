@@ -63,13 +63,13 @@ const emit = defineEmits(["tabUpdate"])
 const props = defineProps({
   tabs: {
     type: Array,
-    required: true,
+    required: false,
     default: () => ["Contacts", "Recently"],
   },
 
   contacts: {
     type: Array,
-    required: true,
+    required: false,
     default: () => [
       {
         img: require("@/customer/assets/img/vu.jpg"),
@@ -79,31 +79,7 @@ const props = defineProps({
 
       {
         img: require("@/customer/assets/img/vu.jpg"),
-        name: "LA MINH VU",
-        acc: "0123456789",
-      },
-
-      {
-        img: require("@/customer/assets/img/vu.jpg"),
-        name: "LA MINH VU",
-        acc: "0123456789",
-      },
-
-      {
-        img: require("@/customer/assets/img/vu.jpg"),
-        name: "LA MINH VU",
-        acc: "0123456789",
-      },
-
-      {
-        img: require("@/customer/assets/img/vu.jpg"),
-        name: "LA MINH VU",
-        acc: "0123456789",
-      },
-
-      {
-        img: require("@/customer/assets/img/vu.jpg"),
-        name: "LA MINH VU",
+        name: "Test (Sorry we didn't developed this feature yet)",
         acc: "0123456789",
       },
     ],

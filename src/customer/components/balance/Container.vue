@@ -15,13 +15,24 @@ import { computed, ref } from "@vue/reactivity"
 import Heading from "./Heading.vue"
 import Card from "./Card.vue"
 
-const availableBalance = ref(12452161223)
-const accNum = ref(21510009999999)
 const isShow = ref(false)
+const currentUser = JSON.parse(localStorage.getItem("currentUser"))
 
-const totalBalance = computed(() => {
-  // TODO: return total balance from every resoure
-  return 12452161223
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  totalBalance: {
+    type: Number,
+    default: 0,
+  },
+
+  availableBalance: {
+    type: Number,
+    default: 0,
+  },
+})
+
+const accNum = computed(() => {
+  return currentUser.username
 })
 
 function handleDropdown(value) {

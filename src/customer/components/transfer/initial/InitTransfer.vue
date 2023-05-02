@@ -44,11 +44,11 @@ const props = defineProps({
 })
 
 // TODO: get current username
-const username = ref("LA MINH VU")
+const username = JSON.parse(localStorage.getItem("currentUser")).name
 
 const data = ref({
   amountMoney: ref(0),
-  message: ref(`${username.value} sent money`),
+  message: ref(`${username} sent money`),
   isSaved: ref(false),
 })
 

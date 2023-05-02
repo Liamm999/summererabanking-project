@@ -1,24 +1,26 @@
 <template>
   <layout>
     <template #content>
-      <Breadcum :routes="routes" :name="nameOfPage" :select="routes[1]" />
-      <div class="relative">
-        <span
-          class="bg-gray-300 block w-full h-full absolute z-10 opacity-75"
+      <div class="z-0">
+        <Breadcum :routes="routes" :name="nameOfPage" :select="routes[1]" />
+        <div class="relative">
+          <span
+            class="bg-gray-300 block w-full h-full absolute z-10 opacity-75"
+            :class="{ hidden: !isHidden }"
+          ></span>
+          <InitTransfer
+            :username="username"
+            @continue="checkData"
+            class="mb-12 z-0"
+            :is-hidden="isHidden"
+          />
+        </div>
+        <ConfirmTransfer
+          ref="confirm"
           :class="{ hidden: !isHidden }"
-        ></span>
-        <InitTransfer
-          :username="username"
-          @continue="checkData"
-          class="mb-12 z-0"
-          :is-hidden="isHidden"
+          class="mb-12"
         />
       </div>
-      <ConfirmTransfer
-        ref="confirm"
-        :class="{ hidden: !isHidden }"
-        class="mb-12"
-      />
     </template>
   </layout>
 </template>
@@ -35,7 +37,7 @@ import { getCurrentTime } from "@/customer/helper/getCurrentTime"
 
 // setup breadcum
 const nameOfPage = ref("Transaction Detail")
-const customerStore = useTransferStore()
+const transferStore = useTransferStore()
 const routes = ref(["Transfer Money", "Detail"])
 const router = useRouter()
 
@@ -43,16 +45,15 @@ const isHidden = ref(false)
 
 // TODO: get needed data
 const fromAccount = computed(() => {
-  return JSON.parse(localStorage.getItem("currentUser")).accountNumber
+  return JSON.parse(localStorage.getItem("currentUser")).username
 })
 
 const toAccount = computed(() => {
-  return customerStore.toAccount
+  return transferStore.toAccount
 })
 
 const toUsername = computed(() => {
-  // return customerStore.toUsername
-  return "LE THANH LAM" // for testing
+  return transferStore.toUsername
 })
 
 const currentTime = computed(() => {
@@ -75,7 +76,7 @@ function checkData(data) {
       message: data.message,
       isSaved: data.isSaved,
     })
-    customerStore.initTransferData(transferData.value)
+    transferStore.initTransferData(transferData.value)
     isHidden.value = true
     window.scrollTo(80, 700)
   }
