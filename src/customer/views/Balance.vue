@@ -1,4 +1,5 @@
 <template>
+  <Loading :is-hidden="isLoading" />
   <Layout>
     <template #content>
       <Breadcum :name="nameOfPage" :routes="routes" />
@@ -11,7 +12,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, watch } from "vue"
+import Loading from "@/shared/components/Loading.vue"
 import Breadcum from "../components/general/Breadcum.vue"
 import Container from "../components/balance/Container.vue"
 import Layout from "../layout/Default.vue"
@@ -21,6 +23,7 @@ import axios from "axios"
 const routes = ref(["View Balance"])
 const nameOfPage = ref("Balance")
 const currentUser = ref({})
+const isLoading = ref(false)
 
 const availableBalance = computed(() => {
   getCurrentUser()
@@ -43,12 +46,21 @@ async function getCurrentUser() {
 
     let data = res.data
     currentUser.value = data
+    isLoading.value = true
     return data
   } catch (error) {
     console.log(error.response)
     return error.response
   }
 }
+
+watch(
+  () => currentUser.value.balance,
+  (balance) => {
+    localStorage.setItem("currentUser", JSON.stringify(currentUser.value))
+    console.log(balance)
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>

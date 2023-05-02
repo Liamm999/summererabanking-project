@@ -1,4 +1,5 @@
 <template>
+  <Loading :is-hidden="isLoaded" />
   <layout>
     <template #content>
       <div class="z-0">
@@ -19,6 +20,7 @@
           ref="confirm"
           :class="{ hidden: !isHidden }"
           class="mb-12"
+          @succeeded="handleLoading"
         />
       </div>
     </template>
@@ -34,12 +36,14 @@ import { useTransferStore } from "@/customer/store/transferStore"
 import { useRouter } from "vue-router"
 import ConfirmTransfer from "@/customer/components/transfer/initial/confirm/ConfirmTransfer.vue"
 import { getCurrentTime } from "@/customer/helper/getCurrentTime"
+import Loading from "@/shared/components/Loading.vue"
 
 // setup breadcum
 const nameOfPage = ref("Transaction Detail")
 const transferStore = useTransferStore()
 const routes = ref(["Transfer Money", "Detail"])
 const router = useRouter()
+const isLoaded = ref(true)
 
 const isHidden = ref(false)
 
@@ -80,6 +84,10 @@ function checkData(data) {
     isHidden.value = true
     window.scrollTo(80, 700)
   }
+}
+
+function handleLoading(value) {
+  isLoaded.value = value
 }
 </script>
 

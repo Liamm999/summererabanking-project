@@ -36,7 +36,8 @@ import axios from "axios"
 
 const transferStore = useTransferStore()
 const router = useRouter()
-// const emit = defineEmits(["succeeded"])
+
+const emit = defineEmits(["succeeded"])
 
 const accountInfors = computed(() => {
   const toAccount = transferStore.toAccount
@@ -91,6 +92,7 @@ const timeAndMessage = computed(() => {
 
 // TODO: call api to do transaction here
 async function confirmTransaction() {
+  emit("succeeded", false)
   try {
     let res = await axios({
       method: "post",
@@ -105,11 +107,11 @@ async function confirmTransaction() {
     })
     let data = res.data
     console.log(data)
-    // emit("succeeded", data.message)
+    emit("succeeded", true)
     alert(data.message)
     router.push("/customer/dashboard/transfer")
   } catch (error) {
-    // emit("succeeded", error.message)
+    emit("succeeded", true)
     alert("You do not have enough money to transfer")
     router.push("/customer/dashboard/transfer")
     return error.response
