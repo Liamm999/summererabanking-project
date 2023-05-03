@@ -35,9 +35,9 @@ const props = defineProps({
   },
 
   accNum: {
-    type: Number,
+    type: String,
     require: true,
-    default: 0,
+    default: "",
   },
 })
 

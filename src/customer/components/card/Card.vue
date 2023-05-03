@@ -21,7 +21,11 @@
 <script setup>
 import Header from "./Header.vue"
 import Element from "./Element.vue"
-import { ref } from "vue"
+import { ref, computed } from "vue"
+
+const phoneNumber = computed(() => {
+  return JSON.parse(localStorage.getItem("currentUser")).username
+})
 
 const iconArr = ref([
   {
@@ -60,8 +64,6 @@ const iconArr = ref([
     route: "log",
   },
 ])
-
-const phoneNumber = ref("0123456789")
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,9 +1,9 @@
 export function getCurrentTime() {
   let today = new Date()
   let date =
-    today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate()
+    today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear()
   let time =
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
-  const thisTime = `${time} on ${date}`
+  const thisTime = `${date} ${time}`
   return thisTime
 }

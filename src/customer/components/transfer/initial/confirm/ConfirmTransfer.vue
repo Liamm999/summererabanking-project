@@ -32,14 +32,17 @@ import InforCard from "@/customer/components/general/InforCard.vue"
 import { useTransferStore } from "@/customer/store/transferStore"
 import { useRouter } from "vue-router"
 import { formatPrice } from "@/customer/helper/formatPrice"
+import axios from "axios"
 
-const customerStore = useTransferStore()
+const transferStore = useTransferStore()
 const router = useRouter()
 
+const emit = defineEmits(["succeeded"])
+
 const accountInfors = computed(() => {
-  const toAccount = customerStore.toAccount
-  const toUsername = customerStore.toUsername
-  const fromAccount = customerStore.getTransferData().value.fromAccount
+  const toAccount = transferStore.toAccount
+  const toUsername = transferStore.toUsername
+  const fromAccount = transferStore.getTransferData().value.fromAccount
   return [
     {
       tag: "From account:",
@@ -60,7 +63,7 @@ const accountInfors = computed(() => {
 })
 
 const amountMoney = computed(() => {
-  const amount = customerStore.getTransferData().value.amountMoney
+  const amount = transferStore.getTransferData().value.amountMoney
   return [
     {
       tag: "Transaction amount:",
@@ -71,8 +74,8 @@ const amountMoney = computed(() => {
 })
 
 const timeAndMessage = computed(() => {
-  const time = customerStore.getTransferData().value.currentTime
-  const message = customerStore.getTransferData().value.message
+  const time = transferStore.getTransferData().value.currentTime
+  const message = transferStore.getTransferData().value.message
   return [
     {
       tag: "Transaction time:",
@@ -88,8 +91,31 @@ const timeAndMessage = computed(() => {
 })
 
 // TODO: call api to do transaction here
-function confirmTransaction() {
-  alert("Confirm Transaction")
+async function confirmTransaction() {
+  emit("succeeded", false)
+  try {
+    let res = await axios({
+      method: "post",
+      url: "http://localhost:8080/transaction/",
+      withCredentials: true,
+      data: {
+        fromUserUsername: transferStore.getTransferData().value.toAccount,
+        toUserUsername: transferStore.getTransferData().value.fromAccount,
+        amount: Number(transferStore.transferData.amountMoney),
+        transactionTime: transferStore.transferData.currentTime,
+      },
+    })
+    let data = res.data
+    console.log(data)
+    emit("succeeded", true)
+    alert(data.message)
+    router.push("/customer/dashboard/transfer")
+  } catch (error) {
+    emit("succeeded", true)
+    alert("You do not have enough money to transfer")
+    router.push("/customer/dashboard/transfer")
+    return error.response
+  }
 }
 
 function cancelTransaction() {

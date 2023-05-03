@@ -40,7 +40,6 @@ import Button from "../general/Button.vue"
 import { computed } from "@vue/reactivity"
 
 const accNumber = ref("")
-const beneficiaryName = ref("")
 const emit = defineEmits(["continueTransfer", "checkUserAccount"])
 
 // eslint-disable-next-line no-unused-vars
@@ -49,6 +48,11 @@ const props = defineProps({
     type: Boolean,
     required: true,
     default: false,
+  },
+
+  beneficiaryName: {
+    type: String,
+    default: "",
   },
 })
 

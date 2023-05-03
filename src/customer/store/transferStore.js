@@ -7,7 +7,6 @@ export const useTransferStore = defineStore("transfer", () => {
   const toUsername = ref("")
 
   function initTransferData(data) {
-    toUsername.value = data.toUsername
     transferData.value = data
   }
   function getTransferData() {

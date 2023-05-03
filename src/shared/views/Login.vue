@@ -9,7 +9,7 @@
       <div class="left max-lg:hidden">
         <form
           class="border border-black text-black"
-          v-on:submit.prevent="submitForm"
+          @submit.prevent="submitForm"
         >
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
@@ -104,7 +104,7 @@
       >
         <form
           class="border border-black text-black"
-          v-on:submit.prevent="submitForm"
+          @submit.prevent="submitForm"
         >
           <h4 class="font-bold text-center font-">Welcome to SE Banking</h4>
           <div class="flex justify-center items-center mt-4">
@@ -257,7 +257,7 @@ export default {
           console.log("submit")
           this.$cookies.set("jwt", res.data.jwt)
           localStorage.setItem("token", res.data.jwt)
-          localStorage.setItem("currentUser", JSON.stringify(res.data))
+          localStorage.setItem("loginUser", JSON.stringify(res.data))
           // axios.defaults.headers.common["Authorization"] = token
           event.preventDefault()
           if (res.data.admin == true) {
@@ -272,6 +272,7 @@ export default {
           this.checkHidden = true
         })
     },
+
     validateUsername(value) {
       if (value == "admin") {
         this.message["username"] = ""
