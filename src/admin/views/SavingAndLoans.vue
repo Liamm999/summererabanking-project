@@ -103,7 +103,7 @@
               </th>
               <td class="px-6 py-4 text-center">{{ customer.username }}</td>
               <td class="px-6 py-4 text-center">{{ customer.rate }}</td>
-              <td class="px-6 py-4 text-center">{{ customer.totalMoney }}</td>
+              <td class="px-6 py-4 text-center">{{ this.loans[index + 1] }}</td>
 
               <!--Create delete and edit button -->
               <td class="px-6 py-4 text-center">
@@ -127,6 +127,7 @@
 <script>
 import axios from "axios"
 import FilterVue from "../components/Filter.vue"
+import { formatPrice } from "@/customer/helper/formatPrice"
 export default {
   name: "Saving",
   components: {
@@ -143,6 +144,7 @@ export default {
       ],
       customerLoans: [],
       filterType: ["Filter by", "Type", "Savings", "Loans"],
+      loans: [],
     }
   },
   created() {
@@ -166,6 +168,9 @@ export default {
         .then((res) => {
           console.log(res.data)
           this.customerLoans = res.data.allLoan
+          for (let i = 0; i < this.customerLoans.length; i++) {
+            this.loans[i] = formatPrice(this.customers[i].totalMoney)
+          }
         })
         .catch((err) => {
           console.log(err)

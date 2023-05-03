@@ -19,7 +19,7 @@
         type="button"
         class="py-1 px-5 bg-white hover:bg-red-400"
         value="Cancel"
-        @click="handleClick"
+        @click="handleCancel"
       >
         Cancel
       </button>
@@ -61,7 +61,7 @@ export default {
         new: false,
         balance: this.balance,
       }
-      if (event.target.value == "Save" && this.msg != "") {
+      if (event.target.value == "Save") {
         await axios
           .post(`admin/ ${event.target.id}/setBalance`, form)
           .then((res) => {
@@ -72,11 +72,12 @@ export default {
           })
         window.location.reload()
         this.hidden = !this.hidden
-      } else if (event.target.value == "Cancel") {
+      }
+    },
+    handleCancel(event) {
+      if (event.target.value == "Cancel") {
         console.log("No")
         this.hidden = !this.hidden
-      } else {
-        console.log("next")
       }
     },
     validateBalance(value) {

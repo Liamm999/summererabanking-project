@@ -170,7 +170,10 @@ export default {
           this.customers = res.data.allUser
 
           for (let i = 0; i < this.customers.length; i++) {
-            this.balance[i] = formatPrice(this.customers[i].balance)
+            this.balance[i] = formatPrice(this.customers[i].balance).replace(
+              "VND",
+              ""
+            )
           }
           console.log(res.data)
         })

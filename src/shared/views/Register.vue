@@ -354,6 +354,7 @@ export default {
         })
         .catch((err) => {
           console.log("error:" + err.message)
+          alert(err.response.data.message)
         })
     },
     handleCancel() {

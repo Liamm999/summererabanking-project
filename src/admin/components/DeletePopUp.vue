@@ -46,14 +46,22 @@ export default {
   },
   methods: {
     handleClick(event) {
+      console.log(this.$route.path)
       if (event.target.value == "Yes") {
         console.log(event.target.id)
         axios
-          .delete(`${this.url}/ ${event.target.id}`, { withCredentials: true })
+          .delete(`${this.url}/${event.target.id}`, { withCredentials: true })
           .then((res) => {
             console.log(res.data)
-            this.$router.push("/admin/dashboard")
           })
+        setTimeout(() => {
+          if (this.$route.path != "/admin/dashboard") {
+            this.$router.push("/admin/dashboard")
+          } else {
+            window.location.reload()
+          }
+        }, 2000)
+
         // window.location.reload()
       } else if (event.target.value == "No") {
         console.log("No")
