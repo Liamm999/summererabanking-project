@@ -14,18 +14,19 @@ export const useDepositeStore = defineStore("deposite", () => {
   function initDepositeData(data) {
     depositeData.value.depositeAmount = data.depositeAmount
     depositeData.value.rate = data.rate
-    depositeData.value.month = data.month
+    depositeData.value.duration = data.duration
+    depositeData.value.startDate = data.startDate
   }
 
   function getDepositeAmount() {
     return depositeData.value.depositeAmount
   }
 
-  function getLoanRate() {
+  function getDepositeRate() {
     return depositeData.value.rate
   }
 
-  function getLoanDuration() {
+  function getDepositeDuration() {
     return depositeData.value.duration
   }
 
@@ -33,15 +34,34 @@ export const useDepositeStore = defineStore("deposite", () => {
     return depositeData.value.startDate
   }
 
-  function getTotalMoneyWhenDue() {}
+  function getEndDate() {
+    const starDate = new Date(getStartDate())
+    const endDate = new Date()
+    endDate.setDate(starDate.getDate() + getDepositeDuration() * 30)
+    return (
+      endDate.getDate().toString().padStart(2, "0") +
+      "/" +
+      (endDate.getMonth() + 1).toString().padStart(2, "0") +
+      "/" +
+      endDate.getFullYear()
+    )
+  }
+
+  function getTotalMoneyWhenDue() {
+    return (
+      getDepositeAmount() *
+      Math.pow(1 + getDepositeRate() / 100, getDepositeDuration() / 12)
+    )
+  }
 
   return {
     initDepositeData,
     getDepositeAmount,
-    getLoanDuration,
-    getLoanRate,
+    getDepositeDuration,
+    getDepositeRate,
     getTotalMoneyWhenDue,
     transactionTime,
     getStartDate,
+    getEndDate,
   }
 })

@@ -10,22 +10,49 @@
         </p>
       </div>
       <div class="mb-8">
-        <p>Your remaining loan:</p>
+        <p>Original loan:</p>
         <p
           class="font-semibold text-purple-600 text-xl border-slate-500 border-b-2 mx leading-9"
         >
-          {{ formatPrice(loanAmount) }}
+          {{ formatPrice(loanData.inMoney) }}
         </p>
       </div>
       <div class="mb-8">
-        <span v-if="isDue">
+        <p>Your rate:</p>
+        <p
+          class="font-semibold text-purple-600 text-xl border-slate-500 border-b-2 mx leading-9"
+        >
+          {{ loanData.rate }}% pay in {{ loanData.duration }} months
+        </p>
+      </div>
+      <div class="mb-8">
+        <p>Your loan start at:</p>
+        <p
+          class="font-semibold text-purple-600 text-xl border-slate-500 border-b-2 mx leading-9"
+        >
+          {{ loanData.startDate }}
+        </p>
+      </div>
+      <div class="mb-8">
+        <p>
+          Remaining loan you have to pay (include remaining original loan +
+          interest):
+        </p>
+        <p
+          class="font-semibold text-purple-600 text-xl border-slate-500 border-b-2 mx leading-9"
+        >
+          {{ formatPrice(loanData.totalMoney) }}
+        </p>
+      </div>
+      <div class="mb-8">
+        <span v-if="dueData.isDue">
           <p class="text-red-500">
             Your payment is due, the amount you have to pay in this period is:
           </p>
           <p
             class="font-semibold mb-8 text-purple-600 text-xl border-slate-500 border-b-2 mx leading-9"
           >
-            {{ formatPrice(dueAmount) }}
+            {{ formatPrice(dueData.currentPaidAmount) }}
           </p>
           <Button :isGrad="true" placeholder="pay" @clicked="pay" />
         </span>
@@ -47,17 +74,19 @@ const curentUser = JSON.parse(localStorage.getItem("currentUser"))
 const emit = defineEmits(["pay"])
 
 const accNumber = computed(() => curentUser.username)
-const isDue = computed(() => props.dueAmount > 0)
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
-  loanAmount: {
-    type: Number,
-    required: true,
+  loanData: {
+    type: Object,
+    default: () => ({}),
   },
-  dueAmount: {
-    type: Number,
-    default: 0,
+  dueData: {
+    type: Object,
+    default: () => ({
+      isDue: false,
+      currentPaidAmount: 0,
+    }),
   },
 })
 

@@ -31,6 +31,7 @@ import { useLoanStore } from "@/customer/store/loanStore"
 import { formatPrice } from "@/customer/helper/formatPrice"
 
 const loanStore = useLoanStore()
+const emit = defineEmits(["confirm"])
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"))
 
@@ -87,8 +88,9 @@ const transactionData = ref([
   },
 ])
 
-// TODO: call api to do transaction here
-function confirmLoan() {}
+function confirmLoan() {
+  emit("confirm")
+}
 
 function cancelLoan() {
   alert("Cancel!")

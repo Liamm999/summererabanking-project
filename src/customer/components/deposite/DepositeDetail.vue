@@ -22,7 +22,6 @@
           @choose="setRate"
         />
       </div>
-
       <Button
         placeholder="Continue"
         :is-grad="true"
@@ -39,11 +38,18 @@ import InputMoney from "../general/InputMoney.vue"
 import Button from "../general/Button.vue"
 import InputOption from "../general/InputOption.vue"
 import { useDepositeStore } from "@/customer/store/depositeStore"
+import { getCurrentDate } from "@/customer/helper/getCurrentDate"
+
+const depositeStore = useDepositeStore()
 
 const amountMoney = ref()
 const originalMoney = ref(0)
-// eslint-disable-next-line no-unused-vars
-const depositeStore = useDepositeStore()
+const depositeData = ref({
+  depositeAmount: 0,
+  rate: 0,
+  duration: 0,
+  startDate: "",
+})
 
 function setAmountMoney(value) {
   amountMoney.value = value
@@ -85,7 +91,23 @@ const values = ref([
   },
 ])
 
-function handleContinue() {}
+function setRate(value) {
+  const rateAndMonth = values.value.find((item) => item.rate === Number(value))
+  depositeData.value.rate = rateAndMonth.rate
+  depositeData.value.duration = rateAndMonth.month
+}
+
+function handleContinue() {
+  if (originalMoney.value < 1000000) {
+    alert("Min amount is 1.000.000 VND")
+  } else if (depositeData.value.rate < 9) {
+    alert("Please choose the rate to continue")
+  } else {
+    depositeData.value.depositeAmount = originalMoney.value
+    depositeData.value.startDate = getCurrentDate()
+    depositeStore.initDepositeData(depositeData.value)
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

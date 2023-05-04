@@ -51,7 +51,7 @@ async function getCurrentUser() {
   try {
     let res = await axios({
       method: "get",
-      url: `http://localhost:8080/user/${currentUserId}`,
+      url: `${process.env.VUE_APP_ROOT_API}/user/${currentUserId}`,
       withCredentials: true,
     })
 

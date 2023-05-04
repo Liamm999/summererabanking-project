@@ -13,7 +13,7 @@
           <p class="text-purple-600 font-semibold">{{ availBalance }}</p>
         </span>
       </div>
-      <DepositeList :deposite-list="depositeList" @delete="handleDelete" />
+      <DepositeList :deposite-list="depositeList" @withdraw="handleWithdraw" />
     </template>
   </CardFrame>
 </template>
@@ -24,7 +24,7 @@ import { formatPrice } from "@/customer/helper/formatPrice"
 import { computed } from "vue"
 import DepositeList from "./DepositeList.vue"
 
-const emit = defineEmits(["handleDelete"])
+const emit = defineEmits(["handleWithdraw"])
 
 const curentUser = JSON.parse(localStorage.getItem("currentUser"))
 const availBalance = computed(() => formatPrice(curentUser.balance))
@@ -36,8 +36,8 @@ const props = defineProps({
   depositeList: Array,
 })
 
-function handleDelete(id) {
-  emit("handleDelete", id)
+function handleWithdraw(id) {
+  emit("handleWithdraw", id)
 }
 </script>
 

@@ -33,10 +33,11 @@ import { useSavingStore } from "@/customer/store/savingStore"
 import CardFrame from "@/customer/components/general/CardFrame.vue"
 import InforCard from "@/customer/components/general/InforCard.vue"
 import Button from "@/customer/components/general/Button.vue"
-import { getCurrentTime } from "@/customer/helper/getCurrentTime"
+import { getCurrentDate } from "@/customer/helper/getCurrentDate"
 
 const currentuser = JSON.parse(localStorage.getItem("currentUser"))
 const savingStore = useSavingStore()
+const emit = defineEmits(["confirm"])
 
 const accountInfors = computed(() => [
   {
@@ -59,7 +60,7 @@ const savingInfors = computed(() => [
   },
   {
     tag: "Transaction time:",
-    content: getCurrentTime(),
+    content: getCurrentDate(),
   },
 ])
 
@@ -73,7 +74,7 @@ const notes = computed(() => [
 
 // TODO: call api to do transaction here
 function confirmSaving() {
-  alert("Confirm Saving")
+  emit("confirm")
 }
 
 function cancelSaving() {

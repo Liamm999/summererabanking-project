@@ -27,7 +27,7 @@ import CardFrame from "../general/CardFrame.vue"
 import InputMoney from "../general/InputMoney.vue"
 import Button from "../general/Button.vue"
 import { useSavingStore } from "@/customer/store/savingStore"
-import { getCurrentTime } from "@/customer/helper/getCurrentTime"
+import { getCurrentDate } from "@/customer/helper/getCurrentDate"
 
 const amountMoney = ref()
 const originalMoney = ref(0)
@@ -53,7 +53,7 @@ function returnOriginalMoney(value) {
 function handleContinue() {
   const savingData = {
     savingAmount: Number(originalMoney.value),
-    startDate: getCurrentTime(),
+    startDate: getCurrentDate(),
   }
   if (savingData.savingAmount < 100000) {
     alert("Minimum saving amount is 100.000 VND")

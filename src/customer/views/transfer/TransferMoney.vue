@@ -1,5 +1,6 @@
 <template>
-  <layout>
+  <Loading :is-hidden="!isDoneCheck" class="z-10" />
+  <layout class="z-0">
     <template #content>
       <Breadcum :routes="routes" :name="nameOfPage" :select="routes[0]" />
       <div
@@ -29,6 +30,7 @@ import Contacts from "../../components/transfer/Contacts.vue"
 import { useRouter } from "vue-router"
 import { useTransferStore } from "@/customer/store/transferStore"
 import axios from "axios"
+import Loading from "@/shared/components/Loading.vue"
 
 // setup breadcum
 const nameOfPage = ref("Transfer money")
@@ -39,14 +41,16 @@ const transferStore = useTransferStore()
 const isValid = ref(false)
 const showInit = ref(false)
 const toUsername = ref("")
+const isDoneCheck = ref(false)
 
 // call api to check account name
 async function handleCheckAcc(accNumber) {
+  isDoneCheck.value = true
   // if check acc number is valid => beneficiaryName and isvalid
   try {
     let res = await axios({
       method: "get",
-      url: `http://localhost:8080/user/getuser/${accNumber}`,
+      url: `${process.env.VUE_APP_ROOT_API}/user/getuser/${accNumber}`,
       withCredentials: true,
     })
 
@@ -56,10 +60,12 @@ async function handleCheckAcc(accNumber) {
       toUsername.value = data.name
       transferStore.toUsername = toUsername.value
       isValid.value = true
+      isDoneCheck.value = false
       console.log(data.name)
     }
   } catch (error) {
     alert("Account is not exit")
+    location.reload()
   }
 }
 

@@ -23,10 +23,15 @@ export const useSavingStore = defineStore("saving", () => {
     return savingData.value.startDate
   }
 
+  function getRate() {
+    return savingData.value.rate
+  }
+
   return {
     initSavingData,
     getSavingAmount,
     getStartDate,
+    getRate,
     transactionTime,
   }
 })

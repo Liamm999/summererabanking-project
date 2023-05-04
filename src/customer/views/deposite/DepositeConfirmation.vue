@@ -4,7 +4,7 @@
       <div>
         <span>
           <InforCard class="mb-12" :valueObject="accountInfors" />
-          <InforCard class="mb-12" :valueObject="savingInfors" />
+          <InforCard class="mb-12" :valueObject="depositeInfors" />
           <InforCard class="mb-12" :valueObject="notes" />
         </span>
         <span
@@ -13,12 +13,12 @@
           <Button
             :is-grad="true"
             placeholder="cancel"
-            @clicked="cancelSaving"
+            @clicked="cancelDeposite"
           />
           <Button
             :is-grad="true"
             placeholder="Confirm"
-            @clicked="confirmSaving"
+            @clicked="confirmDeposite"
           />
         </span>
       </div>
@@ -29,49 +29,68 @@
 <script setup>
 import { computed } from "vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
-import { useSavingStore } from "@/customer/store/savingStore"
+import { useDepositeStore } from "@/customer/store/depositeStore"
 import CardFrame from "@/customer/components/general/CardFrame.vue"
 import InforCard from "@/customer/components/general/InforCard.vue"
 import Button from "@/customer/components/general/Button.vue"
 
 const currentuser = JSON.parse(localStorage.getItem("currentUser"))
-const savingStore = useSavingStore()
+const depositeStore = useDepositeStore()
+const emit = defineEmits(["confirmDeposite"])
 
 const accountInfors = computed(() => [
   {
-    tag: "Saving account:",
+    tag: "Deposite account:",
     content: currentuser.username,
     isHighlighted: true,
   },
   {
-    tag: "Saving user:",
+    tag: "Deposite user:",
     content: currentuser.name,
     isHighlighted: false,
   },
 ])
 
-const savingInfors = computed(() => [
+const depositeInfors = computed(() => [
   {
-    tag: "Saving amount:",
-    content: formatPrice(savingStore.getSavingAmount()),
+    tag: "Deposite amount:",
+    content: formatPrice(depositeStore.getDepositeAmount()),
+    isHighlighted: true,
+  },
+  {
+    tag: "Deposite rate:",
+    content: `${depositeStore.getDepositeRate()}% in ${depositeStore.getDepositeDuration()} months`,
+    isHighlighted: true,
+  },
+  {
+    tag: "Total money when due:",
+    content: formatPrice(depositeStore.getTotalMoneyWhenDue()),
     isHighlighted: true,
   },
 ])
 
 const notes = computed(() => [
   {
+    tag: "Start deposite from:",
+    content: depositeStore.getStartDate(),
+  },
+  {
+    tag: "Due date:",
+    content: depositeStore.getEndDate(),
+    isHighlighted: true,
+  },
+  {
     tag: "",
     content:
-      "If you withdraw your money before the due date, You will lose all interest and be penalized 5% of the principal amount ",
+      "If you withdraw your money before the due date, You will lose all interest and being penalized 5% of the principal amount",
   },
 ])
 
-// TODO: call api to do transaction here
-function confirmSaving() {
-  alert("Confirm Saving")
+function confirmDeposite() {
+  emit("confirmDeposite")
 }
 
-function cancelSaving() {
+function cancelDeposite() {
   alert("Cancel!")
   location.reload()
 }

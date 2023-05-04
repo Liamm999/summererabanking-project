@@ -3,7 +3,7 @@
     <span
       v-for="value in valueObject"
       :key="value.tag"
-      class="flex flex-col my-2 md:my-0 sm1:flex-row justify-between px-8"
+      class="flex flex-col my-2 sm1:flex-row justify-between px-8"
     >
       <p class="capitalize">{{ value.tag }}</p>
       <p :class="{ highilighted: value.isHighlighted }" class="font-semibold">
