@@ -3,16 +3,24 @@
   <Layout>
     <template #content>
       <Breadcum :name="nameOfPage" :routes="routes" />
+      <span class="container flex flex-row justify-end px-8 mb-5">
+        <button
+          class="bg-white text-black p-3 px-4 rounded-full"
+          @click="getCurrentUser()"
+        >
+          <font-awesome-icon class="text-lg" icon="fa-solid fa-arrows-rotate" />
+        </button>
+      </span>
       <Container
         :available-balance="availableBalance"
         :total-balance="totalBalance"
-      />
+      ></Container>
     </template>
   </Layout>
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue"
+import { ref, computed, watch, onMounted } from "vue"
 import Loading from "@/shared/components/Loading.vue"
 import Breadcum from "../components/general/Breadcum.vue"
 import Container from "../components/balance/Container.vue"
@@ -23,19 +31,22 @@ import axios from "axios"
 const routes = ref(["View Balance"])
 const nameOfPage = ref("Balance")
 const currentUser = ref({})
-const isLoading = ref(false)
+const isLoading = ref()
+
+onMounted(async () => {
+  await getCurrentUser()
+})
 
 const availableBalance = computed(() => {
-  getCurrentUser()
   return currentUser.value.balance
 })
 
 const totalBalance = computed(() => {
-  getCurrentUser()
   return currentUser.value.balance
 })
 
 async function getCurrentUser() {
+  isLoading.value = false
   const currentUserId = Number(JSON.parse(localStorage.getItem("loginUser")).id)
   try {
     let res = await axios({

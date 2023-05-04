@@ -1,10 +1,10 @@
-<!-- <template>
-  <CardFrame title="Information">
+<template>
+  <CardFrame title="Deposite Information">
     <template #cardContent>
-      <span
-        class="flex flex-col md:flex-row justify-between align-middle mb-24"
+      <div
+        class="flex flex-col md:flex-row w-full justify-between align-middle"
       >
-        <span class="block w-full md:w-1/2">
+        <span class="w-full md:w-1/2">
           <InputMoney
             class="w-full border-slate-500 border-b-2 leading-9"
             placeholder="How much you want to save ?"
@@ -13,10 +13,16 @@
             @formatMoney="parsedMoney"
             @formatOriginal="returnOriginalMoney"
           />
-          <p class="text-red-500 text-sm">(Min: 1m VND, Max: 100m VND)</p>
+          <p class="text-red-500 text-md md:mb-12">min 1.000.000 VND</p>
         </span>
-        <InputOption label="Choose rate and time" :values="values" />
-      </span>
+        <InputOption
+          label="Choose rate:"
+          class="mt-2 mb-12 md:m-0"
+          :values="values"
+          @choose="setRate"
+        />
+      </div>
+
       <Button
         placeholder="Continue"
         :is-grad="true"
@@ -29,12 +35,32 @@
 <script setup>
 import { ref } from "vue"
 import CardFrame from "../general/CardFrame.vue"
-import InputOption from "../general/InputOption.vue"
 import InputMoney from "../general/InputMoney.vue"
 import Button from "../general/Button.vue"
+import InputOption from "../general/InputOption.vue"
+import { useDepositeStore } from "@/customer/store/depositeStore"
 
 const amountMoney = ref()
 const originalMoney = ref(0)
+// eslint-disable-next-line no-unused-vars
+const depositeStore = useDepositeStore()
+
+function setAmountMoney(value) {
+  amountMoney.value = value
+  originalMoney.value = Number(value)
+}
+
+function parsedMoney(value) {
+  amountMoney.value = value
+}
+
+function returnOriginalMoney(value) {
+  if (value) {
+    amountMoney.value = value
+  } else {
+    amountMoney.value = 0
+  }
+}
 
 const values = ref([
   {
@@ -59,24 +85,7 @@ const values = ref([
   },
 ])
 
-function setAmountMoney(value) {
-  amountMoney.value = value
-  originalMoney.value = Number(value)
-}
-
-function parsedMoney(value) {
-  amountMoney.value = value
-}
-
-function returnOriginalMoney(value) {
-  if (value) {
-    amountMoney.value = value
-  } else {
-    amountMoney.value = 0
-  }
-}
-
 function handleContinue() {}
 </script>
 
-<style lang="scss" scoped></style> -->
+<style lang="scss" scoped></style>

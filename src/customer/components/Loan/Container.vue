@@ -104,8 +104,7 @@ function handleContinue() {
     alert(
       "You just can borrow in range 1m - 100m VND. If you want to borrow outside the range, please come to the bank offline"
     )
-  }
-  if (!loanData.value.rate) {
+  } else if (!loanData.value.rate) {
     alert("Please choose the rate")
   } else {
     loanData.value.loanAmount = Number(originalMoney.value)

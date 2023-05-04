@@ -10,7 +10,7 @@
         {{ label }}
       </option>
       <option v-for="value in values" :key="value.rate" :value="value.rate">
-        {{ value.rate }}% pay in {{ value.month }} months
+        {{ value.rate }}% in {{ value.month }} months
       </option>
     </select>
   </div>

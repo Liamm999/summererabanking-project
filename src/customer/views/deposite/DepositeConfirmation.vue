@@ -1,5 +1,5 @@
 <template>
-  <CardFrame title="Saving confirmation">
+  <CardFrame title="Deposite confirmation">
     <template #cardContent>
       <div>
         <span>
@@ -33,7 +33,6 @@ import { useSavingStore } from "@/customer/store/savingStore"
 import CardFrame from "@/customer/components/general/CardFrame.vue"
 import InforCard from "@/customer/components/general/InforCard.vue"
 import Button from "@/customer/components/general/Button.vue"
-import { getCurrentTime } from "@/customer/helper/getCurrentTime"
 
 const currentuser = JSON.parse(localStorage.getItem("currentUser"))
 const savingStore = useSavingStore()
@@ -57,17 +56,13 @@ const savingInfors = computed(() => [
     content: formatPrice(savingStore.getSavingAmount()),
     isHighlighted: true,
   },
-  {
-    tag: "Transaction time:",
-    content: getCurrentTime(),
-  },
 ])
 
 const notes = computed(() => [
   {
     tag: "",
     content:
-      "Interest rate is 7.3% a year. Interest cycle will be calculated in days and you can withdraw whenever you want",
+      "If you withdraw your money before the due date, You will lose all interest and be penalized 5% of the principal amount ",
   },
 ])
 
