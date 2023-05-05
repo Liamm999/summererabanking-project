@@ -1,10 +1,6 @@
-export function getCurrentTime() {
+export function getCurrentDate() {
   let today = new Date()
-
-  let time =
-    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
-  const thisTime = `${formatDate(today)} ${time}`
-  return thisTime
+  return formatDate(today)
 }
 
 function padTo2Digits(num) {

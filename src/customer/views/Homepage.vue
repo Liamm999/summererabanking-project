@@ -30,13 +30,14 @@
     <div class="flex flex-row justify-center items-center">
       <div class="flex justify-center items-center h-auto w-auto lg:hidden">
         <div class="relative flex justify-center items-center">
-          <img
-            id="image"
-            src="../assets/img/tree_finance.png"
-            class="h-auto w-auto"
-            @click=";(triggerFade = !triggerFade) && (hideButton = !hideButton)"
-          />
-          <span class="absolute top-1/2 left-1/2">Click me</span>
+          <RouterLink to="/customer/dashboard">
+            <img
+              id="image"
+              src="../assets/img/tree_finance.png"
+              class="h-auto w-auto"
+            />
+            <span class="absolute top-1/2 left-1/2">Click me</span>
+          </RouterLink>
         </div>
       </div>
     </div>

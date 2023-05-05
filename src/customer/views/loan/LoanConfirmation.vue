@@ -31,6 +31,7 @@ import { useLoanStore } from "@/customer/store/loanStore"
 import { formatPrice } from "@/customer/helper/formatPrice"
 
 const loanStore = useLoanStore()
+const emit = defineEmits(["confirm"])
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"))
 
@@ -46,12 +47,12 @@ const transactionTime = computed(() => loanStore.transactionTime)
 const accInfors = ref([
   {
     tag: "Borrowing account:",
-    content: currentUser.accountNumber,
+    content: currentUser.username,
     isHighlighted: false,
   },
   {
     tag: "Borrower's name:",
-    content: currentUser.username,
+    content: currentUser.name,
     isHighlighted: true,
   },
   {
@@ -87,9 +88,8 @@ const transactionData = ref([
   },
 ])
 
-// TODO: call api to do transaction here
 function confirmLoan() {
-  alert("Confirm Loan")
+  emit("confirm")
 }
 
 function cancelLoan() {

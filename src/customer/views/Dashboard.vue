@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <div class="">
+      <div class="mb-12">
         <Card v-if="isDone"></Card>
       </div>
     </template>
@@ -32,7 +32,7 @@ async function getCurrentUser() {
   try {
     let res = await axios({
       method: "get",
-      url: `http://localhost:8080/user/${currentUserId}`,
+      url: `${process.env.VUE_APP_ROOT_API}/user/${currentUserId}`,
       withCredentials: true,
     })
 

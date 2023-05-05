@@ -96,11 +96,11 @@ async function confirmTransaction() {
   try {
     let res = await axios({
       method: "post",
-      url: "http://localhost:8080/transaction/",
+      url: `${process.env.VUE_APP_ROOT_API}/transaction/`,
       withCredentials: true,
       data: {
-        fromUserUsername: transferStore.getTransferData().value.toAccount,
-        toUserUsername: transferStore.getTransferData().value.fromAccount,
+        fromUserUsername: transferStore.getTransferData().value.fromAccount,
+        toUserUsername: transferStore.getTransferData().value.toAccount,
         amount: Number(transferStore.transferData.amountMoney),
         transactionTime: transferStore.transferData.currentTime,
       },

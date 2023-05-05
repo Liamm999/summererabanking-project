@@ -13,7 +13,7 @@
           <p class="text-purple-600 font-semibold">{{ availBalance }}</p>
         </span>
       </div>
-      <SavingList :saving-list="savingList" @delete="handleDelete" />
+      <DepositeList :deposite-list="depositeList" @withdraw="handleWithdraw" />
     </template>
   </CardFrame>
 </template>
@@ -22,20 +22,22 @@
 import CardFrame from "../general/CardFrame.vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
 import { computed } from "vue"
-import SavingList from "./SavingList.vue"
+import DepositeList from "./DepositeList.vue"
+
+const emit = defineEmits(["handleWithdraw"])
 
 const curentUser = JSON.parse(localStorage.getItem("currentUser"))
 const availBalance = computed(() => formatPrice(curentUser.balance))
+
 const accNumber = computed(() => curentUser.username)
-const emit = defineEmits(["handleDelete"])
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
-  savingList: Array,
+  depositeList: Array,
 })
 
-function handleDelete(id) {
-  emit("handleDelete", id)
+function handleWithdraw(id) {
+  emit("handleWithdraw", id)
 }
 </script>
 

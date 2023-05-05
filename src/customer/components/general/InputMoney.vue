@@ -36,16 +36,22 @@ const props = defineProps({
 })
 
 function returnOriginalMoney() {
-  emit("formatOriginal", originalMoney.value)
+  if (originalMoney.value > 0) {
+    emit("formatOriginal", Number(originalMoney.value))
+  }
 }
 
 function formatMoney(event) {
-  const money = formatPrice(Number(event.target.value))
-  emit("formatMoney", money)
+  if (event.target.value > 0) {
+    const money = formatPrice(Number(event.target.value))
+    emit("formatMoney", money)
+  } else {
+    emit("formatMoney", "")
+  }
 }
 
 function handleInput(event) {
-  originalMoney.value = event.target.value
+  originalMoney.value = Number(event.target.value)
   emit("updateInput", originalMoney.value)
 }
 </script>

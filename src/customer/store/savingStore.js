@@ -3,40 +3,35 @@ import { ref } from "vue"
 
 export const useSavingStore = defineStore("saving", () => {
   const savingData = ref({
-    SavingAmount: 0,
-    rate: 0,
-    month: 0,
+    savingAmount: 0,
+    startDate: "",
+    rate: 73,
   })
 
   const transactionTime = ref("")
 
   function initSavingData(data) {
-    savingData.value.SavingAmount = data.SavingAmount
-    savingData.value.rate = data.rate
-    savingData.value.month = data.month
+    savingData.value.savingAmount = data.savingAmount
+    savingData.value.startDate = data.startDate
   }
 
   function getSavingAmount() {
-    return savingData.value.SavingAmount
+    return savingData.value.savingAmount
   }
 
-  function getSavingRate() {
+  function getStartDate() {
+    return savingData.value.startDate
+  }
+
+  function getRate() {
     return savingData.value.rate
   }
-
-  function getSavingMonth() {
-    return savingData.value.month
-  }
-
-  // return total interest
-  function getTotalInterest() {}
 
   return {
     initSavingData,
     getSavingAmount,
-    getSavingMonth,
-    getSavingRate,
+    getStartDate,
+    getRate,
     transactionTime,
-    getTotalInterest,
   }
 })
