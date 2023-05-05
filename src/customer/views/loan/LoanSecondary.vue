@@ -45,14 +45,14 @@
         </p>
       </div>
       <div class="mb-8">
-        <span v-if="dueData.isDue">
+        <span v-if="dueData.check">
           <p class="text-red-500">
             Your payment is due, the amount you have to pay in this period is:
           </p>
           <p
             class="font-semibold mb-8 text-purple-600 text-xl border-slate-500 border-b-2 mx leading-9"
           >
-            {{ formatPrice(dueData.currentPaidAmount) }}
+            {{ dueData.nextPayment }}
           </p>
           <Button :isGrad="true" placeholder="pay" @clicked="pay" />
         </span>
@@ -83,10 +83,7 @@ const props = defineProps({
   },
   dueData: {
     type: Object,
-    default: () => ({
-      isDue: false,
-      currentPaidAmount: 0,
-    }),
+    default: () => ({}),
   },
 })
 

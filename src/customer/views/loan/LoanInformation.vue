@@ -21,7 +21,7 @@
         v-else
         class="mb-12"
         :loan-data="loanData"
-        :due-amount="dueData"
+        :due-data="dueData"
         @pay="handlePay"
       />
     </template>
@@ -72,7 +72,7 @@ async function getCurrentLoan() {
 
     let data = res.data
     loanData.value = data
-    console.log(data)
+
     isLoading.value = false
     isLoanExisted.value = true
     return data
@@ -85,7 +85,23 @@ async function getCurrentLoan() {
 }
 
 // TODO: call api to check due if have loan
-async function checkDue() {}
+async function checkDue() {
+  isLoading.value = true
+  try {
+    let res = await axios({
+      method: "GET",
+      url: `${process.env.VUE_APP_ROOT_API}/user/loan/check_date`,
+      withCredentials: true,
+    })
+
+    let data = res.data
+    dueData.value = data
+    isLoading.value = false
+    return data
+  } catch (error) {
+    return error.response
+  }
+}
 
 // TODO: call api to confirm loan
 async function handleConfirm() {
