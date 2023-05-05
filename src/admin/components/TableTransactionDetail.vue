@@ -19,7 +19,7 @@
     </div>
     <!--create a table for list loans-->
     <div
-      class="relative overflow-x-auto shadow-md sm:rounded-lg max-lg:h-4/5 h-5/6 mt-5 mb-2 p-3"
+      class="relative overflow-x-auto shadow-md sm:rounded-lg max-lg:h-4/5 h-5/6 mt-5 mb-2 px-3"
     >
       <table class="w-full text-sm text-left text-white">
         <thead class="text-xs text-gray-700 uppercase bg-white sticky top-0">
@@ -310,7 +310,7 @@ export default {
                   alert(err.response.data.message)
                 })
             } else {
-              this.receiverId[i] = "-"
+              this.senderId[i] = "-"
             }
           }
         })
