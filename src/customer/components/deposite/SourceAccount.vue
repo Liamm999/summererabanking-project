@@ -21,13 +21,34 @@
 <script setup>
 import CardFrame from "../general/CardFrame.vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
-import { computed } from "vue"
+import { computed, ref, onBeforeMount, onMounted, onUpdated } from "vue"
+import { availableBalance, getTotalBalance } from "@/customer/helper/getBalance"
 import DepositeList from "./DepositeList.vue"
 
 const emit = defineEmits(["handleWithdraw"])
 
+onBeforeMount(() => {
+  getTotalBalance()
+})
+
+onMounted(() => {
+  if (getTotalBalance() > 0) {
+    availBalance.value = formatPrice(availableBalance)
+    localStorage.setItem("availableBalance", JSON.stringify(availableBalance))
+  }
+})
+
+onUpdated(() => {
+  getTotalBalance()
+  if (JSON.parse(localStorage.getItem("availableBalance"))) {
+    availBalance.value = formatPrice(
+      JSON.parse(localStorage.getItem("availableBalance"))
+    )
+  }
+})
+
 const curentUser = JSON.parse(localStorage.getItem("currentUser"))
-const availBalance = computed(() => formatPrice(curentUser.balance))
+const availBalance = ref()
 
 const accNumber = computed(() => curentUser.username)
 

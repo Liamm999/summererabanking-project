@@ -5,7 +5,7 @@
       class="container bg-gray-200 rounded-b-2xl sm1:px-36 py-16"
       :class="isShow ? 'show' : 'hide'"
     >
-      <Card :amount="availableBalance" :acc-num="accNum" class="" />
+      <Card :balances="allBalances" :acc-num="accNum" class="" />
     </div>
   </div>
 </template>
@@ -25,10 +25,7 @@ const props = defineProps({
     default: 0,
   },
 
-  availableBalance: {
-    type: Number,
-    default: 0,
-  },
+  allBalances: Array,
 })
 
 const accNum = computed(() => {
