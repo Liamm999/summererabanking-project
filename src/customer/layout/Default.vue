@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div v-if="isDone" class="relative">
     <div class="header flex justify-center relative py-2 bg-slate-50">
       <div class="container grid grid-cols-2 lg:grid-cols-3 text-on-white">
         <div class="blank hidden lg:block"></div>
@@ -33,14 +33,13 @@ import logo from "../components/navBar/Logo.vue"
 import profile from "../components/navBar/Profile.vue"
 import { ref, onMounted } from "vue"
 import Sidebar from "../../shared/components/Sidebar.vue"
+import axios from "axios"
+import { getCurrentTime } from "../helper/getCurrentTime"
 
 const imgSrc = ref(require("@/customer/assets/img/fakeAvt.jpg"))
 const isShown = ref(false)
 const currentUser = ref({})
-
-onMounted(() => {
-  currentUser.value = JSON.parse(localStorage.getItem("currentUser"))
-})
+const isDone = ref(false)
 
 function handleNav() {
   if (isShown.value) {
@@ -49,6 +48,37 @@ function handleNav() {
   } else {
     isShown.value = true
     console.log("show")
+  }
+}
+
+onMounted(async () => {
+  if (!localStorage.getItem("currentUser")) {
+    await getCurrentUser()
+  } else {
+    isDone.value = true
+    currentUser.value = JSON.parse(localStorage.getItem("currentUser"))
+  }
+  const thisTime = getCurrentTime()
+  localStorage.setItem("loginTime", thisTime)
+})
+
+async function getCurrentUser() {
+  const currentUserId = Number(JSON.parse(localStorage.getItem("loginUser")).id)
+  try {
+    let res = await axios({
+      method: "get",
+      url: `${process.env.VUE_APP_ROOT_API}/user/${currentUserId}`,
+      withCredentials: true,
+    })
+
+    let data = res.data
+    console.log(data)
+    localStorage.setItem("currentUser", JSON.stringify(data))
+    isDone.value = true
+    return data
+  } catch (error) {
+    console.log(error.response)
+    return error.response
   }
 }
 </script>
