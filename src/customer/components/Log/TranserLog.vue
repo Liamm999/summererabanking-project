@@ -5,7 +5,7 @@
     class="border-purple-300 border-solid rounded-lg border-2 m-2"
   >
     <span class="flex flex-col my-2 md:my-0 sm1:flex-row justify-between px-8">
-      <p class="capitalize" :class="isPlus ? 'plus' : 'minus'">
+      <p class="capitalize" :class="checkIsPlus(index) ? 'plus' : 'minus'">
         {{ formatPrice(log.amount) }}
       </p>
       <span
@@ -18,7 +18,10 @@
     </span>
     <span class="flex flex-row flex-wrap w-full break-words px-8 py-1">
       <p class="font-bold mr-2">Information:</p>
-      <p>Transfer money</p>
+      <p v-if="checkIsPlus(index)">
+        Receive money from {{ Object(fromUserList[index]).name }}
+      </p>
+      <p v-else>Send money to {{ Object(toUserList[index]).name }}</p>
     </span>
   </div>
 </template>
@@ -32,17 +35,24 @@ const currentUser = JSON.parse(localStorage.getItem("currentUser"))
 const fromUserList = ref([])
 const toUserList = ref([])
 
-// // function checkIsPlus(index) {
-// //   return true
-// // }
+function checkIsPlus(index) {
+  return Object(toUserList.value[index]).id === currentUser.id
+}
 
-// onUpdated(() => {
-//   const list = props.logData.map((log) => {
-//     const user = getFromUser(log.fromUserId)
-//     return user
-//   })
-//   console.log(list)
-// })
+onUpdated(async () => {
+  props.logData.forEach((log) => {
+    const promiseUser = getFromUser(log.fromUserId)
+    promiseUser.then((user) => {
+      fromUserList.value.push(user)
+    })
+  })
+  props.logData.forEach((log) => {
+    const promiseUser = getToUser(log.toUserId)
+    promiseUser.then((user) => {
+      toUserList.value.push(user)
+    })
+  })
+})
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({

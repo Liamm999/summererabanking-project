@@ -19,6 +19,7 @@ const props = defineProps({
 })
 
 const transferLogList = computed(() => {
+  console.log(props.allTransactionLog.filter((log) => log.type === "TRANSFER"))
   return props.allTransactionLog.filter((log) => log.type === "TRANSFER")
 })
 
@@ -33,7 +34,6 @@ const depositLogList = computed(() => {
 const loanLogList = computed(() => {
   return props.allTransactionLog.filter((log) => log.type === "LOAN")
 })
-
 </script>
 
 <style lang="scss" scoped>
