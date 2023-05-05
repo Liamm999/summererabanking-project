@@ -51,7 +51,7 @@ export default {
   },
   data() {
     return {
-      hidden: false,
+      hidden: true,
       form: {
         new: false,
         balance: "",
@@ -79,7 +79,7 @@ export default {
             { rate: rate },
             { withCredentials: true }
           )
-          .then((res) => {
+          .then(() => {
             console.log("more")
           })
           .catch((error) => {
@@ -94,7 +94,7 @@ export default {
             { rate: this.selected },
             { withCredentials: true }
           )
-          .then((res) => {
+          .then(() => {
             console.log("selected")
           })
           .catch((error) => {
@@ -103,8 +103,9 @@ export default {
         window.location.reload()
         this.hidden = !this.hidden
       } else {
-        console.log("No")
+        console.log("now" + this.hidden)
         this.hidden = !this.hidden
+        console.log("after" + this.hidden)
       }
       // if (event.target.value == "Save") {
       //   await axios

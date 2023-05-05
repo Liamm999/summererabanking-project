@@ -1,6 +1,6 @@
 <template>
   <div class="z-10 flex flex-col item-center fixed mt-20">
-    <SetRate ref="setBalance" v-show="showSetRate" :id="this.savingId" />
+    <SetRate ref="setBalance" :id="this.savingId" v-show="showSetRate" />
   </div>
   <div class="z-10 flex flex-col item-center fixed mt-20">
     <DeletePopUp
@@ -112,7 +112,7 @@ export default {
   },
   data() {
     return {
-      showSetRate: false,
+      showSetRate: true,
       confirmDelete: false,
       customerSaving: [],
       balance: [],
@@ -132,6 +132,7 @@ export default {
   },
   methods: {
     async getSavings() {
+      this.showSetRate = false
       const id = this.$route.query.id
       this.username = this.$route.query.acc
       await axios

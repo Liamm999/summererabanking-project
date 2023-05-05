@@ -209,7 +209,7 @@ export default {
               this.customers[i].toUserId != null &&
               this.customers[i].toUserId != 0
             ) {
-              this.receiverIdArray.push(this.customers[i].toUserId)
+              this.receiverIdArray.push(this.customers[i].fromUserId)
             } else {
               this.receiverIdArray.push("-")
             }
@@ -219,7 +219,7 @@ export default {
               this.customers[i].fromUserId != null &&
               this.customers[i].fromUserId != 0
             ) {
-              this.fromUserArray.push(this.customers[i].fromUserId)
+              this.fromUserArray.push(this.customers[i].toUserId)
             } else {
               this.fromUserArray.push("-")
             }
