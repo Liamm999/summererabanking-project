@@ -19,13 +19,24 @@
 </template>
 
 <script setup>
+import { onBeforeMount, onUpdated, ref } from "vue"
 import CardFrame from "../general/CardFrame.vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
 import { computed } from "vue"
+import { availableBalance, getTotalBalance } from "@/customer/helper/getBalance"
 import SavingList from "./SavingList.vue"
 
+onBeforeMount(() => {
+  getTotalBalance()
+})
+
+onUpdated(() => {
+  availBalance.value = formatPrice(availableBalance)
+})
+
+const availBalance = ref()
+
 const curentUser = JSON.parse(localStorage.getItem("currentUser"))
-const availBalance = computed(() => formatPrice(curentUser.balance))
 const accNumber = computed(() => curentUser.username)
 const emit = defineEmits(["handleDelete"])
 

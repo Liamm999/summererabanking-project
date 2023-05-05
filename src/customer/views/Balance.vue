@@ -12,7 +12,7 @@
         </button>
       </span>
       <Container
-        :available-balance="availableBalance"
+        :all-balances="allBalances"
         :total-balance="totalBalance"
       ></Container>
     </template>
@@ -20,29 +20,62 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from "vue"
+import { ref, watch, onMounted, onBeforeMount, onUpdated } from "vue"
 import Loading from "@/shared/components/Loading.vue"
 import Breadcum from "../components/general/Breadcum.vue"
 import Container from "../components/balance/Container.vue"
 import Layout from "../layout/Default.vue"
 import axios from "axios"
+import {
+  currentLoan,
+  allDeposit,
+  allSaving,
+  availableBalance,
+  getTotalBalance,
+} from "../helper/getBalance"
 
 // setup breadcum
 const routes = ref(["View Balance"])
 const nameOfPage = ref("Balance")
 const currentUser = ref({})
 const isLoading = ref()
+const totalBalance = ref()
+const allBalances = ref([])
+
+onBeforeMount(async () => {
+  isLoading.value = false()
+  getTotalBalance()
+})
 
 onMounted(async () => {
+  isLoading.value = true
   await getCurrentUser()
 })
 
-const availableBalance = computed(() => {
-  return currentUser.value.balance
-})
-
-const totalBalance = computed(() => {
-  return currentUser.value.balance
+onUpdated(() => {
+  totalBalance.value = getTotalBalance()
+  allBalances.value = [
+    {
+      balanceType: "Available balance (include original balance + loan)",
+      amount: availableBalance,
+    },
+    {
+      balanceType: "Original balance",
+      amount: availableBalance - currentLoan,
+    },
+    {
+      balanceType: "Loan",
+      amount: currentLoan,
+    },
+    {
+      balanceType: "Deposits",
+      amount: allDeposit,
+    },
+    {
+      balanceType: "Savings",
+      amount: allSaving,
+    },
+  ]
 })
 
 async function getCurrentUser() {
