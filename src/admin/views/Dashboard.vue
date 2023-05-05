@@ -227,8 +227,8 @@
 
 <script>
 import { SlideInOut } from "vue3-transitions"
-import Navbar from "../components/NavbarAdmin.vue"
-import LeftNavbar from "../components/LeftNavbar.vue"
+import Navbar from "../components/Navbar/NavbarAdmin.vue"
+import LeftNavbar from "../components/Navbar/LeftNavbar.vue"
 import Footer from "../components/Footer.vue"
 import Account from "./Account.vue"
 import Breadcrum from "../components/Breadcrum.vue"

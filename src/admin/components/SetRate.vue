@@ -4,11 +4,18 @@
       <div>Rate:</div>
       <select v-model="selected" class="ml-3 text-black">
         <option disabled value="">Please select one</option>
-        <option>6%</option>
-        <option>7%</option>
-        <option>8%</option>
+        <option value="6">6%</option>
+        <option value="7">7%</option>
+        <option value="8">8%</option>
+        <option value="more">More</option>
       </select>
     </div>
+    <input
+      type="text"
+      class="mt-5 text-black"
+      v-if="this.selected == 'more'"
+      v-model="moreOptions"
+    />
     <div
       class="flex flex-row justify-between items-center text-black mt-5 font-medium"
     >
@@ -39,17 +46,18 @@ import axios from "axios"
 export default {
   name: "setBalance",
   props: {
-    username: String,
     id: String,
+    show: Boolean,
   },
   data() {
     return {
-      hidden: true,
+      hidden: false,
       form: {
         new: false,
         balance: "",
       },
       selected: "",
+      moreOptions: "",
     }
   },
   watch: {
@@ -63,23 +71,58 @@ export default {
   methods: {
     async handleClick(event) {
       console.log("id", event.target.id)
-      if (event.target.value == "Save") {
+      if (this.selected == "more" && event.target.value == "Save") {
+        let rate = this.moreOptions
         await axios
-          .post(`admin/ ${event.target.id}/setBalance`, this.form)
+          .post(
+            `/admin/savings/${event.target.id}/edit`,
+            { rate: rate },
+            { withCredentials: true }
+          )
           .then((res) => {
-            console.log(res.data)
+            console.log("more")
           })
           .catch((error) => {
             console.log(error.message)
           })
         window.location.reload()
         this.hidden = !this.hidden
-      } else if (event.target.value == "Cancel") {
-        console.log("No")
+      } else if (this.selected != "more" && event.target.value == "Save") {
+        await axios
+          .post(
+            `/admin/savings/${event.target.id}/edit`,
+            { rate: this.selected },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log("selected")
+          })
+          .catch((error) => {
+            console.log(error.message)
+          })
+        window.location.reload()
         this.hidden = !this.hidden
       } else {
-        console.log("next")
+        console.log("No")
+        this.hidden = !this.hidden
       }
+      // if (event.target.value == "Save") {
+      //   await axios
+      //     .post(`admin/ ${event.target.id}/setBalance`, this.form)
+      //     .then((res) => {
+      //       console.log(res.data)
+      //     })
+      //     .catch((error) => {
+      //       console.log(error.message)
+      //     })
+      //   window.location.reload()
+      //   this.hidden = !this.hidden
+      // } else if (event.target.value == "Cancel") {
+      //   console.log("No")
+      //   this.hidden = !this.hidden
+      // } else {
+      //   console.log("next")
+      // }
     },
   },
 }

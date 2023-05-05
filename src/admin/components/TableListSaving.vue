@@ -1,5 +1,19 @@
 <template>
-  <div class="w-2/3 border border-white rounded-2xl max-lg:w-full max-lg:mx-3">
+  <div class="z-10 flex flex-col item-center fixed mt-20">
+    <SetRate ref="setBalance" v-show="showSetRate" :id="this.savingId" />
+  </div>
+  <div class="z-10 flex flex-col item-center fixed mt-20">
+    <DeletePopUp
+      ref="delete"
+      :username="this.savingId"
+      v-show="confirmDelete"
+      :id="this.savingId"
+      :url="this.url"
+    />
+  </div>
+  <div
+    class="w-2/3 border border-white rounded-2xl max-lg:w-full max-lg:mx-3 z-0"
+  >
     <div class="heaeding flex flex-col mt-3">
       <!--Title of the screen-->
       <div class="flex flex-row pl-2 item-center ml-3">
@@ -11,7 +25,7 @@
           />
         </button>
         <span class="title text-xl ml-5 font-semibold"
-          >Account: {{ title }}</span
+          >Account: {{ this.username }}</span
         >
       </div>
       <hr class="mt-3 w-full" />
@@ -43,12 +57,12 @@
               scope="row"
               class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
             >
-              {{ index + 1 }}
+              {{ customer.id }}
             </th>
-            <td class="px-6 py-4 text-center">{{ customer.saving }}</td>
-            <td class="px-6 py-4 text-center">{{ customer.rate }}</td>
-            <td class="px-6 py-4 text-center">{{ customer.startedAt }}</td>
-            <td class="px-6 py-4 text-center">{{ customer.finishedAt }}</td>
+            <td class="px-6 py-4 text-center">{{ balance[index] }}</td>
+            <td class="px-6 py-4 text-center">{{ customer.rate }}%</td>
+            <td class="px-6 py-4 text-center">{{ customer.startDate }}</td>
+            <td class="px-6 py-4 text-center">{{ customer.nextIncomeDate }}</td>
 
             <td class="px-6 py-4 flex justify-center">
               <div class="flex flex-row px-1 w-auto h-auto">
@@ -64,7 +78,7 @@
                 <!--Click delete button to delete account-->
                 <button
                   data-toggle="modal"
-                  @click="getUser(customer) in customers"
+                  @click="getUser(customer) in customerSaving"
                   type="button"
                 >
                   <font-awesome-icon
@@ -79,22 +93,6 @@
         </tbody>
       </table>
     </div>
-    <div class="popUp">
-      <SetRate
-        ref="setBalance"
-        :username="this.username"
-        v-show="showSetRate"
-        :id="this.newId"
-      />
-    </div>
-    <div class="popUp">
-      <DeletePopUp
-        ref="delete"
-        :username="this.username"
-        v-show="confirmDelete"
-        :id="this.id"
-      />
-    </div>
   </div>
 </template>
 
@@ -102,42 +100,26 @@
 import axios from "axios"
 import SetRate from "./SetRate.vue"
 import DeletePopUp from "./DeletePopUp.vue"
+import { formatPrice } from "@/customer/helper/formatPrice"
 export default {
   name: "Table add account",
-  props: {
-    title: String,
-  },
   components: {
     SetRate,
     DeletePopUp,
+  },
+  created() {
+    this.getSavings()
   },
   data() {
     return {
       showSetRate: false,
       confirmDelete: false,
-      customerSaving: [
-        {
-          id: 1,
-          saving: "1.000.000",
-          rate: "4%",
-          startedAt: "20/4/2020",
-          finishedAt: "20/4/2021",
-        },
-        {
-          id: 2,
-          saving: "2.000.000",
-          rate: "5%",
-          startedAt: "25/12/2019",
-          finishedAt: "25/12/2021",
-        },
-        {
-          id: 3,
-          saving: "3.000.000",
-          rate: "6%",
-          startedAt: "20/4/2020",
-          finishedAt: "20/4/2021",
-        },
-      ],
+      customerSaving: [],
+      balance: [],
+      id: "",
+      username: "",
+      savingId: "",
+      url: "/user/savings/delete",
     }
   },
   watch: {
@@ -149,16 +131,23 @@ export default {
     },
   },
   methods: {
-    async submitForm() {
+    async getSavings() {
+      const id = this.$route.query.id
+      this.username = this.$route.query.acc
       await axios
-        .post("user/signup", this.form)
-        .then((response) => {
-          console.log(response.data)
-          this.$router.push("/admin/dashboard")
+        .get(`/admin/saving_user/${id}`, { withCredentials: true })
+        .then((res) => {
+          console.log(res.data)
+          this.customerSaving = res.data.allSaving
+          for (let i = 0; i < this.customerSaving.length; i++) {
+            this.balance[i] = formatPrice(this.customerSaving[i].money).replace(
+              "VND",
+              ""
+            )
+          }
         })
         .catch((err) => {
-          console.log("error:" + err.message)
-          this.warning = !this.warning
+          console.log(err.message)
         })
     },
     handleCancel() {
@@ -166,20 +155,21 @@ export default {
     },
     getUser(customer) {
       console.log(customer.id)
-      this.id = customer.id
-      this.username = this.title
+      this.savingId = String(customer.id)
       this.confirmDelete = !this.confirmDelete
-      if (this.confirmDelete == true) {
-        this.$refs.delete.handleClick()
-      }
+      // if (this.confirmDelete == true) {
+      //   this.$refs.delete.handleClick()
+      // }
       // await axios
       //   .get("user/" + customer.id, { withCredentials: true })
       //   .then((response) => {
       //     console.log(response.data)
       //   })
     },
-    handleEdit() {
+    handleEdit(customer) {
+      console.log(customer.id)
       this.showSetRate = !this.showSetRate
+      this.savingId = String(customer.id)
     },
   },
 }
@@ -188,12 +178,6 @@ export default {
 <style lang="scss" scoped>
 .title {
   font-family: Open Sans, "Courier New", Courier, monospace;
-}
-
-.popUp {
-  position: absolute;
-  top: 40%;
-  left: 40%;
 }
 
 @media screen and (max-width: 640px) {

@@ -3,7 +3,7 @@
   <div id="account" class="relative z-0">
     <div class="heaeding flex justify-between items-center">
       <!--Title of the screen-->
-      <span class="text-xl ml-1 font-semibold">Account List</span>
+      <span class="text-xl ml-1 font-semibold">LIST ACCOUNT</span>
       <div class="right mr-1">
         <!--Click button to change to Add account screen -->
         <button
@@ -31,7 +31,7 @@
       <table class="w-full text-sm text-left text-white">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
-            <th scope="col" class="px-6 py-3">ID</th>
+            <th scope="col" class="px-6 py-3 text-center">ID</th>
             <th scope="col" class="px-6 py-3 text-center">Name</th>
             <th scope="col" class="px-6 py-3 text-center">Phone Number</th>
             <th scope="col" class="px-6 py-3 text-center">Date of Birth</th>
@@ -136,7 +136,6 @@ import Filter from "../components/Filter.vue"
 import DeletePopUp from "../components/DeletePopUp.vue"
 import axios from "axios"
 import SetBalance from "../components/SetBalance.vue"
-import Loading from "@/shared/components/Loading.vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
 export default {
   name: "Account",
@@ -155,7 +154,7 @@ export default {
       url: "/user",
     }
   },
-  components: { Filter, DeletePopUp, SetBalance, Loading },
+  components: { Filter, DeletePopUp, SetBalance },
   created() {
     this.fetchAllCustomer()
   },

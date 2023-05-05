@@ -4,10 +4,10 @@
       <NavbarAdmin />
     </div>
     <div class="px-36 pt-3 max-lg:px-2">
-      <Breadcrum :title="component" />
+      <Breadcrum :title="component" :third="navigator" :link="link" />
     </div>
     <div class="main w-full flex justify-center mt-5">
-      <TableEditAccount />
+      <TableTransactionDetail />
     </div>
 
     <div class="footer mt-3 max-lg:m-2">
@@ -20,16 +20,23 @@
 import NavbarAdmin from "../components/Navbar/NavbarAdmin.vue"
 import Footer from "../components/Footer.vue"
 import Breadcrum from "../components/Breadcrum.vue"
-import TableEditAccount from "../components/TableEditAccount.vue"
+import TableTransactionDetail from "../components/TableTransactionDetail.vue"
 export default {
-  name: "Edit account",
+  name: "Saving Details",
   data() {
     return {
-      component: "Edit Account",
+      component: "Transaction logs",
+      navigator: "Details",
+      link: "/admin/dashboard/",
     }
   },
   methods: {},
-  components: { NavbarAdmin, Footer, Breadcrum, TableEditAccount },
+  components: {
+    NavbarAdmin,
+    Footer,
+    Breadcrum,
+    TableTransactionDetail,
+  },
 }
 </script>
 

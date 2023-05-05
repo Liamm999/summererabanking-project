@@ -8,12 +8,12 @@
           <div class="flex flex-shrink-0 items-center justify-center">
             <img
               class="block h-16 w-auto lg:hidden"
-              src="../assets/image/Logo_bank.png"
+              src="../../assets/image/Logo_bank.png"
               alt="Bank logo"
             />
             <img
               class="hidden h-full w-auto lg:block"
-              src="../assets/image/Logo_bank.png"
+              src="../../assets/image/Logo_bank.png"
               alt="Your Company"
             />
           </div>
@@ -27,7 +27,7 @@
           <!-- search bar-->
           <div class="w-full relative mr-3 max-sm:hidden">
             <img
-              src="../assets/image/search.png"
+              src="../../assets/image/search.png"
               class="w-5 absolute top-1.5 left-2 opacity-40"
             />
 

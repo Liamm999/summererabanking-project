@@ -1,4 +1,5 @@
 <template>
+  <Loading :is-hidden="checkHidden" />
   <div class="w-2/3 border border-white rounded-2xl max-lg:w-full max-lg:mx-3">
     <div class="heaeding flex flex-col mt-3">
       <!--Title of the screen-->
@@ -221,12 +222,14 @@
 </template>
 
 <script>
+import Loading from "@/shared/components/Loading.vue"
 import axios from "axios"
 
 export default {
   name: "Table add account",
   data() {
     return {
+      checkHidden: true,
       username: "",
       name: "",
       password: "",
@@ -272,15 +275,17 @@ export default {
         password: this.password,
         dob: this.dob,
       }
+      this.checkHidden = false
       await axios
         .post("user/signup", form)
         .then((response) => {
           console.log(response.data)
           this.$router.push("/admin/dashboard")
+          this.checkHidden = true
         })
         .catch((err) => {
           console.log("error:" + err.message)
-          this.warning = !this.warning
+          alert(err.response.data.message)
         })
     },
     handleCancel() {
@@ -315,6 +320,7 @@ export default {
       }
     },
   },
+  components: { Loading },
 }
 </script>
 

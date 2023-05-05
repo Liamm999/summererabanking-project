@@ -1,8 +1,8 @@
 <template>
+  <Loading :is-hidden="checkHidden" />
   <div id="saving" class="h-full">
-    <div class="heaeding flex justify-between items-center">
+    <div class="heaeding flex justify-between items-center p-2">
       <!--Title of the screen-->
-
       <span class="text-xl ml-1 font-semibold">LIST SAVING & LOANS</span>
     </div>
     <hr class="mt-3" />
@@ -41,21 +41,17 @@
               >
                 {{ index + 1 }}
               </th>
-              <td class="px-6 py-4 text-center">{{ customer.name }}</td>
-              <td class="px-6 py-4 text-center">{{ customer.saving }}</td>
+              <td class="px-6 py-4 text-center">{{ customer.username }}</td>
+              <td class="px-6 py-4 text-center">{{ customer.savingNum }}</td>
 
               <!--If type is false -> return red button-->
-              <td class="px-6 py-4 text-center" v-if="customer.saving <= 2">
-                <div class="bg-gray-400 py-2 px-6 rounded-lg">
-                  {{ customer.type }}
-                </div>
+              <td class="px-6 py-4 text-center" v-if="customer.savingNum <= 2">
+                <div class="bg-gray-400 py-2 px-6 rounded-lg">Silver</div>
               </td>
 
               <!--If type is true -> return green button-->
               <td class="px-6 py-4 text-center" v-else>
-                <div class="bg-yellow-400 py-2 px-4 rounded-lg">
-                  {{ customer.type }}
-                </div>
+                <div class="bg-yellow-400 py-2 px-4 rounded-lg">Gold</div>
               </td>
 
               <!--Create delete and edit button -->
@@ -103,7 +99,7 @@
               </th>
               <td class="px-6 py-4 text-center">{{ customer.username }}</td>
               <td class="px-6 py-4 text-center">{{ customer.rate }}</td>
-              <td class="px-6 py-4 text-center">{{ this.loans[index + 1] }}</td>
+              <td class="px-6 py-4 text-center">{{ this.loans[index] }}</td>
 
               <!--Create delete and edit button -->
               <td class="px-6 py-4 text-center">
@@ -128,20 +124,17 @@
 import axios from "axios"
 import FilterVue from "../components/Filter.vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
+import Loading from "@/shared/components/Loading.vue"
 export default {
   name: "Saving",
   components: {
     FilterVue,
+    Loading,
   },
   data() {
     return {
-      customerSaving: [
-        { id: 1, name: "0982117284", saving: "1", type: "Silver" },
-        { id: 2, name: "0982062604", saving: "4", type: "Gold" },
-        { id: 3, name: "0982062604", saving: "4", type: "Gold" },
-        { id: 4, name: "0982062604", saving: "4", type: "Gold" },
-        { id: 5, name: "0982062604", saving: "4", type: "Gold" },
-      ],
+      checkHidden: true,
+      customerSaving: [],
       customerLoans: [],
       filterType: ["Filter by", "Type", "Savings", "Loans"],
       loans: [],
@@ -149,6 +142,7 @@ export default {
   },
   created() {
     this.getAllLoans()
+    this.getAllSaving()
   },
   methods: {
     handleLoans: function (customer) {
@@ -158,7 +152,9 @@ export default {
     handleSaving: function (customer) {
       console.log("details saving")
       console.log(customer.id)
-      this.$router.push(`/admin/saving/details?id=${customer.id}`)
+      this.$router.push(
+        `/admin/saving/details?id=${customer.id}&acc=${customer.username}`
+      )
     },
     async getAllLoans() {
       await axios
@@ -169,11 +165,26 @@ export default {
           console.log(res.data)
           this.customerLoans = res.data.allLoan
           for (let i = 0; i < this.customerLoans.length; i++) {
-            this.loans[i] = formatPrice(this.customers[i].totalMoney)
+            this.loans[i] = formatPrice(this.customerLoans[i].totalMoney)
           }
         })
         .catch((err) => {
           console.log(err)
+        })
+    },
+
+    async getAllSaving() {
+      this.checkHidden = false
+      await axios
+        .get("/admin/saving_user", { withCredentials: true })
+        .then((res) => {
+          console.log(res.data)
+          this.customerSaving = res.data.allHasUser
+          console.log("saving", this.customerSaving)
+          this.checkHidden = true
+        })
+        .catch((err) => {
+          console.log(err.message)
         })
     },
   },

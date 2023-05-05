@@ -54,13 +54,14 @@ export default {
           .then((res) => {
             console.log(res.data)
           })
-        setTimeout(() => {
-          if (this.$route.path != "/admin/dashboard") {
-            this.$router.push("/admin/dashboard")
-          } else {
-            window.location.reload()
-          }
-        }, 2000)
+
+        if (this.$route.path == "/admin/saving/details") {
+          window.location.reload()
+        } else if (this.$route.path != "/admin/dashboard") {
+          this.$router.push("/admin/dashboard")
+        } else {
+          window.location.reload()
+        }
 
         // window.location.reload()
       } else if (event.target.value == "No") {

@@ -103,6 +103,16 @@ export default [
   },
 
   {
+    path: "/admin/logs/edit", // route
+    name: "Transaction Details", // name of the views page
+    component: () => import("./views/TransactionDetail.vue"), // directory of vue file path
+    meta: {
+      type: "protected",
+      requiresAuth: true,
+    },
+  },
+
+  {
     path: "/admin/loans/details", // route
     name: "Loans Details", // name of the views page
     component: () => import("./views/LoansDetail.vue"), // directory of vue file path

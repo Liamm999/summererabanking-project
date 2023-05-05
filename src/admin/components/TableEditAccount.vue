@@ -145,7 +145,7 @@
               <input
                 type="text"
                 class="ml-3 w-full h-8 text-center rounded-md"
-                :placeholder="form.oldPhone"
+                :placeholder="form.oldDob"
                 name="dob"
                 v-model="dob"
                 required
@@ -253,6 +253,9 @@ export default {
           if (res.data.message == "OK") {
             this.$router.push("/admin/dashboard")
           }
+        })
+        .catch((err) => {
+          alert(err.response.data.message)
         })
     },
     handleCancel() {

@@ -67,8 +67,9 @@ export default {
           .then((res) => {
             console.log(res.data)
           })
-          .catch((error) => {
-            console.log(error.message)
+          .catch((err) => {
+            console.log(err.message)
+            alert(err.response.data.message)
           })
         window.location.reload()
         this.hidden = !this.hidden
