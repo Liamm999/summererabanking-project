@@ -15,11 +15,20 @@ import VueScrollingTable from "vue-scrolling-table"
 import "@/shared/helper/routeGuard"
 import Userfront from "@userfront/core"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
+import { globalCookiesConfig } from "vue3-cookies"
 
 axios.defaults.baseURL = `${process.env.VUE_APP_ROOT_API}`
 library.add(fas, fab, far)
 const app = createApp(App)
 const pinia = createPinia()
+
+globalCookiesConfig({
+  expires: "1d",
+  path: "/",
+  domain: "https://se.summererabanking.com",
+  secure: true,
+  sameSite: "None",
+})
 
 app
   .use(router)

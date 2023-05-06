@@ -258,7 +258,15 @@ export default {
           console.log("submit")
           const jwt = res.data.jwt
           console.log(jwt)
-          useCookies().cookies.set("jwt", jwt)
+          useCookies().cookies.set(
+            "jwt",
+            jwt,
+            "1d",
+            "/",
+            "https://se.summererabanking.com",
+            true,
+            "None"
+          )
           this.$cookies.set("jwt", jwt)
           localStorage.setItem("token", res.data.jwt)
           localStorage.setItem("loginUser", JSON.stringify(res.data))
