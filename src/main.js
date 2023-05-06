@@ -25,13 +25,7 @@ app
   .use(router)
   .use(pinia)
   .use(Vue3Transitions)
-  .use(VueCookies, {
-    expires: "1d",
-    path: "/",
-    domain: "https://se.summererabanking.com",
-    secure: true,
-    sameSite: "None",
-  })
+  .use(VueCookies)
   .use(Userfront)
   .use(VTextMarquee)
   .component("font-awesome-icon", FontAwesomeIcon)
