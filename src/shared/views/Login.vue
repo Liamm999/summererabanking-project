@@ -261,7 +261,7 @@ export default {
           useCookies().cookies.set(
             "jwt",
             jwt,
-            "5m",
+            86400 * 30,
             "/",
             "https://se.summererabanking.com",
             true,

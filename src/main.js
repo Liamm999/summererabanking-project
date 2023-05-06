@@ -23,7 +23,7 @@ const app = createApp(App)
 const pinia = createPinia()
 
 globalCookiesConfig({
-  expires: "1d",
+  expires: 86400 * 30,
   path: "/",
   domain: "https://se.summererabanking.com",
   secure: true,
@@ -35,7 +35,7 @@ app
   .use(pinia)
   .use(Vue3Transitions)
   .use(VueCookies, {
-    expires: "1d",
+    expires: 86400 * 30,
     path: "/",
     domain: "https://se.summererabanking.com",
     secure: true,
