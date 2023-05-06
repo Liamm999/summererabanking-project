@@ -137,13 +137,7 @@ async function handlePay() {
       method: "POST",
       url: `${process.env.VUE_APP_ROOT_API}/loan/pay`,
       withCredentials: true,
-      data: {
-        inMoney: loanStore.getLoanAmount(),
-        duration: loanStore.getLoanMonth(),
-        rate: loanStore.getLoanRate(),
-      },
     })
-
     let data = res.data
     isLoading.value = false
     console.log(data)
