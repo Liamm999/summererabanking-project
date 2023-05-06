@@ -255,7 +255,9 @@ export default {
         .then((res) => {
           console.log(res.data)
           console.log("submit")
-          this.$cookies.set("jwt", res.data.jwt)
+          const jwt = res.data.cookies
+          console.log(jwt)
+          this.$cookies.set("jwt", jwt)
           localStorage.setItem("token", res.data.jwt)
           localStorage.setItem("loginUser", JSON.stringify(res.data))
           // axios.defaults.headers.common["Authorization"] = token
