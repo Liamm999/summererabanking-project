@@ -16,7 +16,7 @@ import "@/shared/helper/routeGuard"
 import Userfront from "@userfront/core"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
-axios.defaults.baseURL = "http://localhost:8080/"
+axios.defaults.baseURL = "http://se.summererabanking.com/"
 library.add(fas, fab, far)
 const app = createApp(App)
 const pinia = createPinia()
