@@ -112,7 +112,7 @@
       </table>
     </div>
     <div class="absolute top-1/2 left-1/3 max-sm:left-12">
-      <DeletePopUp
+      <DeleteAccount
         ref="delete"
         :username="this.username"
         v-show="confirmDelete"
@@ -134,7 +134,7 @@
 
 <script>
 import Filter from "../components/Filter.vue"
-import DeletePopUp from "../components/DeletePopUp.vue"
+import DeleteAccount from "../components/DeleteAccount.vue"
 import axios from "axios"
 import SetBalance from "../components/SetBalance.vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
@@ -155,7 +155,7 @@ export default {
       url: "/user",
     }
   },
-  components: { Filter, DeletePopUp, SetBalance },
+  components: { Filter, DeleteAccount, SetBalance },
   created() {
     this.fetchAllCustomer()
   },
@@ -187,9 +187,9 @@ export default {
       this.confirmDelete = !this.confirmDelete
       this.newId = String(customer.id)
 
-      if (this.confirmDelete == true) {
-        this.$refs.delete.handleClick(event)
-      }
+      // if (this.confirmDelete == true) {
+      //   this.$refs.delete.handleClick(event)
+      // }
       // await axios
       //   .get("user/" + customer.id, { withCredentials: true })
       //   .then((response) => {
