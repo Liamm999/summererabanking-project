@@ -251,22 +251,21 @@ export default {
         password: this.password,
       }
       await axios
-        .post(`${process.env.VUE_APP_ROOT_API}/user/signin`, form)
+        .post(`${process.env.VUE_APP_ROOT_API}user/signin`, form)
         .then((res) => {
           console.log(res.data)
           console.log("submit")
           const jwt = res.data.jwt
-          console.log(jwt)
-
           this.$cookies.set(
             "jwt",
             jwt,
             86400 * 30,
             "/",
-            "https://se.summererabanking.com",
+            "https://summererabanking.com",
             true,
             "None"
           )
+          console.log(this.$cookies.get("jwt"))
           localStorage.setItem("token", res.data.jwt)
           localStorage.setItem("loginUser", JSON.stringify(res.data))
           // axios.defaults.headers.common["Authorization"] = token
@@ -279,7 +278,7 @@ export default {
           this.checkHidden = true
         })
         .catch((err) => {
-          console.log(err)
+          alert(err.response.data.message)
           this.checkHidden = true
         })
     },
