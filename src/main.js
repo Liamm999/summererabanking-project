@@ -1,7 +1,7 @@
 import { createApp } from "vue"
 import { createPinia } from "pinia"
 import App from "./App.vue"
-import { VueCookies } from "vue-cookies"
+import VueCookies from "vue-cookies"
 import router from "./shared/router"
 import "@/shared/assets/css/style.css"
 import { library } from "@fortawesome/fontawesome-svg-core"
