@@ -257,7 +257,16 @@ export default {
           console.log("submit")
           const jwt = res.data.jwt
           console.log(jwt)
-          this.$cookies.set("jwt", jwt)
+
+          this.$cookies.set(
+            "jwt",
+            jwt,
+            86400 * 30,
+            "/",
+            "https://se.summererabanking.com",
+            true,
+            "None"
+          )
           localStorage.setItem("token", res.data.jwt)
           localStorage.setItem("loginUser", JSON.stringify(res.data))
           // axios.defaults.headers.common["Authorization"] = token
