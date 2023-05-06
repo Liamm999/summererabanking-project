@@ -210,7 +210,6 @@ import axios from "axios"
 import Navbar from "../components/Navbar.vue"
 import Footer from "@/admin/components/Footer.vue"
 import Loading from "../components/Loading.vue"
-import { useCookies } from "vue3-cookies"
 
 export default {
   name: "Login",
@@ -258,15 +257,6 @@ export default {
           console.log("submit")
           const jwt = res.data.jwt
           console.log(jwt)
-          useCookies().cookies.set(
-            "jwt",
-            jwt,
-            86400 * 30,
-            "/",
-            "https://se.summererabanking.com",
-            true,
-            "None"
-          )
           this.$cookies.set("jwt", jwt)
           localStorage.setItem("token", res.data.jwt)
           localStorage.setItem("loginUser", JSON.stringify(res.data))
