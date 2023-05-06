@@ -255,7 +255,7 @@ export default {
         .then((res) => {
           console.log(res.data)
           console.log("submit")
-          const jwt = res.data.cookies
+          const jwt = res.data.jwt
           console.log(jwt)
           this.$cookies.set("jwt", jwt)
           localStorage.setItem("token", res.data.jwt)
