@@ -10,7 +10,6 @@ import { far } from "@fortawesome/free-regular-svg-icons"
 import Vue3Transitions from "vue3-transitions"
 import VTextMarquee from "vue-text-marquee"
 import axios from "axios"
-import VueCookies from "vue3-cookies"
 import VueScrollingTable from "vue-scrolling-table"
 import "@/shared/helper/routeGuard"
 import Userfront from "@userfront/core"
@@ -25,13 +24,7 @@ app
   .use(router)
   .use(pinia)
   .use(Vue3Transitions)
-  .use(VueCookies, {
-    expireTimes: "5m",
-    path: "/",
-    domain: "summererabanking.com",
-    secure: true,
-    sameSite: "None",
-  })
+
   .use(Userfront)
   .use(VTextMarquee)
   .component("font-awesome-icon", FontAwesomeIcon)
