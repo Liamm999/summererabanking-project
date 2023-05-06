@@ -251,7 +251,7 @@ export default {
         password: this.password,
       }
       await axios
-        .post(`user/signin`, form)
+        .post(`${process.env.VUE_APP_ROOT_API}/user/signin`, form)
         .then((res) => {
           console.log(res.data)
           console.log("submit")
@@ -268,7 +268,7 @@ export default {
           this.checkHidden = true
         })
         .catch((err) => {
-          alert(err.response.data.message)
+          console.log(err)
           this.checkHidden = true
         })
     },
