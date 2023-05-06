@@ -16,6 +16,7 @@ import "@/shared/helper/routeGuard"
 import Userfront from "@userfront/core"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
+axios.defaults.withCredentials = true
 axios.defaults.baseURL = `${process.env.VUE_APP_ROOT_API}/`
 library.add(fas, fab, far)
 const app = createApp(App)
