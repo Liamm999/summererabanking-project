@@ -28,10 +28,9 @@ app
   .use(VueCookies, {
     expireTimes: "5m",
     path: "/",
-    domain: "",
+    domain: "https://summererabanking.com",
     secure: true,
     sameSite: "None",
-    HttpOnly: true,
   })
   .use(Userfront)
   .use(VTextMarquee)
