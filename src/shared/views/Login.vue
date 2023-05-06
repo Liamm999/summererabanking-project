@@ -264,7 +264,7 @@ export default {
             "1d",
             "/",
             "https://se.summererabanking.com",
-            true,
+            false,
             "None"
           )
           this.$cookies.set("jwt", jwt)
