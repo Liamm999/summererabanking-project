@@ -1,9 +1,17 @@
 <template>
-  <nav>
-    <!-- <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> -->
-  </nav>
-  <router-view />
+  <router-view></router-view>
 </template>
-
+<script>
+export default {
+  watch: {
+    $route: {
+      immediate: true,
+      // eslint-disable-next-line no-unused-vars
+      handler(to, from) {
+        document.title = this.$route.name
+      },
+    },
+  },
+}
+</script>
 <style></style>

@@ -1,9 +1,15 @@
-import { createStore } from "vuex"
+import { defineStore } from "pinia"
+import { ref } from "vue"
 
-export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+export const useShareStore = defineStore("shared", () => {
+  const currentUser = ref({})
+  function initCurrentUser(user) {
+    currentUser.value = user
+  }
+
+  function getCurrentUser() {
+    return currentUser
+  }
+
+  return { currentUser, initCurrentUser, getCurrentUser }
 })
