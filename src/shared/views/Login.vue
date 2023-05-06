@@ -268,7 +268,7 @@ export default {
           this.checkHidden = true
         })
         .catch((err) => {
-          alert(err.response.data.message)
+          console.log(err)
           this.checkHidden = true
         })
     },
