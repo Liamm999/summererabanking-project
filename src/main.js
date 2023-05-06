@@ -28,7 +28,7 @@ app
   .use(VueCookies, {
     expireTimes: "5m",
     path: "/",
-    domain: "summererabanking.com",
+    domain: "https://summererabanking.com",
     secure: true,
     sameSite: "None",
   })
