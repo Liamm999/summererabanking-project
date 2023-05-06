@@ -16,7 +16,7 @@ import "@/shared/helper/routeGuard"
 import Userfront from "@userfront/core"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
-axios.defaults.baseURL = "https://se.summererabanking.com/"
+axios.defaults.baseURL = `${process.env.VUE_APP_ROOT_API}`
 library.add(fas, fab, far)
 const app = createApp(App)
 const pinia = createPinia()
@@ -31,6 +31,7 @@ app
     domain: "",
     secure: true,
     sameSite: "None",
+    HttpOnly: true,
   })
   .use(Userfront)
   .use(VTextMarquee)
