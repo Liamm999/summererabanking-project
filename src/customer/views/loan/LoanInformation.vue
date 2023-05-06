@@ -130,8 +130,22 @@ async function handleConfirm() {
 }
 
 // TODO: call api to pay interest
-function handlePay() {
-  console.log("Payed")
+async function handlePay() {
+  isLoading.value = true
+  try {
+    let res = await axios({
+      method: "POST",
+      url: `${process.env.VUE_APP_ROOT_API}/loan/pay`,
+      withCredentials: true,
+    })
+    let data = res.data
+    isLoading.value = false
+    console.log(data)
+    return data
+  } catch (error) {
+    console.log(error.response)
+    return error.response
+  }
 }
 </script>
 

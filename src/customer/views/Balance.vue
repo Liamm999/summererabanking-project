@@ -43,7 +43,7 @@ const totalBalance = ref()
 const allBalances = ref([])
 
 onBeforeMount(async () => {
-  isLoading.value = false()
+  isLoading.value = false
   getTotalBalance()
 })
 
