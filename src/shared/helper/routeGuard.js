@@ -6,6 +6,7 @@ const cookies = useCookies().cookies
 
 router.beforeEach(async (to, from, next) => {
   const jwt = cookies.get("jwt")
+  console.log(jwt)
 
   if (jwt && to.path === "/") {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"))
