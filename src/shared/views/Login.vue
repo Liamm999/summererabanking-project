@@ -256,8 +256,6 @@ export default {
           console.log(res.data)
           console.log("submit")
           const jwt = res.data.jwt
-          console.log(jwt)
-
           this.$cookies.set(
             "jwt",
             jwt,
@@ -267,6 +265,7 @@ export default {
             true,
             "None"
           )
+          console.log(this.$cookies.get("jwt"))
           localStorage.setItem("token", res.data.jwt)
           localStorage.setItem("loginUser", JSON.stringify(res.data))
           // axios.defaults.headers.common["Authorization"] = token
