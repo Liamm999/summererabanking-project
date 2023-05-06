@@ -29,8 +29,8 @@ app
     expires: "1d",
     path: "/",
     domain: "https://se.summererabanking.com",
-    secure: "",
-    sameSite: "Lax",
+    secure: true,
+    sameSite: "None",
   })
   .use(Userfront)
   .use(VTextMarquee)
