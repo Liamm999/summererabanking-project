@@ -16,7 +16,7 @@ import "@/shared/helper/routeGuard"
 import Userfront from "@userfront/core"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
-axios.defaults.baseURL = "http://localhost:8080/"
+axios.defaults.baseURL = `${process.env.VUE_APP_ROOT_API}`
 library.add(fas, fab, far)
 const app = createApp(App)
 const pinia = createPinia()
@@ -28,7 +28,7 @@ app
   .use(VueCookies, {
     expireTimes: "5m",
     path: "/",
-    domain: "",
+    domain: "https://summererabanking.com",
     secure: true,
     sameSite: "None",
   })
