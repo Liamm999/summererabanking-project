@@ -188,6 +188,7 @@ export default {
         oldPhone: "",
         oldName: "",
         oldDob: "",
+        balance: "",
       },
 
       warning: false,
@@ -232,6 +233,7 @@ export default {
             oldBalance: form.balance,
             oldDob: form.dob,
             oldName: form.name,
+            balance: form.balance,
           }
           console.log(res.data)
         })
@@ -243,8 +245,10 @@ export default {
       const id = this.$route.query.id
       const form = {
         phone: this.phone,
-        name: this.name,
+        username: this.name,
         dob: this.dob,
+        balance: this.balance,
+        type: false,
       }
       await axios
         .put(`user/${id}`, form, { withCredentials: true })
