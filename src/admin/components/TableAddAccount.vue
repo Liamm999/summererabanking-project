@@ -287,7 +287,6 @@ export default {
           console.log(response.data)
           this.customers = response.data
           alert("success!")
-          this.$router.push("/admin/dashboard")
           // this.checkHidden = true
         })
         .catch((err) => {
