@@ -1,11 +1,18 @@
 <template>
   <Loading :is-hidden="checkHidden" />
   <div class="w-2/3 border border-white rounded-2xl max-lg:w-full max-lg:mx-3">
-    <div class="heaeding flex flex-col mt-3">
-      <!--Title of the screen-->
+    <div class="flex flex-row pl-2 item-center ml-3">
+      <button @click="handleCancel">
+        <font-awesome-icon
+          icon="fa-solid fa-arrow-left"
+          style="color: #ffffff"
+          class="text-center"
+        />
+      </button>
       <span class="title text-xl ml-5 font-semibold">ADD ACCOUNT</span>
       <hr class="mt-3 w-full" />
     </div>
+
     <div class="max-lg:hidden">
       <form
         class="text-white flex justify-center"
@@ -288,9 +295,7 @@ export default {
           console.log("error:" + err.message)
           alert(err.response.data.message)
         })
-      if (this.customers.length > 0) {
-        this.$router.push("/admin/dashboard")
-      }
+      window.location.reload()
     },
     handleCancel() {
       this.$router.back("/admin/dashboard")

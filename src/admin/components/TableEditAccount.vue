@@ -244,11 +244,9 @@ export default {
     async submitForm() {
       const id = this.$route.query.id
       const form = {
-        phone: this.phone,
-        username: this.name,
+        username: this.phone,
+        name: this.name,
         dob: this.dob,
-        balance: this.balance,
-        type: false,
       }
       await axios
         .put(`user/${id}`, form, { withCredentials: true })
