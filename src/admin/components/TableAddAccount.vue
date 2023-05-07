@@ -10,8 +10,8 @@
         />
       </button>
       <span class="title text-xl ml-5 font-semibold">ADD ACCOUNT</span>
-      <hr class="mt-3 w-full" />
     </div>
+    <hr class="mt-3 w-full" />
 
     <div class="max-lg:hidden">
       <form
