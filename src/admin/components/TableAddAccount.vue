@@ -98,7 +98,7 @@
           <div class="w-3/5 flex justify-evenly items-center mt-6">
             <button
               class="bg-yellow-btn hover:bg-orange-500 mt-3 py-2 px-10 rounded-lg text-white"
-              @click="submitForm"
+              @click.prevent="submitForm"
             >
               Save
             </button>
