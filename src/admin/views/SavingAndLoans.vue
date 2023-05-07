@@ -126,7 +126,7 @@ import FilterVue from "../components/Filter.vue"
 import { formatPrice } from "@/customer/helper/formatPrice"
 import Loading from "@/shared/components/Loading.vue"
 export default {
-  name: "Saving",
+  name: "Saving & Loans",
   components: {
     FilterVue,
     Loading,
@@ -140,9 +140,9 @@ export default {
       loans: [],
     }
   },
-  created() {
-    this.getAllLoans()
-    this.getAllSaving()
+  async mounted() {
+    await this.getAllLoans()
+    await this.getAllSaving()
   },
   methods: {
     handleLoans: function (customer) {

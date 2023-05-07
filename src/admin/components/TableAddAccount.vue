@@ -14,10 +14,7 @@
     <hr class="mt-3 w-full" />
 
     <div class="max-lg:hidden">
-      <form
-        class="text-white flex justify-center"
-        v-on:submit.prevent="submitForm"
-      >
+      <form class="text-white flex justify-center">
         <div
           class="login w-5/6 p-3 pt-8 pb-5 flex flex-col items-center h-auto mt-1"
         >
@@ -100,8 +97,8 @@
           <!--Submit button-->
           <div class="w-3/5 flex justify-evenly items-center mt-6">
             <button
-              type="submit"
               class="bg-yellow-btn hover:bg-orange-500 mt-3 py-2 px-10 rounded-lg text-white"
+              @click="submitForm"
             >
               Save
             </button>
@@ -209,7 +206,7 @@
           <div class="w-full flex justify-around items-center mt-3">
             <button
               class="bg-yellow-btn hover:bg-orange-500 py-2 px-5 rounded-lg text-white text-sm"
-              @click="submitForm"
+              @click.prevent="submitForm"
             >
               Save
             </button>
@@ -233,7 +230,6 @@ export default {
   name: "Table add account",
   data() {
     return {
-      checkHidden: true,
       username: "",
       name: "",
       password: "",
@@ -280,13 +276,13 @@ export default {
         password: this.password,
         dob: this.dob,
       }
-      this.checkHidden = false
       await axios
         .post("user/signup", form)
         .then((response) => {
           console.log(response.data)
           this.customers = response.data
           alert("success!")
+          this.$router.push("/admin/dashboard")
           // this.checkHidden = true
         })
         .catch((err) => {
