@@ -156,8 +156,8 @@ export default {
     }
   },
   components: { Filter, DeleteAccount, SetBalance },
-  created() {
-    this.fetchAllCustomer()
+  async mounted() {
+    await this.fetchAllCustomer()
   },
   methods: {
     async fetchAllCustomer() {

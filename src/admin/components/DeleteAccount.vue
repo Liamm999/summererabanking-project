@@ -64,6 +64,7 @@ export default {
               console.log(res.data)
             })
         }
+        window.location.reload()
 
         // if (this.$route.path == "/admin/saving/details") {
         //   window.location.reload()
