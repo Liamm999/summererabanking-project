@@ -280,7 +280,7 @@ export default {
         .post("user/signup", form)
         .then((response) => {
           console.log(response.data)
-          this.$router.push("/admin/dashboard")
+          this.$router.back("/admin/dashboard")
           this.checkHidden = true
         })
         .catch((err) => {
@@ -289,7 +289,7 @@ export default {
         })
     },
     handleCancel() {
-      this.$router.push("/admin/dashboard")
+      this.$router.back("/admin/dashboard")
     },
     validatePassword(value) {
       if (value.length < 5) {
