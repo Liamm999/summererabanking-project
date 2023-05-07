@@ -5,7 +5,7 @@ router.beforeEach(async (to, from, next) => {
   console.log(jwt)
 
   if (jwt && to.path === "/") {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+    const currentUser = JSON.parse(localStorage.getItem("loginUser"))
     console.log(currentUser)
     if (currentUser.admin) {
       next("/admin/homepage")
