@@ -255,17 +255,17 @@ export default {
         .then((res) => {
           console.log(res.data)
           console.log("submit")
-          const jwt = res.data.jwt
-          this.$cookies.set(
-            "jwt",
-            jwt,
-            86400 * 30,
-            "/",
-            "https://summererabanking.com",
-            true,
-            "None"
-          )
-          console.log(this.$cookies.get("jwt"))
+          // const jwt = res.data.jwt
+          // this.$cookies.set(
+          //   "jwt",
+          //   jwt,
+          //   86400 * 30,
+          //   "/",
+          //   "https://summererabanking.com",
+          //   true,
+          //   "None"
+          // )
+          // console.log(this.$cookies.get("jwt"))
           localStorage.setItem("token", res.data.jwt)
           localStorage.setItem("loginUser", JSON.stringify(res.data))
           // axios.defaults.headers.common["Authorization"] = token
