@@ -1,5 +1,5 @@
 <template>
-  <Loading :is-hidden="checkHidden" />
+  <!-- <Loading :is-hidden="checkHidden" /> -->
   <div class="w-2/3 border border-white rounded-2xl max-lg:w-full max-lg:mx-3">
     <div class="flex flex-row pl-2 item-center ml-3 mt-3">
       <button @click="handleCancel">
@@ -106,7 +106,6 @@
               Save
             </button>
             <button
-              type="submit"
               class="bg-red-cancle hover:bg-red-800 mt-3 py-2 px-9 rounded-lg text-white"
               @click="handleCancel"
             >
@@ -118,7 +117,7 @@
     </div>
 
     <div class="hideForm w-full pl-8 pt-3 lg:hidden">
-      <form class="text-black" v-on:submit.prevent="submitForm">
+      <form class="form text-black">
         <div class="login flex flex-col items-center h-72 mt-2">
           <!--Input for username-->
           <div class="flex flex-col w-3/4">
@@ -209,13 +208,12 @@
 
           <div class="w-full flex justify-around items-center mt-3">
             <button
-              type="submit"
               class="bg-yellow-btn hover:bg-orange-500 py-2 px-5 rounded-lg text-white text-sm"
+              @click="submitForm"
             >
               Save
             </button>
             <button
-              type="submit"
               class="bg-red-cancle hover:bg-red-800 py-2 px-5 rounded-lg text-white text-sm"
               @click="handleCancel"
             >
@@ -229,7 +227,6 @@
 </template>
 
 <script>
-import Loading from "@/shared/components/Loading.vue"
 import axios from "axios"
 
 export default {
@@ -289,15 +286,18 @@ export default {
         .then((response) => {
           console.log(response.data)
           this.customers = response.data
-          this.checkHidden = true
+          alert("success!")
+          this.$router.push("/admin/dashboard")
+          // this.checkHidden = true
         })
         .catch((err) => {
           console.log("error:" + err.message)
           alert(err.response.data.message)
+          location.reload()
         })
     },
     handleCancel() {
-      this.$router.back("/admin/dashboard")
+      this.$router.push("/admin/dashboard")
     },
     validatePassword(value) {
       if (value.length < 5) {
@@ -328,7 +328,6 @@ export default {
       }
     },
   },
-  components: { Loading },
 }
 </script>
 
@@ -341,7 +340,7 @@ export default {
   margin: 0 2%;
 }
 
-.hideForm form {
+.hideForm .form {
   width: 50vw;
   height: auto;
   padding: 2%;
@@ -355,7 +354,7 @@ export default {
     margin: 0;
     padding: 0;
   }
-  .hideForm form {
+  .hideForm .form {
     width: auto;
     margin: 4%;
   }
@@ -383,7 +382,7 @@ export default {
     margin: 0;
     padding: 0;
   }
-  .hideForm form {
+  .hideForm .form {
     width: 100%;
     margin: 4%;
   }

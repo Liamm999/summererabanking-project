@@ -247,6 +247,8 @@ export default {
         username: this.phone,
         name: this.name,
         dob: this.dob,
+        // balance: this.form.balance,
+        // type: "Confirm",
       }
       await axios
         .put(`user/${id}`, form, { withCredentials: true })

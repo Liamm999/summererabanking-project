@@ -62,9 +62,9 @@ export default {
             .delete(`${this.url}/${event.target.id}`, { withCredentials: true })
             .then((res) => {
               console.log(res.data)
+              location.reload()
             })
         }
-        window.location.reload()
 
         // if (this.$route.path == "/admin/saving/details") {
         //   window.location.reload()
@@ -89,7 +89,7 @@ export default {
             alert(
               "Saving: Cant't delete. This account is having a saving or a loan"
             )
-            window.location.reload()
+            location.reload()
           }
         })
         .catch((err) => {
@@ -112,8 +112,9 @@ export default {
             alert(
               "Loan: Cant't delete. This account is having a saving or a loan"
             )
-            window.location.reload()
+            location.reload()
           }
+
           console.log(this.userLoan)
         })
         .catch((err) => {
