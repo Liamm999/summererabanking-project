@@ -251,7 +251,9 @@ export default {
         password: this.password,
       }
       await axios
-        .post(`${process.env.VUE_APP_ROOT_API}user/signin`, form)
+        .post(`${process.env.VUE_APP_ROOT_API}/user/signin`, form, {
+          withCredentials: true,
+        })
         .then((res) => {
           console.log(res.data)
           console.log("submit")
