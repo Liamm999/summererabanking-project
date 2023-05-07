@@ -235,6 +235,7 @@ export default {
       password: "",
       dob: "",
       msg: [],
+      customers: [],
     }
   },
   watch: {
@@ -280,13 +281,16 @@ export default {
         .post("user/signup", form)
         .then((response) => {
           console.log(response.data)
-          this.$router.back("/admin/dashboard")
+          this.customers = response.data
           this.checkHidden = true
         })
         .catch((err) => {
           console.log("error:" + err.message)
           alert(err.response.data.message)
         })
+      if (this.customers.length > 0) {
+        this.$router.back("/admin/dashboard")
+      }
     },
     handleCancel() {
       this.$router.back("/admin/dashboard")
