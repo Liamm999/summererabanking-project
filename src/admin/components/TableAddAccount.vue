@@ -289,7 +289,7 @@ export default {
           alert(err.response.data.message)
         })
       if (this.customers.length > 0) {
-        this.$router.back("/admin/dashboard")
+        this.$router.go("/admin/dashboard")
       }
     },
     handleCancel() {
