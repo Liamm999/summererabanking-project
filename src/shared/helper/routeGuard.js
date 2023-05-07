@@ -1,7 +1,8 @@
 import router from "../router"
 
 router.beforeEach(async (to, from, next) => {
-  const jwt = JSON.parse(localStorage.getItem("token"))
+  const jwt = localStorage.getItem("token")
+  console.log(jwt)
 
   if (jwt && to.path === "/") {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"))
