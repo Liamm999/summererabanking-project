@@ -1,4 +1,4 @@
-# se2_final_project_fe
+# summererabanking project
 
 ## Project setup
 ```
