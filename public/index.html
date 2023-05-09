@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <!-- HTML Meta Tags -->
+    <title>Summer Era Banking</title>
+    <meta
+      name="description"
+      content="Wanna try the experience of a billionaire, just register an account and we will put a few billion VND into it (of course you can't use that money for anything in real life)"
+    />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://summererabanking.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Summer Era Banking" />
+    <meta
+      property="og:description"
+      content="Wanna try the experience of a billionaire, just register an account and we will put a few billion VND into it (of course you can't use that money for anything in real life)"
+    />
+    <meta
+      property="og:image"
+      content="https://www.meme-arsenal.com/memes/c0ecd3fe909c5e1117a2d1591102b5ee.jpg"
+    />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="summererabanking.com" />
+    <meta property="twitter:url" content="https://summererabanking.com" />
+    <meta name="twitter:title" content="Summer Era Banking" />
+    <meta
+      name="twitter:description"
+      content="Wanna try the experience of a billionaire, just register an account and we will put a few billion VND into it (of course you can't use that money for anything in real life)"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.meme-arsenal.com/memes/c0ecd3fe909c5e1117a2d1591102b5ee.jpg"
+    />
+
+
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    {% comment %} <title><%= htmlWebpackPlugin.options.title %></title> {% endcomment %}
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
